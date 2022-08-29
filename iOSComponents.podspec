@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.name             = 'iOSComponents'
   s.version          = '0.1.0'
   s.summary          = 'iOSComponents is created by M2P build iOS Applications and Frameworks.'
+  s.license = 'MIT'
   
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -23,19 +24,22 @@ Pod::Spec.new do |s|
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'RanjithRavichandhar' => 'ranjith@m2p.in' }
-  s.source           = { :git => 'https://github.com/RanjithRavichandhar/iOSComponents.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-  
-  s.ios.deployment_target = '11.0'
+    
+  # platform
+  s.platform = :ios
   s.swift_version = '5.0'
+  s.ios.deployment_target = '11.0'
   
+  # source
   s.source_files = 'iOSComponents/Classes/**/*'
-  
+  s.source           = { :git => 'https://github.com/RanjithRavichandhar/iOSComponents.git', :tag => s.version.to_s }
   s.resource_bundles = {
     'Resources' => ['iOSComponents/Assets/*.png']
   }
   
+  # build settings
+  s.frameworks = 'Foundation', 'UIKit', 'CoreGraphics', 'QuartzCore'
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
