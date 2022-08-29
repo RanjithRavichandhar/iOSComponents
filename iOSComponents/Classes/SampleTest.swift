@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+public class Test {
+    
+    public init() {}
+    
+    public func printLog() {
+        print("Hello World")
+    }
+}
