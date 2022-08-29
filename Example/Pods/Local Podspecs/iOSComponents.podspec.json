@@ -2,28 +2,34 @@
   "name": "iOSComponents",
   "version": "0.1.0",
   "summary": "iOSComponents is created by M2P build iOS Applications and Frameworks.",
-  "description": "iOSComponents is created by M2P. iOSComponents provides lightweight UI Fields that enchance project performance.",
-  "homepage": "https://github.com/RanjithRavichandhar/iOSComponents",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
+  "description": "iOSComponents is created by M2P. iOSComponents provides lightweight UI Fields that enchance project performance.",
+  "homepage": "https://github.com/RanjithRavichandhar/iOSComponents",
   "authors": {
     "RanjithRavichandhar": "ranjith@m2p.in"
-  },
-  "source": {
-    "git": "https://github.com/RanjithRavichandhar/iOSComponents.git",
-    "tag": "0.1.0"
   },
   "platforms": {
     "ios": "11.0"
   },
   "swift_versions": "5.0",
   "source_files": "iOSComponents/Classes/**/*",
+  "source": {
+    "git": "https://github.com/RanjithRavichandhar/iOSComponents.git",
+    "tag": "0.1.0"
+  },
   "resource_bundles": {
     "Resources": [
       "iOSComponents/Assets/*.png"
     ]
   },
+  "frameworks": [
+    "Foundation",
+    "UIKit",
+    "CoreGraphics",
+    "QuartzCore"
+  ],
   "swift_version": "5.0"
 }
