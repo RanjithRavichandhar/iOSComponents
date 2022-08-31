@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         let resourcesBundle = Bundle(url: URL(fileURLWithPath: path!))
         let image = UIImage(named: "IndusLogo.png", in: resourcesBundle, compatibleWith: nil)
         print(image)
+        self.view.backgroundColor = UIColor.background
     }
 
     override func didReceiveMemoryWarning() {
