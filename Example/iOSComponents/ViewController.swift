@@ -17,13 +17,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let test = Test()
-        test.printLog()
-        let frameworkBundle = Bundle(for: Test.self)
-        let path = frameworkBundle.path(forResource: "Resources", ofType: "bundle")
-        let resourcesBundle = Bundle(url: URL(fileURLWithPath: path!))
-        let image = UIImage(named: "IndusLogo.png", in: resourcesBundle, compatibleWith: nil)
-        print(image)
         self.view.backgroundColor = UIColor.background
         self.titleLbl.font = UIFont.customFont(name: "Arial-BoldMT", size: .x34)
         self.titleLbl.backgroundColor = UIColor.PacificBlue66
