@@ -15,6 +15,12 @@
     "ios": "11.0"
   },
   "swift_versions": "5.0",
+  "info_plist": {
+    "CFBundleIdentifier": "org.cocoapods.iOSComponents"
+  },
+  "pod_target_xcconfig": {
+    "PRODUCT_BUNDLE_IDENTIFIER": "org.cocoapods.iOSComponents"
+  },
   "source_files": "iOSComponents/Classes/**/*",
   "source": {
     "git": "https://github.com/RanjithRavichandhar/iOSComponents.git",
@@ -22,7 +28,7 @@
   },
   "resource_bundles": {
     "Resources": [
-      "iOSComponents/Assets/*.png"
+      "iOSComponents/Assets/*{.png,.json}"
     ]
   },
   "frameworks": [
