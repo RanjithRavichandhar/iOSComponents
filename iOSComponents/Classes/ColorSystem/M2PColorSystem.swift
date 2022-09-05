@@ -9,70 +9,80 @@ import Foundation
 import UIKit
 
 public class M2PColorSystem {
-    var background : Background? = nil
-    var backgroundLightVarient : BackgroundLightVarient? = nil
-    var primaryActive : PrimaryActive? = nil
-    var secondaryInactive : SecondaryInactive? = nil
-    var linksText : LinksText? = nil
-    var borderDefault : BorderDefault? = nil
-    var focusedLine : FocusedLine? = nil
-    var errorLine : ErrorLine? = nil
-    var formDisableFilled : FormDisableFilled? = nil
-    var formDisableIcon : FormDisableIcon? = nil
     
-    public func M2PConfigureColor(jsonFileName: String = "colors") {
-        if let colors = self.getColors(json: jsonFileName) {
-            self.background = colors.background
-            self.backgroundLightVarient = colors.backgroundLightVarient
-            self.primaryActive = colors.primaryActive
-            self.secondaryInactive = colors.secondaryInactive
-            self.linksText = colors.linksText
-            self.borderDefault = colors.borderDefault
-            self.focusedLine = colors.focusedLine
-            self.errorLine = colors.errorLine
-            self.formDisableFilled = colors.formDisableFilled
-            self.formDisableIcon = colors.formDisableIcon
+    static let shared = M2PColorSystem()
+    public init() {}
+
+    public var colorsList: [String: Any]? = [:]
+    
+    public func M2PConfigureColor(jsonFileName: String? = nil) {
+        if let jsonFileName = jsonFileName {
+            FetchComponentColor.shared.getColors(json: jsonFileName, pathFromMain: true) { colorResult in
+                if let colors = colorResult {
+                    self.colorsList = colors
+                    M2PColorSystem.shared.colorsList = colors
+                }
+            }
+        } else {
+            FetchComponentColor.shared.M2PFetchComponentColor()
+            self.colorsList = FetchComponentColor.shared.colorsList
         }
     }
-    
-    private func readLocalFile(forName name: String) -> Data? {
-        do {
-            if let bundlePath = Bundle.main.path(forResource: name,
-                                                 ofType: "json"),
-                let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
-                return jsonData
+}
+
+public class FetchComponentColor {
+    static let shared = FetchComponentColor()
+    private init() {}
+    public var colorsList: [String: Any]? = [:]
+
+    func M2PFetchComponentColor(jsonFileName: String = "M2PColors") {
+        self.getColors(json: jsonFileName,completionHandler: { colorResult in
+            if let colors = colorResult {
+                self.colorsList = colors
+                M2PColorSystem.shared.colorsList = colors
             }
+        })
+    }
+    
+    private func readLocalFile(forName name: String, fromMain: Bool = false) -> Data? {
+        do {
+            if fromMain {
+                if let bundlePath = Bundle.main.path(forResource: name,ofType: "json"),
+                   let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
+                    return jsonData
+                }
+            } else {
+                if let bundlePath = M2PComponentsBundle.shared.currentBundle.path(forResource: "M2PColors",ofType: "json"),
+                   let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
+                    return jsonData
+                }
+            }
+            
         } catch {
-            print(error)
+            print("No File Found")
         }
-        
+        print("No M2PColors Json File Found")
         return nil
     }
     
-    private func parse(jsonData: Data?, completionHandler: @escaping (ColorsModel?) -> Void ) {
+    func parse(jsonData: Data?, completionHandler: @escaping ([String: Any]?) -> Void ) {
         do {
             guard let jsonData = jsonData else {
                 return completionHandler(nil)
             }
-            let decodedData = try JSONDecoder().decode(ColorsModel.self,
-                                                       from: jsonData)
-            completionHandler(decodedData)
+            if let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                completionHandler(json)
+            }
         } catch {
             completionHandler(nil)
         }
     }
     
-    private func getColors(json: String) -> Results? {
-        var colorsList: Results?
-        if let mockData = M2PColorSystem().readLocalFile(forName: json) {
-            M2PColorSystem().parse(jsonData: mockData) { response in
-                print(response?.colors ?? "")
-                colorsList = response?.colors
+    func getColors(json: String, pathFromMain: Bool = false, completionHandler: @escaping ([String: Any]?) -> Void ) {
+        if let mockData = FetchComponentColor().readLocalFile(forName: json, fromMain: pathFromMain) {
+            FetchComponentColor().parse(jsonData: mockData) { response in
+                completionHandler(response?["results"] as? [String: Any])
             }
-            print("Invalid Json File")
-            colorsList = nil
         }
-        return colorsList
     }
 }
-

@@ -10,70 +10,45 @@ import UIKit
 
 extension UIColor {
     
-    @M2PTheme(light: UIColor(hex: "#FFFFFF"),
-           dark: UIColor(hex: "#151515"))
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["background"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["background"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var background: UIColor
     
-    @M2PTheme(light: UIColor(hex: "FFFFFF"),
-           dark: UIColor.backgroundColor)
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["backgroundLightVarient"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["backgroundLightVarient"] as? [String:Any])?["light"] as? String ?? ""))
     public static var backgroundLightVarient: UIColor
     
-    @M2PTheme(light: UIColor(hex: "F0EFEE"),
-           dark: UIColor.backgroundLayoutColor)
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["primaryActive"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["primaryActive"] as? [String:Any])?["light"] as? String ?? ""))
     public static var primaryActive: UIColor
 
-    @M2PTheme(light: UIColor(hex: "FFFFFF"),
-           dark: UIColor.TextColor)
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["secondaryInactive"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["secondaryInactive"] as? [String:Any])?["light"] as? String ?? ""))
     public static var secondaryInactive: UIColor
     
-    @M2PTheme(light: UIColor.TextColor,
-           dark: UIColor(hex: "FFFFFF"))
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["linksText"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["linksText"] as? [String:Any])?["light"] as? String ?? ""))
     public static var linksText: UIColor
     
-    @M2PTheme(light: UIColor.errorColor,
-           dark: UIColor(hex: "B12028"))
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["borderDefault"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["borderDefault"] as? [String:Any])?["light"] as? String ?? ""))
     public static var borderDefault: UIColor
     
-    @M2PTheme(light: UIColor.errorColor,
-           dark: UIColor(hex: "B12028"))
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["focusedLine"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["focusedLine"] as? [String:Any])?["light"] as? String ?? ""))
     public static var focusedLine: UIColor
     
-    @M2PTheme(light: UIColor.errorColor,
-           dark: UIColor(hex: "B12028"))
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["errorLine"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["errorLine"] as? [String:Any])?["light"] as? String ?? ""))
     public static var errorLine: UIColor
     
-    @M2PTheme(light: UIColor.errorColor,
-           dark: UIColor(hex: "B12028"))
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableFilled"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableFilled"] as? [String:Any])?["light"] as? String ?? ""))
     public static var formDisableFilled: UIColor
     
-    @M2PTheme(light: UIColor.errorColor,
-           dark: UIColor(hex: "B12028"))
+    @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableIcon"] as? [String:Any])?["light"] as? String ?? ""),
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableIcon"] as? [String:Any])?["light"] as? String ?? ""))
     public static var formDisableIcon: UIColor
-}
-
-// MARK: - BackPort iOS 13 and older Colors
-
-extension UIColor {
-    
-    static var primaryColor: UIColor {
-        return UIColor(hex: "E7503D")
-    }
-    
-    static var backgroundColor: UIColor {
-        return UIColor(hex: "121212")
-    }
-    
-    static var backgroundLayoutColor: UIColor {
-        return UIColor(hex: "000000")
-    }
-    
-    static var TextColor: UIColor {
-        return UIColor(hex: "212721")
-    }
-    
-    static var errorColor: UIColor {
-        return UIColor(hex: "B12028")
-    }
 }
 
 extension UIColor {
