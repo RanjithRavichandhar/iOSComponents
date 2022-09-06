@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,16 +29,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3i-VF-GLj" customClass="GradientView" customModule="iOSComponents">
+                                <rect key="frame" x="40" y="64" width="334" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="oS4-48-Jk6"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="AIj-e1-6pA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f3i-VF-GLj" secondAttribute="trailing" constant="20" id="BNH-Po-xPi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7FW-Oc-Cf2" secondAttribute="trailing" constant="20" id="DcW-6a-pAq"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="Fyz-OH-HFM"/>
+                            <constraint firstItem="f3i-VF-GLj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="cID-gd-r4l"/>
+                            <constraint firstItem="f3i-VF-GLj" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="lRU-AM-kmg"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="v2A-bz-ELN"/>
+                            <constraint firstItem="f3i-VF-GLj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="wrl-Uo-4MQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="gradientBgView" destination="f3i-VF-GLj" id="qvC-Wd-pvX"/>
                         <outlet property="titleLbl" destination="7FW-Oc-Cf2" id="Twn-zB-bzJ"/>
                     </connections>
                 </viewController>
@@ -46,4 +59,9 @@
             <point key="canvasLocation" x="140" y="62"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

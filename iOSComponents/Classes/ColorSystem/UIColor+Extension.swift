@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 private let SystemColors = M2PColorSystem.shared.colorsList?["systemColors"] as? [String: Any]
+private let GlobalColors = M2PColorSystem.shared.colorsList?["globalColor"] as? [String: Any]
 
 extension UIColor {
     
@@ -17,40 +18,53 @@ extension UIColor {
     public static var background: UIColor
     
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["backgroundLightVarient"] as? [String:Any])?["light"] as? String ?? ""),
-           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["backgroundLightVarient"] as? [String:Any])?["light"] as? String ?? ""))
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["backgroundLightVarient"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var backgroundLightVarient: UIColor
     
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["primaryActive"] as? [String:Any])?["light"] as? String ?? ""),
-           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["primaryActive"] as? [String:Any])?["light"] as? String ?? ""))
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["primaryActive"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var primaryActive: UIColor
 
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["secondaryInactive"] as? [String:Any])?["light"] as? String ?? ""),
-           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["secondaryInactive"] as? [String:Any])?["light"] as? String ?? ""))
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["secondaryInactive"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var secondaryInactive: UIColor
     
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["linksText"] as? [String:Any])?["light"] as? String ?? ""),
-           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["linksText"] as? [String:Any])?["light"] as? String ?? ""))
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["linksText"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var linksText: UIColor
     
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["borderDefault"] as? [String:Any])?["light"] as? String ?? ""),
-           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["borderDefault"] as? [String:Any])?["light"] as? String ?? ""))
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["borderDefault"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var borderDefault: UIColor
     
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["focusedLine"] as? [String:Any])?["light"] as? String ?? ""),
-           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["focusedLine"] as? [String:Any])?["light"] as? String ?? ""))
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["focusedLine"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var focusedLine: UIColor
     
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["errorLine"] as? [String:Any])?["light"] as? String ?? ""),
-           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["errorLine"] as? [String:Any])?["light"] as? String ?? ""))
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["errorLine"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var errorLine: UIColor
     
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableFilled"] as? [String:Any])?["light"] as? String ?? ""),
-           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableFilled"] as? [String:Any])?["light"] as? String ?? ""))
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableFilled"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var formDisableFilled: UIColor
     
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableIcon"] as? [String:Any])?["light"] as? String ?? ""),
-           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableIcon"] as? [String:Any])?["light"] as? String ?? ""))
+           dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableIcon"] as? [String:Any])?["dark"] as? String ?? ""))
     public static var formDisableIcon: UIColor
+}
+
+/* Global Colors */
+extension UIColor {
+    public static var primaryColor: UIColor {
+        return UIColor(hex: (GlobalColors?["Primary"] as? [String:Any])?["default"] as? String ?? "")
+    }
+    public static var secondaryRedColor: UIColor {
+        return UIColor(hex: (GlobalColors?["RedSecondary"] as? [String:Any])?["default"] as? String ?? "")
+    }
+    public static var secondaryWhiteColor: UIColor {
+        return UIColor(hex: (GlobalColors?["WhitePrimaryVariant"] as? [String:Any])?["default"] as? String ?? "")
+    }
 }
 
 /* System Colors */
