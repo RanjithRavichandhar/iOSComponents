@@ -11,8 +11,8 @@ import iOSComponents
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var gradientBgView: M2PGradientView!
     @IBOutlet private weak var titleLbl: UILabel!
-    @IBOutlet private weak var gradientBgView: GradientView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

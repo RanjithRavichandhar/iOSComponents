@@ -29,7 +29,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3i-VF-GLj" customClass="GradientView" customModule="iOSComponents">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3i-VF-GLj" customClass="M2PGradientView" customModule="iOSComponents">
                                 <rect key="frame" x="40" y="64" width="334" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -50,7 +50,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="gradientBgView" destination="f3i-VF-GLj" id="qvC-Wd-pvX"/>
+                        <outlet property="gradientBgView" destination="f3i-VF-GLj" id="VMo-B8-mcV"/>
                         <outlet property="titleLbl" destination="7FW-Oc-Cf2" id="Twn-zB-bzJ"/>
                     </connections>
                 </viewController>
