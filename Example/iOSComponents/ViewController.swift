@@ -11,6 +11,8 @@ import iOSComponents
 
 class ViewController: UIViewController {
 
+    @IBOutlet private weak var titleLbl: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -23,6 +25,7 @@ class ViewController: UIViewController {
         let image = UIImage(named: "IndusLogo.png", in: resourcesBundle, compatibleWith: nil)
         print(image)
         self.view.backgroundColor = UIColor.background
+        self.titleLbl.font = UIFont.customFont(name: "Arial-BoldMT", size: .x34)
     }
 
     override func didReceiveMemoryWarning() {

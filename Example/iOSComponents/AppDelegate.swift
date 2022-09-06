@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let colorConfig = M2PColorSystem()
         colorConfig.M2PConfigureColor()
-        
         return true
     }
 

@@ -39,6 +39,50 @@
         "formDisableIcon": {
             "light": "#333333",
             "dark": "#E2E5EB"
+        },
+        "systemColors": {
+            "GreenPigment": {
+                "hex_100": "32A64D",
+                "hex_66": "78C489",
+                "hex_33": "BBE2C4",
+                "hex_16": "DEF1E2"
+            },
+            "ImperialRed": {
+                "hex_100": "E63946",
+                "hex_66": "EE7C85",
+                "hex_33": "F7BEC2",
+                "hex_16": "FBDFE1"
+            },
+            "Yellow": {
+                "hex_100": "E4AC04",
+                "hex_66": "EDC859",
+                "hex_33": "F6E4AC",
+                "hex_16": "FBF2D7"
+            },
+            "PacificBlue": {
+                "hex_100": "17A1B7",
+                "hex_66": "66C1CF",
+                "hex_33": "B2E0E7",
+                "hex_16": "DAF0F3"
+            },
+            "OceanBlue": {
+                "hex_100": "5D3BBD",
+                "hex_66": "947ED3",
+                "hex_33": "C9BEE9",
+                "hex_16": "E5E0F4"
+            },
+            "DavysGrey": {
+                "hex_100": "4D4E50",
+                "hex_66": "898A8B",
+                "hex_33": "C4C5C5",
+                "hex_16": "E2E3E3"
+            },
+            "PrincetonOrange": {
+                "hex_100": "F37B21",
+                "hex_66": "F59D5A",
+                "hex_33": "FACEAC",
+                "hex_16": "FDE7D7"
+            }
         }
     }
 }
