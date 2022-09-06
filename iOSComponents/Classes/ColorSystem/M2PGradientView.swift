@@ -8,7 +8,7 @@
 import UIKit
 
 /// Simple view for drawing gradients and borders.
-public class GradientView: UIView {
+public class M2PGradientView: UIView {
 
 	// MARK: - Types
 
