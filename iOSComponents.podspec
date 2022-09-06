@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
   }
   
   # build settings
-  s.frameworks = 'Foundation', 'UIKit', 'CoreGraphics', 'QuartzCore'
+  s.frameworks = 'Foundation', 'UIKit'
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
