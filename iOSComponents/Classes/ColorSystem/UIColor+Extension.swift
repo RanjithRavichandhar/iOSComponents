@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+private let SystemColors = M2PColorSystem.shared.colorsList?["systemColors"] as? [String: Any]
+
 extension UIColor {
     
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["background"] as? [String:Any])?["light"] as? String ?? ""),
@@ -49,6 +51,94 @@ extension UIColor {
     @M2PTheme(light: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableIcon"] as? [String:Any])?["light"] as? String ?? ""),
            dark: UIColor(hex: (M2PColorSystem.shared.colorsList?["formDisableIcon"] as? [String:Any])?["light"] as? String ?? ""))
     public static var formDisableIcon: UIColor
+}
+
+/* System Colors */
+extension UIColor {
+    public static var GreenPigment100: UIColor {
+        return UIColor(hex: (SystemColors?["GreenPigment"] as? [String:Any])?["hex_100"] as? String ?? "")
+    }
+    public static var GreenPigment66: UIColor {
+        return UIColor(hex: (SystemColors?["GreenPigment"] as? [String:Any])?["hex_66"] as? String ?? "")
+    }
+    public static var GreenPigment33: UIColor {
+        return UIColor(hex: (SystemColors?["GreenPigment"] as? [String:Any])?["hex_33"] as? String ?? "")
+    }
+    public static var GreenPigment16: UIColor {
+        return UIColor(hex: (SystemColors?["GreenPigment"] as? [String:Any])?["hex_16"] as? String ?? "")
+    }
+    public static var ImperialRed100: UIColor {
+        return UIColor(hex: (SystemColors?["ImperialRed"] as? [String:Any])?["hex_100"] as? String ?? "")
+    }
+    public static var ImperialRed66: UIColor {
+        return UIColor(hex: (SystemColors?["ImperialRed"] as? [String:Any])?["hex_66"] as? String ?? "")
+    }
+    public static var ImperialRed33: UIColor {
+        return UIColor(hex: (SystemColors?["ImperialRed"] as? [String:Any])?["hex_33"] as? String ?? "")
+    }
+    public static var ImperialRed16: UIColor {
+        return UIColor(hex: (SystemColors?["ImperialRed"] as? [String:Any])?["hex_16"] as? String ?? "")
+    }
+    public static var Yellow100: UIColor {
+        return UIColor(hex: (SystemColors?["Yellow"] as? [String:Any])?["hex_100"] as? String ?? "")
+    }
+    public static var Yellow66: UIColor {
+        return UIColor(hex: (SystemColors?["Yellow"] as? [String:Any])?["hex_66"] as? String ?? "")
+    }
+    public static var Yellow33: UIColor {
+        return UIColor(hex: (SystemColors?["Yellow"] as? [String:Any])?["hex_33"] as? String ?? "")
+    }
+    public static var Yellow16: UIColor {
+        return UIColor(hex: (SystemColors?["Yellow"] as? [String:Any])?["hex_16"] as? String ?? "")
+    }
+    public static var PacificBlue100: UIColor {
+        return UIColor(hex: (SystemColors?["PacificBlue"] as? [String:Any])?["hex_100"] as? String ?? "")
+    }
+    public static var PacificBlue66: UIColor {
+        return UIColor(hex: (SystemColors?["PacificBlue"] as? [String:Any])?["hex_66"] as? String ?? "")
+    }
+    public static var PacificBlue33: UIColor {
+        return UIColor(hex: (SystemColors?["PacificBlue"] as? [String:Any])?["hex_33"] as? String ?? "")
+    }
+    public static var PacificBlue16: UIColor {
+        return UIColor(hex: (SystemColors?["PacificBlue"] as? [String:Any])?["hex_16"] as? String ?? "")
+    }
+    public static var OceanBlue100: UIColor {
+        return UIColor(hex: (SystemColors?["OceanBlue"] as? [String:Any])?["hex_100"] as? String ?? "")
+    }
+    public static var OceanBlue66: UIColor {
+        return UIColor(hex: (SystemColors?["OceanBlue"] as? [String:Any])?["hex_66"] as? String ?? "")
+    }
+    public static var OceanBlue33: UIColor {
+        return UIColor(hex: (SystemColors?["OceanBlue"] as? [String:Any])?["hex_33"] as? String ?? "")
+    }
+    public static var OceanBlue16: UIColor {
+        return UIColor(hex: (SystemColors?["OceanBlue"] as? [String:Any])?["hex_16"] as? String ?? "")
+    }
+    public static var DavysGrey100: UIColor {
+        return UIColor(hex: (SystemColors?["DavysGrey"] as? [String:Any])?["hex_100"] as? String ?? "")
+    }
+    public static var DavysGrey66: UIColor {
+        return UIColor(hex: (SystemColors?["DavysGrey"] as? [String:Any])?["hex_66"] as? String ?? "")
+    }
+    public static var DavysGrey33: UIColor {
+        return UIColor(hex: (SystemColors?["DavysGrey"] as? [String:Any])?["hex_33"] as? String ?? "")
+    }
+    public static var DavysGrey16: UIColor {
+        return UIColor(hex: (SystemColors?["DavysGrey"] as? [String:Any])?["hex_16"] as? String ?? "")
+    }
+    public static var PrincetonOrange100: UIColor {
+        return UIColor(hex: (SystemColors?["PrincetonOrange"] as? [String:Any])?["hex_100"] as? String ?? "")
+    }
+    public static var PrincetonOrange66: UIColor {
+        return UIColor(hex: (SystemColors?["PrincetonOrange"] as? [String:Any])?["hex_66"] as? String ?? "")
+    }
+    public static var PrincetonOrange33: UIColor {
+        return UIColor(hex: (SystemColors?["PrincetonOrange"] as? [String:Any])?["hex_33"] as? String ?? "")
+    }
+    public static var PrincetonOrange16: UIColor {
+        return UIColor(hex: (SystemColors?["PrincetonOrange"] as? [String:Any])?["hex_16"] as? String ?? "")
+    }
 }
 
 extension UIColor {
