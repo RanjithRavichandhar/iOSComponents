@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         self.view.backgroundColor = UIColor.background
         self.titleLbl.font = UIFont.customFont(name: "Arial-BoldMT", size: .x34)
         self.titleLbl.backgroundColor = UIColor.PacificBlue66
