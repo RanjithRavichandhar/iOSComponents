@@ -31,9 +31,6 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   s.ios.deployment_target = '11.0'
   
-  s.info_plist = { 'CFBundleIdentifier' => 'org.cocoapods.iOSComponents' }
-  s.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER': 'org.cocoapods.iOSComponents' }
-  
   # source
   s.source_files = 'iOSComponents/Classes/**/*'
   s.source           = { :git => 'https://github.com/RanjithRavichandhar/iOSComponents.git', :tag => s.version.to_s }
