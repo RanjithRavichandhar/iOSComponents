@@ -83,6 +83,17 @@
                 "hex_33": "FACEAC",
                 "hex_16": "FDE7D7"
             }
+        },
+        "globalColor": {
+            "Primary": {
+                "default": "#151515"
+            },
+            "RedSecondary": {
+                "default": "#D02127"
+            },
+            "WhitePrimaryVariant": {
+                "default": "#FFFFFF"
+            }
         }
     }
 }

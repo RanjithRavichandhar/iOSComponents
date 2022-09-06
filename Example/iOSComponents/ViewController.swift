@@ -21,7 +21,11 @@ class ViewController: UIViewController {
         self.titleLbl.font = UIFont.customFont(name: "Arial-BoldMT", size: .x34)
         self.titleLbl.backgroundColor = UIColor.PacificBlue66
         
-        self.gradientBgView.configure(colors: [UIColor.PacificBlue66, UIColor.ImperialRed100, UIColor.PrincetonOrange100])
+        self.gradientBgView.configure(colors: [UIColor.PacificBlue66, UIColor.primaryActive, UIColor.secondaryRedColor])
+        self.gradientBgView.layer.borderColor = UIColor.red.cgColor
+        self.gradientBgView.layer.borderWidth = 0.6
+        self.gradientBgView.layer.cornerRadius = 10.0
+        self.gradientBgView.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
