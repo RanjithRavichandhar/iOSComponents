@@ -15,6 +15,24 @@ class ViewController: UIViewController {
     @IBOutlet private weak var titleLbl: UILabel!
     @IBOutlet weak var chipView: M2PChip?
     
+    @IBOutlet weak var m2pButton: M2PButton! {
+            didSet{
+                self.m2pButton.config(type: .custom, title: "IndusLogo",
+                                      buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
+                                      isPrimary: true,
+                                      bgColor: .clear,
+                                      leftImg: UIImage(named:"plus.png"),
+                                      rightImg: UIImage(named:"plus.png"),
+                                      leftIconWidth: 20,
+                                      leftIconHeight: 20,
+                                      rightIconWidth: 20,
+                                      rightIconHeight: 20,
+                                      state: .ENABLE) // ENABLE / DISABLE
+                self.m2pButton.onClick = { sender in
+                    print("\(sender.currentTitle ?? "")")
+                }
+            }
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
