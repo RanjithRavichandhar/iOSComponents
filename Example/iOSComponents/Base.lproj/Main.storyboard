@@ -36,13 +36,24 @@
                                     <constraint firstAttribute="height" constant="100" id="oS4-48-Jk6"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTt-JS-27J" customClass="M2PButton" customModule="iOSComponents">
+                                <rect key="frame" x="107" y="264" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CQz-9a-G6S"/>
+                                    <constraint firstAttribute="width" constant="200" id="UPm-cq-2Ke"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="qTt-JS-27J" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="8Pz-Tr-WhS"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="AIj-e1-6pA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f3i-VF-GLj" secondAttribute="trailing" constant="20" id="BNH-Po-xPi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7FW-Oc-Cf2" secondAttribute="trailing" constant="20" id="DcW-6a-pAq"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="Fyz-OH-HFM"/>
+                            <constraint firstItem="qTt-JS-27J" firstAttribute="top" secondItem="f3i-VF-GLj" secondAttribute="bottom" constant="100" id="OT5-GQ-B10"/>
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="cID-gd-r4l"/>
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="lRU-AM-kmg"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="v2A-bz-ELN"/>
@@ -50,7 +61,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="gradientBgView" destination="f3i-VF-GLj" id="qvC-Wd-pvX"/>
+                        <outlet property="m2pButton" destination="qTt-JS-27J" id="OZm-aS-e2p"/>
                         <outlet property="titleLbl" destination="7FW-Oc-Cf2" id="Twn-zB-bzJ"/>
                     </connections>
                 </viewController>

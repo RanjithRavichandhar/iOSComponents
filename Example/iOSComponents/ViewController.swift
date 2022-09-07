@@ -12,7 +12,27 @@ import iOSComponents
 class ViewController: UIViewController {
 
     @IBOutlet private weak var titleLbl: UILabel!
-    @IBOutlet private weak var gradientBgView: GradientView!
+    @IBOutlet private weak var gradientBgView: M2PGradientView!
+    
+    @IBOutlet weak var m2pButton:M2PButton!{
+        didSet{
+            self.m2pButton.config(type: .custom, title: "IndusLogo",
+                                  buttonStyle: .RIGHT_SIDE_ICON,
+                                  isPrimary: true,
+                                  states: .SUCCESS,
+                                  bgColor: .clear,
+                                  leftImg: UIImage(named:"plus.png"),
+                                  rightImg: UIImage(named:"plus.png"),
+                                  size: .MEDIUM,
+                                  leftIconWidth: 20,
+                                  leftIconHeight: 20,
+                                  rightIconWidth: 20,
+                                  rightIconHeight: 20,
+                                  state: .DISABLE)
+            
+            self.m2pButton.addTarget(self, action: #selector(followAction), for: .touchUpInside)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,16 +41,21 @@ class ViewController: UIViewController {
         self.titleLbl.font = UIFont.customFont(name: "Arial-BoldMT", size: .x34)
         self.titleLbl.backgroundColor = UIColor.PacificBlue66
         
-        self.gradientBgView.configure(colors: [UIColor.PacificBlue66, UIColor.primaryActive, UIColor.secondaryRedColor])
-        self.gradientBgView.layer.borderColor = UIColor.red.cgColor
-        self.gradientBgView.layer.borderWidth = 0.6
-        self.gradientBgView.layer.cornerRadius = 10.0
-        self.gradientBgView.layer.masksToBounds = true
+//        self.gradientBgView.configure(colors: [UIColor.PacificBlue66, UIColor.primaryActive, UIColor.secondaryRedColor])
+//        self.gradientBgView.layer.borderColor = UIColor.red.cgColor
+//        self.gradientBgView.layer.borderWidth = 0.6
+//        self.gradientBgView.layer.cornerRadius = 10.0
+//        self.gradientBgView.layer.masksToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @objc func followAction() {
+        print("Button Triggered!!")
+    }
+    
 }
 
