@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var gradientBgView: M2PGradientView!
     @IBOutlet private weak var titleLbl: UILabel!
+    @IBOutlet weak var chipView: M2PChip?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,8 @@ class ViewController: UIViewController {
         self.gradientBgView.layer.borderWidth = 0.6
         self.gradientBgView.layer.cornerRadius = 10.0
         self.gradientBgView.layer.masksToBounds = true
+        
+        chipView?.setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
     }
 
     override func didReceiveMemoryWarning() {
