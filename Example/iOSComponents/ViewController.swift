@@ -28,7 +28,9 @@ class ViewController: UIViewController {
                                   rightIconHeight: 20,
                                   state: .ENABLE) // ENABLE / DISABLE
             
-            self.m2pButton.addTarget(self, action: #selector(followAction), for: .touchUpInside)
+            self.m2pButton.onClick = { sender in
+                print("\(sender.currentTitle ?? "")")
+            }
         }
     }
     

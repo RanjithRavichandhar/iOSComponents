@@ -143,6 +143,8 @@ public class M2PButton: UIButton {
         }
     }
     
+    public var onClick: ((_ : UIButton) -> ())?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -167,6 +169,11 @@ public class M2PButton: UIButton {
         layer.masksToBounds = false
         self.setupButtonType()
         self.setupImage()
+        self.addTarget(self, action: #selector(actn(_:)), for: [.touchUpInside])
+    }
+    
+    @objc fileprivate func actn(_ sender: UIButton) {
+        onClick?(_ :sender)
     }
     
     fileprivate func setupImage() {
