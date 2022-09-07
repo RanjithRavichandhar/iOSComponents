@@ -13,6 +13,26 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var gradientBgView: M2PGradientView!
     @IBOutlet private weak var titleLbl: UILabel!
+    @IBOutlet weak var chipView: M2PChip?
+    
+    @IBOutlet weak var m2pButton: M2PButton! {
+            didSet{
+                self.m2pButton.config(type: .custom, title: "IndusLogo",
+                                      buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
+                                      isPrimary: true,
+                                      bgColor: .clear,
+                                      leftImg: UIImage(named:"plus.png"),
+                                      rightImg: UIImage(named:"plus.png"),
+                                      leftIconWidth: 20,
+                                      leftIconHeight: 20,
+                                      rightIconWidth: 20,
+                                      rightIconHeight: 20,
+                                      state: .ENABLE) // ENABLE / DISABLE
+                self.m2pButton.onClick = { sender in
+                    print("\(sender.currentTitle ?? "")")
+                }
+            }
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +46,8 @@ class ViewController: UIViewController {
         self.gradientBgView.layer.borderWidth = 0.6
         self.gradientBgView.layer.cornerRadius = 10.0
         self.gradientBgView.layer.masksToBounds = true
+        
+        chipView?.setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
     }
 
     override func didReceiveMemoryWarning() {
