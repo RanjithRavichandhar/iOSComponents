@@ -17,18 +17,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var m2pButton:M2PButton!{
         didSet{
             self.m2pButton.config(type: .custom, title: "IndusLogo",
-                                  buttonStyle: .RIGHT_SIDE_ICON,
+                                  buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
                                   isPrimary: true,
-                                  states: .SUCCESS,
                                   bgColor: .clear,
                                   leftImg: UIImage(named:"plus.png"),
                                   rightImg: UIImage(named:"plus.png"),
-                                  size: .MEDIUM,
                                   leftIconWidth: 20,
                                   leftIconHeight: 20,
                                   rightIconWidth: 20,
                                   rightIconHeight: 20,
-                                  state: .DISABLE)
+                                  state: .ENABLE) // ENABLE / DISABLE
             
             self.m2pButton.addTarget(self, action: #selector(followAction), for: .touchUpInside)
         }
