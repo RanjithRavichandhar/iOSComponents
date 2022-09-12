@@ -8,6 +8,15 @@
 import Foundation
 import UIKit
 
+public struct M2PSegmentColorConfiguration {
+    public var backGroundColor: UIColor? = UIColor.backgroundLightVarient
+    public var selectedLabelColor: UIColor? = UIColor.primaryActive
+    public var unselectedLabelColor: UIColor? = UIColor.secondaryInactive
+    public var thumbColor: UIColor? = UIColor.background
+    public var borderColor: UIColor? = UIColor.background
+    public init () {}
+}
+
 public class M2PSegmentedControl: UIControl {
     
     fileprivate var labels = [UILabel]()
@@ -20,7 +29,7 @@ public class M2PSegmentedControl: UIControl {
         }
     }
     
-    public var cornerRadius: CGFloat = 6.0 {
+    private var cornerRadius: CGFloat = 6.0 {
         didSet { setupView() }
     }
     
@@ -32,27 +41,27 @@ public class M2PSegmentedControl: UIControl {
         didSet { displayNewSelectedIndex() }
     }
     
-    public var backGroundColor: UIColor = UIColor.black {
+    private var backGroundColor: UIColor = UIColor.black {
         didSet { backgroundColor = backGroundColor }
     }
     
-    public var selectedLabelColor: UIColor? {
+    private var selectedLabelColor: UIColor? {
         didSet { setSelectedColors() }
     }
     
-    public var unselectedLabelColor: UIColor? {
+    private var unselectedLabelColor: UIColor? {
         didSet { setSelectedColors() }
     }
     
-    public var thumbColor: UIColor = UIColor.white {
+    private var thumbColor: UIColor = UIColor.white {
         didSet { setSelectedColors() }
     }
     
-    public var borderColor: UIColor = UIColor.white {
+    private var borderColor: UIColor = UIColor.white {
         didSet { layer.borderColor = borderColor.cgColor }
     }
     
-    public var font: UIFont? = UIFont.customFont(name: "Arial", size: .x10) {
+    private var font: UIFont? = UIFont.customFont(name: "Arial", size: .x10) {
         didSet { setFont() }
     }
     
@@ -179,11 +188,9 @@ public class M2PSegmentedControl: UIControl {
         for item in labels {
             item.textColor = unselectedLabelColor
         }
-        
         if labels.count > 0 {
             labels[0].textColor = selectedLabelColor
         }
-        
         thumbView.backgroundColor = thumbColor
     }
     
@@ -193,19 +200,47 @@ public class M2PSegmentedControl: UIControl {
         }
     }
     
+    public func configuration(font: UIFont? = nil, cornerRadius: CGFloat = 6.0, color: M2PSegmentColorConfiguration? = nil) {
+        if let font = font {
+            self.font = font
+        } else {
+            self.font = UIFont.customFont(name: "Arial", size: .x10)
+        }
+        if let colorConfigure = color {
+            self.backGroundColor = colorConfigure.backGroundColor ?? UIColor.black
+            self.selectedLabelColor = colorConfigure.selectedLabelColor ?? UIColor.black
+            self.unselectedLabelColor = colorConfigure.unselectedLabelColor ?? UIColor.black
+            self.thumbColor = colorConfigure.thumbColor ?? UIColor.green
+            self.borderColor = colorConfigure.borderColor ?? UIColor.black
+        } else {
+            self.thumbColor = UIColor.background
+            self.backGroundColor = UIColor.backgroundLightVarient
+            self.selectedLabelColor = UIColor.primaryActive
+            self.unselectedLabelColor = UIColor.secondaryInactive
+            self.borderColor = UIColor.black
+        }
+        self.cornerRadius = cornerRadius
+    }
+    
 }
 
 /// Code Implementation
 /*
 func configureSegment() {
-    self.segmentControl.items = ["Select Currency", "Select Country", "Transactions", "Statement"]
-    self.segmentControl.font = UIFont.customFont(name: "Arial-Regular", size: .x13)
-    self.segmentControl.thumbColor = UIColor.background
-    self.segmentControl.backGroundColor = UIColor.backgroundLightVarient
-    self.segmentControl.selectedLabelColor = UIColor.primaryActive
-    self.segmentControl.unselectedLabelColor = UIColor.secondaryInactive
-    self.segmentControl.cornerRadius = 6.0
-    self.segmentControl.selectedIndex = 0
-    self.segmentControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+    var segmentColor = M2PSegmentColorConfiguration()
+    segmentColor.thumbColor = UIColor.ImperialRed100
+    segmentColor.unselectedLabelColor = UIColor.Yellow100
+    segmentColor.selectedLabelColor = UIColor.OceanBlue100
+    segmentColor.backGroundColor = UIColor.backgroundLightVarient
+    segmentColor.borderColor = UIColor.GreenPigment100
+    
+    self.segment.items = ["Select Currency", "Select Country", "Transactions", "Statement"]
+    self.segment.configuration()
+    self.segment.selectedIndex = 0
+    self.segment.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+}
+
+@objc func segmentedControlValueChanged() {
+    print(self.segment.selectedIndex)
 }
 */
