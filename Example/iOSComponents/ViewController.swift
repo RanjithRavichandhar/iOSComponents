@@ -34,6 +34,9 @@ class ViewController: UIViewController {
             }
         }
     
+    
+    @IBOutlet weak var listView: M2PList?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -47,7 +50,22 @@ class ViewController: UIViewController {
         self.gradientBgView.layer.cornerRadius = 10.0
         self.gradientBgView.layer.masksToBounds = true
         
-        chipView?.setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
+        chipView?.setUpChip(chipType: .primary, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
+        
+        
+        
+        let primaryContent = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: UIImage(named: ""))
+        primaryContent?.isAvatorIcon = true
+        
+        let secondaryContent = TrailingContentList(contentType: .texts, headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryColor, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: ContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  UIImage(named: "pencil"))
+        secondaryContent?.isToggleEnable = .enable
+        secondaryContent?.isToggleOn = .on
+        
+        listView?.tag = 5
+        listView?.setupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
+        listView?.onActionClick = { sender in
+            print("\(sender.tag)")
+        }
     }
 
     override func didReceiveMemoryWarning() {
