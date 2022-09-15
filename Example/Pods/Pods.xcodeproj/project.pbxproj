@@ -7,55 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		133CCE67BA87900CBC6F1677C720F617 /* M2PLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852A9657BCB77D0C428F588ECF70FB5 /* M2PLoader.swift */; };
-		160130798935618874E66D8B6F3D212D /* M2PTopTabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7EC88485A0CD334932C9982BE230 /* M2PTopTabBarModel.swift */; };
+		09A43BDF71394D79BBC097642F401C43 /* iOSComponents-Resources in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2C4442D50A61AAA1C145F08F996FA /* iOSComponents-Resources */; };
 		1871128C2AE492E913130922BC0E4A2F /* Pods-iOSComponents_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E923B36208379AF65C26226C80B461E8 /* Pods-iOSComponents_Example-dummy.m */; };
+		1E03479ECDB5A523CDDCDC547842D808 /* M2PColorSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126131E56B7373A80730208C01E3767 /* M2PColorSystem.swift */; };
 		1E82989296E8AE953DFB6BD5DA5E762E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
-		239D343C4899F4779F725E3A44814529 /* M2PChipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17E442D3C35E89D66B2AFB67B9F4F8 /* M2PChipModel.swift */; };
-		27DEED1BCF87D5E1065CC71D05A3B8C3 /* M2PDotLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C5D1C527445B88E1D920C31A0092CD /* M2PDotLoader.swift */; };
-		43B106BD37EBFCB695233DB97E138EBD /* M2PButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C197C16E181BEB7C526E8EC4160672 /* M2PButton.swift */; };
+		2DD5AC0AD70136DD87FF3ED78187055C /* M2PToggleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C802B752D46B1BD93FB03805124757 /* M2PToggleExtension.swift */; };
+		34D95353442CC9B991F11920C7F863D1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */; };
 		56830952141CC3C93575B0D19AAFACBA /* Pods-iOSComponents_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B663C78D121BE8DBD93199ADB5557254 /* Pods-iOSComponents_Tests-dummy.m */; };
-		5910178CFBAD60A8AC5742BA1B87BD3E /* M2PBottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49ACAEF0C2C095BD60A5FEE341B5406 /* M2PBottomNavigation.swift */; };
-		61EC39DEE078FB9A3200E1F0B55CA3D9 /* M2PSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B84FD584C100483F41C7B369C1FF38 /* M2PSegmentControl.swift */; };
-		68D5FB9F95988DD204B97CD99657833D /* M2PColors.json in Resources */ = {isa = PBXBuildFile; fileRef = 4999473FDC8858219248A4B6184D8AB4 /* M2PColors.json */; };
+		65933EC1A2E6121FBB3054999BD19E79 /* M2PTabBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737FD4B37E2B50071125EA894DFD399 /* M2PTabBarCollectionViewCell.swift */; };
+		6668F9AA81D6CB4E5E40130318A4FD57 /* iOSComponents-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4603754E57C246FA6BE3D9410D389A3A /* iOSComponents-dummy.m */; };
+		677DBE79FB20198714A837DD00375545 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
 		692BE6A027B4AAE8871FCFEA11445414 /* Pods-iOSComponents_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4090B83707F81124475C93CD5637D4DA /* Pods-iOSComponents_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		70D310C0E51E24772D5B13D00C98B818 /* M2PTopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D40B23AF3E4280AF3C40DB9DC3371BA /* M2PTopTabBar.swift */; };
-		71B0D60206CBAC62E10073AC0834E027 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */; };
-		7600FBA1F1554AD0FE7C20F4EB338AF6 /* M2PGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D7C0C8B0BB96D44B79BF0B5DFDBCAB /* M2PGradientView.swift */; };
-		77A3AE8839285037550074FFF6659338 /* iOSComponents-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9A2F8C06AA0E3BB8BEE85AECA4C166 /* iOSComponents-dummy.m */; };
-		7D080F3B5503C46AD2B00117C795ED24 /* iOSComponents-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CA046816CD954B0C8B3EE3FD865C50FF /* iOSComponents-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7F53A43652DA4CA30BC19CF037AC1619 /* IndusLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 176B1A3F0DF6D6450CD247D41EAF73C0 /* IndusLogo.png */; };
-		85799B8E6DC8FDDC42BC46C5FE9FB582 /* M2PColorSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391E6729C0159B425523EA03C23481D6 /* M2PColorSystem.swift */; };
-		8952CA6770FE972FFC6AC1CE44C79649 /* M2PChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAD49F7C2751272A39E23A4449E5144 /* M2PChip.swift */; };
-		A2AC8E3FB543EDD399D62DA22B93A4CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		6A358CDB5BA6806B460B502612CAC963 /* m2plogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9D94075B5ACC2EFEB380F787874AD /* m2plogo.png */; };
+		7373376388C56CB289920A70007ED206 /* M2PLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF70171A6B59699F324693C4C08D10D /* M2PLoader.swift */; };
+		78DEB7C096C8D70CB386FC53794AA82B /* iOSComponents-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C82BABADC1A81C6294349DB67A071D26 /* iOSComponents-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E3F4C23AE6A7D6E18A708F7FFF32BB8 /* M2PButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305C37FDEE9922E54F9628FA2C1D5196 /* M2PButton.swift */; };
+		8046EE92C3CF065F017D8C64361BF44E /* ColorSystemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD48C676AFF4104FC95D0F853F5D91B1 /* ColorSystemModel.swift */; };
+		85732B784B683E67DFF6F73E086E1C2B /* M2PGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D9350B6094E595B65BEF0D50B70360 /* M2PGradientView.swift */; };
+		896A5D3FF2DD8C2285F458A8A8EA0C59 /* M2PChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA25B8D39D7829AFDCD8C5592A7B5BE /* M2PChip.swift */; };
+		98D17A6A6190EFE7DD808AA024A7526B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B9E8FB18FDD988F21579640EA94B3C /* UIColor+Extension.swift */; };
+		A02C72502891D0305B7056C21927643F /* M2PComponentsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D4C92B82F9739B4DA76EBB0D545A59 /* M2PComponentsBundle.swift */; };
 		ABE921E1EBE9DF0A6ED86D62FB5D31A4 /* Pods-iOSComponents_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E52DB1B4E4E4C86A63F01C2DF7CA33CC /* Pods-iOSComponents_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B29B0243D739250DEF7605FD519965B5 /* M2PToggleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7131437C67DBFB84539D76C40EBEBD2D /* M2PToggleExtension.swift */; };
-		BDFC550DF80D581BF84BB9414DDE54C3 /* M2PThemeSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4CCB1EB00EB672E8A313049092475C /* M2PThemeSupport.swift */; };
-		BE7F0A7E04FFBE2FFD687FAD711BC0D2 /* ColorSystemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783929B71F64499E4AD756B791BED43C /* ColorSystemModel.swift */; };
-		C7D061C41BFB6F99231E5B2CF9759241 /* M2PComponentsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C145151DBC51F7810FF6D4DCAC70603C /* M2PComponentsBundle.swift */; };
-		C88F59DE8A9EF5D7D999BC7F575F8763 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D67CADCFF950AEDABEEF4D0E039C98 /* UIColor+Extension.swift */; };
-		E33EE3B7DD9757AA8A28BEA1F9824BA1 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C56A7B44FB4AB8C6D6246F0FDE1CE3 /* Typography.swift */; };
-		E43F5B416649B9DF70ABA7437831234D /* iOSComponents-Resources in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2C4442D50A61AAA1C145F08F996FA /* iOSComponents-Resources */; };
+		B7B24A67BD6B837A015C48A8104A6F82 /* M2PColors.json in Resources */ = {isa = PBXBuildFile; fileRef = 33DA383F283000864132FA8AA7011508 /* M2PColors.json */; };
+		B9E0FFBA4D48234BE769FDD2EB768953 /* M2PSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9B52476EAB45C17E5C9A3ED58E7AFC /* M2PSegmentControl.swift */; };
+		BDC63998B8C97CF8610B32C6EC9D59B3 /* M2PChipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7C86340CCCED8E8D5262C225BE8771 /* M2PChipModel.swift */; };
+		C8B6BC86355BBE30F28FE2E8B7147004 /* M2PProgressLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57A527E3F46627C56C8A0F30A1B6DA8 /* M2PProgressLoader.swift */; };
+		CF816BD3D9BB243BD1A0769BFC234411 /* M2PDotLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646DFA79254878F3D405E81BD0441C2A /* M2PDotLoader.swift */; };
+		D24FA53F932AF4629AD6348EB067C0D5 /* M2PTopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85283FBC2FDC4B76B13094A9050F16A5 /* M2PTopTabBar.swift */; };
+		D2978337533F8BF72D08037B2048836C /* M2PTopTabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A554892A5696733773728EEED872C3C6 /* M2PTopTabBarModel.swift */; };
+		D4059B86D292C279013280DCE6B63901 /* M2PBottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B634F28E533C3EC3BC246C0EA77C2D /* M2PBottomNavigation.swift */; };
+		D6086DB2678CD6C58BA93F079DA24F1C /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188BD0408EF618B49B97E8A9A91B24E /* Typography.swift */; };
 		E778A8ECC486E90B0E5E55B3CE23C1E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
-		FAB2DE8E4A1C7761FB3D40D0C63093DA /* M2PTabBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2475327F93E97FB66A556DCCC8F7D /* M2PTabBarCollectionViewCell.swift */; };
+		E7BFAB386E5919340B0A2CF174B84C59 /* M2PThemeSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = E752FB4D20054B5D82F2EE6321CE948F /* M2PThemeSupport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		182A32FACF33A17D5A0A17F1B0CD6F37 /* PBXContainerItemProxy */ = {
+		69D16EC70719DE7512B97BFFDBA97C6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0C7F52F65B4CD17442E64C3241B97676;
 			remoteInfo = "Pods-iOSComponents_Example";
 		};
-		26C58D58BAC8866E4649E0D4A2A731AF /* PBXContainerItemProxy */ = {
+		8BFDAD70566BF1CE48A9A9F1C9B1A93F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 89B86EF92CFDD5F2C5221968513B1FBC;
 			remoteInfo = "iOSComponents-Resources";
 		};
-		DB4700BCD515177B7AC7E6A2AD6A018D /* PBXContainerItemProxy */ = {
+		B85A648BC5AE88D78B7A03D3BEEE4BD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -65,61 +66,62 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		012455B5FDEB6542BC379E880CD72E60 /* iOSComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iOSComponents.debug.xcconfig; sourceTree = "<group>"; };
 		03A15C9A14CD0B56684E9804B5EA2051 /* Pods-iOSComponents_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iOSComponents_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		0528F72DC7B2378D5979EF947070C1A1 /* iOSComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iOSComponents.release.xcconfig; sourceTree = "<group>"; };
-		06C56A7B44FB4AB8C6D6246F0FDE1CE3 /* Typography.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
-		0701A3F7F4A498D71BA5A2F8C16A7A3C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		0C0048961136171B16F564863F8A28D2 /* iOSComponents-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSComponents-prefix.pch"; sourceTree = "<group>"; };
+		043845948238191DC8EF1AD4523DDBD2 /* iOSComponents.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = iOSComponents.modulemap; sourceTree = "<group>"; };
 		1112D407162F38446EE245D30180567F /* iOSComponents */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = iOSComponents; path = iOSComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		16D7C0C8B0BB96D44B79BF0B5DFDBCAB /* M2PGradientView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PGradientView.swift; sourceTree = "<group>"; };
-		176B1A3F0DF6D6450CD247D41EAF73C0 /* IndusLogo.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = IndusLogo.png; path = iOSComponents/Assets/IndusLogo.png; sourceTree = "<group>"; };
-		19B84FD584C100483F41C7B369C1FF38 /* M2PSegmentControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PSegmentControl.swift; sourceTree = "<group>"; };
+		11B634F28E533C3EC3BC246C0EA77C2D /* M2PBottomNavigation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PBottomNavigation.swift; sourceTree = "<group>"; };
+		13B9E8FB18FDD988F21579640EA94B3C /* UIColor+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		1737FD4B37E2B50071125EA894DFD399 /* M2PTabBarCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PTabBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		1E7A0EEBC339BE6D4E15F25118C7606D /* Pods-iOSComponents_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iOSComponents_Example.modulemap"; sourceTree = "<group>"; };
 		1F6C482A8C30D5C2B778C54BD3830748 /* Pods-iOSComponents_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iOSComponents_Tests.modulemap"; sourceTree = "<group>"; };
-		391E6729C0159B425523EA03C23481D6 /* M2PColorSystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PColorSystem.swift; sourceTree = "<group>"; };
-		3A9A2F8C06AA0E3BB8BEE85AECA4C166 /* iOSComponents-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "iOSComponents-dummy.m"; sourceTree = "<group>"; };
+		2188BD0408EF618B49B97E8A9A91B24E /* Typography.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		22E98E76BCE7F0C5CD1D3A566CA70E24 /* iOSComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iOSComponents.release.xcconfig; sourceTree = "<group>"; };
+		2CF70171A6B59699F324693C4C08D10D /* M2PLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PLoader.swift; sourceTree = "<group>"; };
+		305C37FDEE9922E54F9628FA2C1D5196 /* M2PButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PButton.swift; sourceTree = "<group>"; };
+		33DA383F283000864132FA8AA7011508 /* M2PColors.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = M2PColors.json; path = iOSComponents/Assets/M2PColors.json; sourceTree = "<group>"; };
 		3CF6D84FC88BAE90B1C9CF3A9894FE82 /* Pods-iOSComponents_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iOSComponents_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3FA25B8D39D7829AFDCD8C5592A7B5BE /* M2PChip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PChip.swift; sourceTree = "<group>"; };
 		4090B83707F81124475C93CD5637D4DA /* Pods-iOSComponents_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iOSComponents_Example-umbrella.h"; sourceTree = "<group>"; };
-		44C5D1C527445B88E1D920C31A0092CD /* M2PDotLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PDotLoader.swift; sourceTree = "<group>"; };
-		4999473FDC8858219248A4B6184D8AB4 /* M2PColors.json */ = {isa = PBXFileReference; includeInIndex = 1; name = M2PColors.json; path = iOSComponents/Assets/M2PColors.json; sourceTree = "<group>"; };
+		4603754E57C246FA6BE3D9410D389A3A /* iOSComponents-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "iOSComponents-dummy.m"; sourceTree = "<group>"; };
+		463F47B17B42C43F5AE1FA444795836F /* ResourceBundle-Resources-iOSComponents-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Resources-iOSComponents-Info.plist"; sourceTree = "<group>"; };
+		47D9350B6094E595B65BEF0D50B70360 /* M2PGradientView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PGradientView.swift; sourceTree = "<group>"; };
 		4DF2C4442D50A61AAA1C145F08F996FA /* iOSComponents-Resources */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "iOSComponents-Resources"; path = Resources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FE2475327F93E97FB66A556DCCC8F7D /* M2PTabBarCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PTabBarCollectionViewCell.swift; sourceTree = "<group>"; };
-		7131437C67DBFB84539D76C40EBEBD2D /* M2PToggleExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PToggleExtension.swift; sourceTree = "<group>"; };
+		5759A0E4503444914A1F5CD7ECA1AF93 /* iOSComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iOSComponents.debug.xcconfig; sourceTree = "<group>"; };
+		5D9B52476EAB45C17E5C9A3ED58E7AFC /* M2PSegmentControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PSegmentControl.swift; sourceTree = "<group>"; };
+		646DFA79254878F3D405E81BD0441C2A /* M2PDotLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PDotLoader.swift; sourceTree = "<group>"; };
+		6F7C86340CCCED8E8D5262C225BE8771 /* M2PChipModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PChipModel.swift; sourceTree = "<group>"; };
 		72D5FC6DB307E80A9FF855C700FAF241 /* Pods-iOSComponents_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iOSComponents_Tests"; path = Pods_iOSComponents_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73D9D94075B5ACC2EFEB380F787874AD /* m2plogo.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = m2plogo.png; path = iOSComponents/Assets/m2plogo.png; sourceTree = "<group>"; };
 		74C2917E5A4CC7D99F05BF8318225B21 /* Pods-iOSComponents_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSComponents_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		783929B71F64499E4AD756B791BED43C /* ColorSystemModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ColorSystemModel.swift; sourceTree = "<group>"; };
-		7A17E442D3C35E89D66B2AFB67B9F4F8 /* M2PChipModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PChipModel.swift; sourceTree = "<group>"; };
 		83F648B5B53EE1205B5D278930AD4300 /* Pods-iOSComponents_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSComponents_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		84D67CADCFF950AEDABEEF4D0E039C98 /* UIColor+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		8A9015FF8DE462866F2067A526899DFC /* iOSComponents.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = iOSComponents.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9852A9657BCB77D0C428F588ECF70FB5 /* M2PLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PLoader.swift; sourceTree = "<group>"; };
+		85283FBC2FDC4B76B13094A9050F16A5 /* M2PTopTabBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PTopTabBar.swift; sourceTree = "<group>"; };
+		919850DABDE4911AD74FC614E4752AFA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9808EF56EACFBB97BD492D7EB6AFB95C /* iOSComponents-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSComponents-prefix.pch"; sourceTree = "<group>"; };
 		98A54C5F2B86C538EEA895B57194965D /* Pods-iOSComponents_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSComponents_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		9CF5D030CDF0F834514011C6C7E8917D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		9D40B23AF3E4280AF3C40DB9DC3371BA /* M2PTopTabBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PTopTabBar.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9AD3C3831E74C4356C02D95FA19E6254 /* iOSComponents-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "iOSComponents-Info.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A404DBCCDA5AF8B40C7BC2EBF0FE4C73 /* Pods-iOSComponents_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSComponents_Example-Info.plist"; sourceTree = "<group>"; };
+		A554892A5696733773728EEED872C3C6 /* M2PTopTabBarModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PTopTabBarModel.swift; sourceTree = "<group>"; };
 		A9CD5A5812DFA88473BA76A8F47B03D4 /* Pods-iOSComponents_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSComponents_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		AD4CCB1EB00EB672E8A313049092475C /* M2PThemeSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PThemeSupport.swift; sourceTree = "<group>"; };
 		AEC3B83E200F2898789C2DE4F98CAE8B /* Pods-iOSComponents_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iOSComponents_Example"; path = Pods_iOSComponents_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B19E7EC88485A0CD334932C9982BE230 /* M2PTopTabBarModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PTopTabBarModel.swift; sourceTree = "<group>"; };
+		B1C802B752D46B1BD93FB03805124757 /* M2PToggleExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PToggleExtension.swift; sourceTree = "<group>"; };
 		B4B03361F5AD17C7A047E5324A9004DF /* Pods-iOSComponents_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSComponents_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B663C78D121BE8DBD93199ADB5557254 /* Pods-iOSComponents_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iOSComponents_Tests-dummy.m"; sourceTree = "<group>"; };
-		B6C197C16E181BEB7C526E8EC4160672 /* M2PButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PButton.swift; sourceTree = "<group>"; };
-		B7C79E44FA7296F069F25A5B32C698AE /* ResourceBundle-Resources-iOSComponents-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Resources-iOSComponents-Info.plist"; sourceTree = "<group>"; };
-		BE3D8EA7AD254C1C8F72C58A58289F8D /* iOSComponents-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "iOSComponents-Info.plist"; sourceTree = "<group>"; };
-		C145151DBC51F7810FF6D4DCAC70603C /* M2PComponentsBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M2PComponentsBundle.swift; path = iOSComponents/Classes/M2PComponentsBundle.swift; sourceTree = "<group>"; };
+		BC34270129EF24480C722E18437080B1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C330CB42112A0DE23C3FAC9761C0C186 /* Pods-iOSComponents_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSComponents_Tests-Info.plist"; sourceTree = "<group>"; };
-		CA046816CD954B0C8B3EE3FD865C50FF /* iOSComponents-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSComponents-umbrella.h"; sourceTree = "<group>"; };
-		CBAD49F7C2751272A39E23A4449E5144 /* M2PChip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PChip.swift; sourceTree = "<group>"; };
+		C82BABADC1A81C6294349DB67A071D26 /* iOSComponents-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSComponents-umbrella.h"; sourceTree = "<group>"; };
+		CD48C676AFF4104FC95D0F853F5D91B1 /* ColorSystemModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ColorSystemModel.swift; sourceTree = "<group>"; };
 		D1FA01FC73E288EC61E847FEBADFFEEE /* Pods-iOSComponents_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iOSComponents_Example-frameworks.sh"; sourceTree = "<group>"; };
 		D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		DF606C467E841DB013896EF4BD46C923 /* iOSComponents.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = iOSComponents.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E52DB1B4E4E4C86A63F01C2DF7CA33CC /* Pods-iOSComponents_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iOSComponents_Tests-umbrella.h"; sourceTree = "<group>"; };
+		E752FB4D20054B5D82F2EE6321CE948F /* M2PThemeSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PThemeSupport.swift; sourceTree = "<group>"; };
 		E76C68B339549003EE17B3C89B3CD2C5 /* Pods-iOSComponents_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSComponents_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E923B36208379AF65C26226C80B461E8 /* Pods-iOSComponents_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iOSComponents_Example-dummy.m"; sourceTree = "<group>"; };
 		EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		EE53C900626736551E0B9CCAA961DF81 /* iOSComponents.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = iOSComponents.modulemap; sourceTree = "<group>"; };
-		F49ACAEF0C2C095BD60A5FEE341B5406 /* M2PBottomNavigation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PBottomNavigation.swift; sourceTree = "<group>"; };
+		F126131E56B7373A80730208C01E3767 /* M2PColorSystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PColorSystem.swift; sourceTree = "<group>"; };
+		F1D4C92B82F9739B4DA76EBB0D545A59 /* M2PComponentsBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = M2PComponentsBundle.swift; path = iOSComponents/Classes/M2PComponentsBundle.swift; sourceTree = "<group>"; };
+		F57A527E3F46627C56C8A0F30A1B6DA8 /* M2PProgressLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PProgressLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,16 +133,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C37D094442BB3261058E6A3E433235FF /* Frameworks */ = {
+		CEC63266E7EC3FE4537279DD61E66F25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2AC8E3FB543EDD399D62DA22B93A4CF /* Foundation.framework in Frameworks */,
-				71B0D60206CBAC62E10073AC0834E027 /* UIKit.framework in Frameworks */,
+				677DBE79FB20198714A837DD00375545 /* Foundation.framework in Frameworks */,
+				34D95353442CC9B991F11920C7F863D1 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D03FC4D2369A9C2C7766C260C4552434 /* Frameworks */ = {
+		DFBDB150CA11FC0A019B74A09C54731A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -158,6 +160,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11CB591E0381BC4AACC2A38C4E0331D7 /* M2PSegmentControl */ = {
+			isa = PBXGroup;
+			children = (
+				5D9B52476EAB45C17E5C9A3ED58E7AFC /* M2PSegmentControl.swift */,
+			);
+			name = M2PSegmentControl;
+			path = iOSComponents/Classes/M2PSegmentControl;
+			sourceTree = "<group>";
+		};
 		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,87 +177,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1E9F36851171C5946D741B7EFED04B5A /* M2PSegmentControl */ = {
+		188758551B7519BDFBC8975F842FB939 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				19B84FD584C100483F41C7B369C1FF38 /* M2PSegmentControl.swift */,
-			);
-			name = M2PSegmentControl;
-			path = iOSComponents/Classes/M2PSegmentControl;
-			sourceTree = "<group>";
-		};
-		3B71048A977B2D5A226B77445E63CA3E /* ColorSystem */ = {
-			isa = PBXGroup;
-			children = (
-				783929B71F64499E4AD756B791BED43C /* ColorSystemModel.swift */,
-				391E6729C0159B425523EA03C23481D6 /* M2PColorSystem.swift */,
-				16D7C0C8B0BB96D44B79BF0B5DFDBCAB /* M2PGradientView.swift */,
-				AD4CCB1EB00EB672E8A313049092475C /* M2PThemeSupport.swift */,
-				84D67CADCFF950AEDABEEF4D0E039C98 /* UIColor+Extension.swift */,
-			);
-			name = ColorSystem;
-			path = iOSComponents/Classes/ColorSystem;
-			sourceTree = "<group>";
-		};
-		4621FD0CE7FB0CA1CC85785C26A2B5BB /* M2PButton */ = {
-			isa = PBXGroup;
-			children = (
-				B6C197C16E181BEB7C526E8EC4160672 /* M2PButton.swift */,
-			);
-			name = M2PButton;
-			path = iOSComponents/Classes/M2PButton;
-			sourceTree = "<group>";
-		};
-		4E178042C3B53ECFC358B098CFAF9EB8 /* M2PLoader */ = {
-			isa = PBXGroup;
-			children = (
-				44C5D1C527445B88E1D920C31A0092CD /* M2PDotLoader.swift */,
-				9852A9657BCB77D0C428F588ECF70FB5 /* M2PLoader.swift */,
-			);
-			name = M2PLoader;
-			path = iOSComponents/Classes/M2PLoader;
-			sourceTree = "<group>";
-		};
-		54E2EED489E80C911DC241D0CE8940ED /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				8A9015FF8DE462866F2067A526899DFC /* iOSComponents.podspec */,
-				9CF5D030CDF0F834514011C6C7E8917D /* LICENSE */,
-				0701A3F7F4A498D71BA5A2F8C16A7A3C /* README.md */,
+				DF606C467E841DB013896EF4BD46C923 /* iOSComponents.podspec */,
+				BC34270129EF24480C722E18437080B1 /* LICENSE */,
+				919850DABDE4911AD74FC614E4752AFA /* README.md */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		55000A0FBEFF6595D6714F20A5E18D83 /* M2PChip */ = {
+		437CD75399C2EC49AF21AB5C60DD09A8 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				CBAD49F7C2751272A39E23A4449E5144 /* M2PChip.swift */,
-				7A17E442D3C35E89D66B2AFB67B9F4F8 /* M2PChipModel.swift */,
+				043845948238191DC8EF1AD4523DDBD2 /* iOSComponents.modulemap */,
+				4603754E57C246FA6BE3D9410D389A3A /* iOSComponents-dummy.m */,
+				9AD3C3831E74C4356C02D95FA19E6254 /* iOSComponents-Info.plist */,
+				9808EF56EACFBB97BD492D7EB6AFB95C /* iOSComponents-prefix.pch */,
+				C82BABADC1A81C6294349DB67A071D26 /* iOSComponents-umbrella.h */,
+				5759A0E4503444914A1F5CD7ECA1AF93 /* iOSComponents.debug.xcconfig */,
+				22E98E76BCE7F0C5CD1D3A566CA70E24 /* iOSComponents.release.xcconfig */,
+				463F47B17B42C43F5AE1FA444795836F /* ResourceBundle-Resources-iOSComponents-Info.plist */,
 			);
-			name = M2PChip;
-			path = iOSComponents/Classes/M2PChip;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/iOSComponents";
 			sourceTree = "<group>";
 		};
-		574891C4C64D5B510684F11BBD30346D /* iOSComponents */ = {
+		55A4D8A05E8ABC1CD1962F1BAC4350CC /* ColorSystem */ = {
 			isa = PBXGroup;
 			children = (
-				176B1A3F0DF6D6450CD247D41EAF73C0 /* IndusLogo.png */,
-				4999473FDC8858219248A4B6184D8AB4 /* M2PColors.json */,
-				C145151DBC51F7810FF6D4DCAC70603C /* M2PComponentsBundle.swift */,
-				3B71048A977B2D5A226B77445E63CA3E /* ColorSystem */,
-				80CC53EC58AF6A5B5C8E6BC77A6D7457 /* M2PBottomNavigation */,
-				4621FD0CE7FB0CA1CC85785C26A2B5BB /* M2PButton */,
-				55000A0FBEFF6595D6714F20A5E18D83 /* M2PChip */,
-				D7F1D2B2223986722F8442D7EA8E673C /* M2PCustomTopTabBar */,
-				4E178042C3B53ECFC358B098CFAF9EB8 /* M2PLoader */,
-				1E9F36851171C5946D741B7EFED04B5A /* M2PSegmentControl */,
-				54E2EED489E80C911DC241D0CE8940ED /* Pod */,
-				97A0488D59DEBAF06DFA70A371EE1654 /* Support Files */,
-				8726CF3FCEFA121A79BBB31D60E2CD22 /* ToggleExtension */,
-				A40DD1C6F90A2EFAA6CBA31612CDB855 /* Typography */,
+				CD48C676AFF4104FC95D0F853F5D91B1 /* ColorSystemModel.swift */,
+				F126131E56B7373A80730208C01E3767 /* M2PColorSystem.swift */,
+				47D9350B6094E595B65BEF0D50B70360 /* M2PGradientView.swift */,
+				E752FB4D20054B5D82F2EE6321CE948F /* M2PThemeSupport.swift */,
+				13B9E8FB18FDD988F21579640EA94B3C /* UIColor+Extension.swift */,
 			);
-			name = iOSComponents;
-			path = ../..;
+			name = ColorSystem;
+			path = iOSComponents/Classes/ColorSystem;
 			sourceTree = "<group>";
 		};
 		59DA5C1F72E1D5BABC43EACBA672C3BA /* iOS */ = {
@@ -272,43 +239,30 @@
 		7213BFABDE7B7775AA1F051CD2AC35D7 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				574891C4C64D5B510684F11BBD30346D /* iOSComponents */,
+				EBC8305CD40591CD3CC5A10A3AD3907B /* iOSComponents */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		80CC53EC58AF6A5B5C8E6BC77A6D7457 /* M2PBottomNavigation */ = {
+		733183320F5151F33BB935536972ADCE /* M2PChip */ = {
 			isa = PBXGroup;
 			children = (
-				F49ACAEF0C2C095BD60A5FEE341B5406 /* M2PBottomNavigation.swift */,
+				3FA25B8D39D7829AFDCD8C5592A7B5BE /* M2PChip.swift */,
+				6F7C86340CCCED8E8D5262C225BE8771 /* M2PChipModel.swift */,
 			);
-			name = M2PBottomNavigation;
-			path = iOSComponents/Classes/M2PBottomNavigation;
+			name = M2PChip;
+			path = iOSComponents/Classes/M2PChip;
 			sourceTree = "<group>";
 		};
-		8726CF3FCEFA121A79BBB31D60E2CD22 /* ToggleExtension */ = {
+		7CE7C849DC72E42540893AEDA8BDE2CA /* M2PLoader */ = {
 			isa = PBXGroup;
 			children = (
-				7131437C67DBFB84539D76C40EBEBD2D /* M2PToggleExtension.swift */,
+				646DFA79254878F3D405E81BD0441C2A /* M2PDotLoader.swift */,
+				2CF70171A6B59699F324693C4C08D10D /* M2PLoader.swift */,
+				F57A527E3F46627C56C8A0F30A1B6DA8 /* M2PProgressLoader.swift */,
 			);
-			name = ToggleExtension;
-			path = iOSComponents/Classes/ToggleExtension;
-			sourceTree = "<group>";
-		};
-		97A0488D59DEBAF06DFA70A371EE1654 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				EE53C900626736551E0B9CCAA961DF81 /* iOSComponents.modulemap */,
-				3A9A2F8C06AA0E3BB8BEE85AECA4C166 /* iOSComponents-dummy.m */,
-				BE3D8EA7AD254C1C8F72C58A58289F8D /* iOSComponents-Info.plist */,
-				0C0048961136171B16F564863F8A28D2 /* iOSComponents-prefix.pch */,
-				CA046816CD954B0C8B3EE3FD865C50FF /* iOSComponents-umbrella.h */,
-				012455B5FDEB6542BC379E880CD72E60 /* iOSComponents.debug.xcconfig */,
-				0528F72DC7B2378D5979EF947070C1A1 /* iOSComponents.release.xcconfig */,
-				B7C79E44FA7296F069F25A5B32C698AE /* ResourceBundle-Resources-iOSComponents-Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/iOSComponents";
+			name = M2PLoader;
+			path = iOSComponents/Classes/M2PLoader;
 			sourceTree = "<group>";
 		};
 		A1C804BE61E32BF43E6ABB6DF6659CD8 /* Pods-iOSComponents_Tests */ = {
@@ -327,15 +281,6 @@
 			path = "Target Support Files/Pods-iOSComponents_Tests";
 			sourceTree = "<group>";
 		};
-		A40DD1C6F90A2EFAA6CBA31612CDB855 /* Typography */ = {
-			isa = PBXGroup;
-			children = (
-				06C56A7B44FB4AB8C6D6246F0FDE1CE3 /* Typography.swift */,
-			);
-			name = Typography;
-			path = iOSComponents/Classes/Typography;
-			sourceTree = "<group>";
-		};
 		AAE7D97F833CCD0C12FF35CCA2813111 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +288,24 @@
 				A1C804BE61E32BF43E6ABB6DF6659CD8 /* Pods-iOSComponents_Tests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		B23E627C884C7480949BD5B7AE323AF8 /* M2PBottomNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				11B634F28E533C3EC3BC246C0EA77C2D /* M2PBottomNavigation.swift */,
+			);
+			name = M2PBottomNavigation;
+			path = iOSComponents/Classes/M2PBottomNavigation;
+			sourceTree = "<group>";
+		};
+		BD8D9EC3C661FBFB21961A356784B21E /* Typography */ = {
+			isa = PBXGroup;
+			children = (
+				2188BD0408EF618B49B97E8A9A91B24E /* Typography.swift */,
+			);
+			name = Typography;
+			path = iOSComponents/Classes/Typography;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -356,12 +319,30 @@
 			);
 			sourceTree = "<group>";
 		};
-		D7F1D2B2223986722F8442D7EA8E673C /* M2PCustomTopTabBar */ = {
+		CFE5B04426339979E147E64788462A49 /* ToggleExtension */ = {
 			isa = PBXGroup;
 			children = (
-				6FE2475327F93E97FB66A556DCCC8F7D /* M2PTabBarCollectionViewCell.swift */,
-				9D40B23AF3E4280AF3C40DB9DC3371BA /* M2PTopTabBar.swift */,
-				B19E7EC88485A0CD334932C9982BE230 /* M2PTopTabBarModel.swift */,
+				B1C802B752D46B1BD93FB03805124757 /* M2PToggleExtension.swift */,
+			);
+			name = ToggleExtension;
+			path = iOSComponents/Classes/ToggleExtension;
+			sourceTree = "<group>";
+		};
+		D6219ED3782752F305A6BD58BC53F315 /* M2PButton */ = {
+			isa = PBXGroup;
+			children = (
+				305C37FDEE9922E54F9628FA2C1D5196 /* M2PButton.swift */,
+			);
+			name = M2PButton;
+			path = iOSComponents/Classes/M2PButton;
+			sourceTree = "<group>";
+		};
+		DAEABAD5652CAAF31F4AA6B0F14419B9 /* M2PCustomTopTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				1737FD4B37E2B50071125EA894DFD399 /* M2PTabBarCollectionViewCell.swift */,
+				85283FBC2FDC4B76B13094A9050F16A5 /* M2PTopTabBar.swift */,
+				A554892A5696733773728EEED872C3C6 /* M2PTopTabBarModel.swift */,
 			);
 			name = M2PCustomTopTabBar;
 			path = iOSComponents/Classes/M2PCustomTopTabBar;
@@ -384,14 +365,36 @@
 			path = "Target Support Files/Pods-iOSComponents_Example";
 			sourceTree = "<group>";
 		};
+		EBC8305CD40591CD3CC5A10A3AD3907B /* iOSComponents */ = {
+			isa = PBXGroup;
+			children = (
+				33DA383F283000864132FA8AA7011508 /* M2PColors.json */,
+				F1D4C92B82F9739B4DA76EBB0D545A59 /* M2PComponentsBundle.swift */,
+				73D9D94075B5ACC2EFEB380F787874AD /* m2plogo.png */,
+				55A4D8A05E8ABC1CD1962F1BAC4350CC /* ColorSystem */,
+				B23E627C884C7480949BD5B7AE323AF8 /* M2PBottomNavigation */,
+				D6219ED3782752F305A6BD58BC53F315 /* M2PButton */,
+				733183320F5151F33BB935536972ADCE /* M2PChip */,
+				DAEABAD5652CAAF31F4AA6B0F14419B9 /* M2PCustomTopTabBar */,
+				7CE7C849DC72E42540893AEDA8BDE2CA /* M2PLoader */,
+				11CB591E0381BC4AACC2A38C4E0331D7 /* M2PSegmentControl */,
+				188758551B7519BDFBC8975F842FB939 /* Pod */,
+				437CD75399C2EC49AF21AB5C60DD09A8 /* Support Files */,
+				CFE5B04426339979E147E64788462A49 /* ToggleExtension */,
+				BD8D9EC3C661FBFB21961A356784B21E /* Typography */,
+			);
+			name = iOSComponents;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3A230D1D08A11CC22F1C37A86CCC3811 /* Headers */ = {
+		57779F5F4070496ED1887BE1DE760CE2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D080F3B5503C46AD2B00117C795ED24 /* iOSComponents-umbrella.h in Headers */,
+				78DEB7C096C8D70CB386FC53794AA82B /* iOSComponents-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +429,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				908A94F1592D61B4D4887CC3CD276586 /* PBXTargetDependency */,
+				7CE9E1F79B057039ADAD6919F8EA6B67 /* PBXTargetDependency */,
 			);
 			name = "Pods-iOSComponents_Example";
 			productName = Pods_iOSComponents_Example;
@@ -435,17 +438,17 @@
 		};
 		2B077D57DF482ECFC0A810459333D594 /* iOSComponents */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 143139CB3405B77B70E532914294F30E /* Build configuration list for PBXNativeTarget "iOSComponents" */;
+			buildConfigurationList = 304A39736EC5BBD865053A52F90236BA /* Build configuration list for PBXNativeTarget "iOSComponents" */;
 			buildPhases = (
-				3A230D1D08A11CC22F1C37A86CCC3811 /* Headers */,
-				09C60B663EA44B3272FAF16267CA915F /* Sources */,
-				C37D094442BB3261058E6A3E433235FF /* Frameworks */,
-				ADFBE4D88CFCF3C0073313F04115659B /* Resources */,
+				57779F5F4070496ED1887BE1DE760CE2 /* Headers */,
+				00CB76AC4EDD7BE06507A56E17BF06FE /* Sources */,
+				CEC63266E7EC3FE4537279DD61E66F25 /* Frameworks */,
+				63AA72CEFDBC556E6B18F0670B60008B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				407D444AC09FA21B586FFB395F44271D /* PBXTargetDependency */,
+				CE72DF212AC40F3638840BBACE4C6CA7 /* PBXTargetDependency */,
 			);
 			name = iOSComponents;
 			productName = iOSComponents;
@@ -464,7 +467,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				BFF097D31434CE4DC42EEAC62D8FEE9F /* PBXTargetDependency */,
+				CFCD7B9636E8C6D92EE922D5AAEEDE66 /* PBXTargetDependency */,
 			);
 			name = "Pods-iOSComponents_Tests";
 			productName = Pods_iOSComponents_Tests;
@@ -473,11 +476,11 @@
 		};
 		89B86EF92CFDD5F2C5221968513B1FBC /* iOSComponents-Resources */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 01E30045DEA4253CE2F81A66CEC30567 /* Build configuration list for PBXNativeTarget "iOSComponents-Resources" */;
+			buildConfigurationList = 3445A05022B3A980DDC1C1B5E22E4FAF /* Build configuration list for PBXNativeTarget "iOSComponents-Resources" */;
 			buildPhases = (
-				6896D7AE50ACEF02DA37F6462D3D7B57 /* Sources */,
-				D03FC4D2369A9C2C7766C260C4552434 /* Frameworks */,
-				DAA99F545433C8519FB07919846C45FF /* Resources */,
+				9866E787970C488890648350EECE58BB /* Sources */,
+				DFBDB150CA11FC0A019B74A09C54731A /* Frameworks */,
+				A4D2DF023214BAD17F8803805920EB1F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -526,20 +529,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADFBE4D88CFCF3C0073313F04115659B /* Resources */ = {
+		63AA72CEFDBC556E6B18F0670B60008B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E43F5B416649B9DF70ABA7437831234D /* iOSComponents-Resources in Resources */,
+				09A43BDF71394D79BBC097642F401C43 /* iOSComponents-Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAA99F545433C8519FB07919846C45FF /* Resources */ = {
+		A4D2DF023214BAD17F8803805920EB1F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F53A43652DA4CA30BC19CF037AC1619 /* IndusLogo.png in Resources */,
-				68D5FB9F95988DD204B97CD99657833D /* M2PColors.json in Resources */,
+				B7B24A67BD6B837A015C48A8104A6F82 /* M2PColors.json in Resources */,
+				6A358CDB5BA6806B460B502612CAC963 /* m2plogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,29 +556,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		09C60B663EA44B3272FAF16267CA915F /* Sources */ = {
+		00CB76AC4EDD7BE06507A56E17BF06FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE7F0A7E04FFBE2FFD687FAD711BC0D2 /* ColorSystemModel.swift in Sources */,
-				77A3AE8839285037550074FFF6659338 /* iOSComponents-dummy.m in Sources */,
-				5910178CFBAD60A8AC5742BA1B87BD3E /* M2PBottomNavigation.swift in Sources */,
-				43B106BD37EBFCB695233DB97E138EBD /* M2PButton.swift in Sources */,
-				8952CA6770FE972FFC6AC1CE44C79649 /* M2PChip.swift in Sources */,
-				239D343C4899F4779F725E3A44814529 /* M2PChipModel.swift in Sources */,
-				85799B8E6DC8FDDC42BC46C5FE9FB582 /* M2PColorSystem.swift in Sources */,
-				C7D061C41BFB6F99231E5B2CF9759241 /* M2PComponentsBundle.swift in Sources */,
-				27DEED1BCF87D5E1065CC71D05A3B8C3 /* M2PDotLoader.swift in Sources */,
-				7600FBA1F1554AD0FE7C20F4EB338AF6 /* M2PGradientView.swift in Sources */,
-				133CCE67BA87900CBC6F1677C720F617 /* M2PLoader.swift in Sources */,
-				61EC39DEE078FB9A3200E1F0B55CA3D9 /* M2PSegmentControl.swift in Sources */,
-				FAB2DE8E4A1C7761FB3D40D0C63093DA /* M2PTabBarCollectionViewCell.swift in Sources */,
-				BDFC550DF80D581BF84BB9414DDE54C3 /* M2PThemeSupport.swift in Sources */,
-				B29B0243D739250DEF7605FD519965B5 /* M2PToggleExtension.swift in Sources */,
-				70D310C0E51E24772D5B13D00C98B818 /* M2PTopTabBar.swift in Sources */,
-				160130798935618874E66D8B6F3D212D /* M2PTopTabBarModel.swift in Sources */,
-				E33EE3B7DD9757AA8A28BEA1F9824BA1 /* Typography.swift in Sources */,
-				C88F59DE8A9EF5D7D999BC7F575F8763 /* UIColor+Extension.swift in Sources */,
+				8046EE92C3CF065F017D8C64361BF44E /* ColorSystemModel.swift in Sources */,
+				6668F9AA81D6CB4E5E40130318A4FD57 /* iOSComponents-dummy.m in Sources */,
+				D4059B86D292C279013280DCE6B63901 /* M2PBottomNavigation.swift in Sources */,
+				7E3F4C23AE6A7D6E18A708F7FFF32BB8 /* M2PButton.swift in Sources */,
+				896A5D3FF2DD8C2285F458A8A8EA0C59 /* M2PChip.swift in Sources */,
+				BDC63998B8C97CF8610B32C6EC9D59B3 /* M2PChipModel.swift in Sources */,
+				1E03479ECDB5A523CDDCDC547842D808 /* M2PColorSystem.swift in Sources */,
+				A02C72502891D0305B7056C21927643F /* M2PComponentsBundle.swift in Sources */,
+				CF816BD3D9BB243BD1A0769BFC234411 /* M2PDotLoader.swift in Sources */,
+				85732B784B683E67DFF6F73E086E1C2B /* M2PGradientView.swift in Sources */,
+				7373376388C56CB289920A70007ED206 /* M2PLoader.swift in Sources */,
+				C8B6BC86355BBE30F28FE2E8B7147004 /* M2PProgressLoader.swift in Sources */,
+				B9E0FFBA4D48234BE769FDD2EB768953 /* M2PSegmentControl.swift in Sources */,
+				65933EC1A2E6121FBB3054999BD19E79 /* M2PTabBarCollectionViewCell.swift in Sources */,
+				E7BFAB386E5919340B0A2CF174B84C59 /* M2PThemeSupport.swift in Sources */,
+				2DD5AC0AD70136DD87FF3ED78187055C /* M2PToggleExtension.swift in Sources */,
+				D24FA53F932AF4629AD6348EB067C0D5 /* M2PTopTabBar.swift in Sources */,
+				D2978337533F8BF72D08037B2048836C /* M2PTopTabBarModel.swift in Sources */,
+				D6086DB2678CD6C58BA93F079DA24F1C /* Typography.swift in Sources */,
+				98D17A6A6190EFE7DD808AA024A7526B /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,7 +591,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6896D7AE50ACEF02DA37F6462D3D7B57 /* Sources */ = {
+		9866E787970C488890648350EECE58BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -605,30 +609,46 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		407D444AC09FA21B586FFB395F44271D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "iOSComponents-Resources";
-			target = 89B86EF92CFDD5F2C5221968513B1FBC /* iOSComponents-Resources */;
-			targetProxy = 26C58D58BAC8866E4649E0D4A2A731AF /* PBXContainerItemProxy */;
-		};
-		908A94F1592D61B4D4887CC3CD276586 /* PBXTargetDependency */ = {
+		7CE9E1F79B057039ADAD6919F8EA6B67 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = iOSComponents;
 			target = 2B077D57DF482ECFC0A810459333D594 /* iOSComponents */;
-			targetProxy = DB4700BCD515177B7AC7E6A2AD6A018D /* PBXContainerItemProxy */;
+			targetProxy = B85A648BC5AE88D78B7A03D3BEEE4BD5 /* PBXContainerItemProxy */;
 		};
-		BFF097D31434CE4DC42EEAC62D8FEE9F /* PBXTargetDependency */ = {
+		CE72DF212AC40F3638840BBACE4C6CA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "iOSComponents-Resources";
+			target = 89B86EF92CFDD5F2C5221968513B1FBC /* iOSComponents-Resources */;
+			targetProxy = 8BFDAD70566BF1CE48A9A9F1C9B1A93F /* PBXContainerItemProxy */;
+		};
+		CFCD7B9636E8C6D92EE922D5AAEEDE66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-iOSComponents_Example";
 			target = 0C7F52F65B4CD17442E64C3241B97676 /* Pods-iOSComponents_Example */;
-			targetProxy = 182A32FACF33A17D5A0A17F1B0CD6F37 /* PBXContainerItemProxy */;
+			targetProxy = 69D16EC70719DE7512B97BFFDBA97C6F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		01B3E9C01E00048DB45E0FD231505579 /* Debug */ = {
+		235601F79AE0BDFB0C8230AC70FDFC66 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 012455B5FDEB6542BC379E880CD72E60 /* iOSComponents.debug.xcconfig */;
+			baseConfigurationReference = 22E98E76BCE7F0C5CD1D3A566CA70E24 /* iOSComponents.release.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/iOSComponents";
+				IBSC_MODULE = iOSComponents;
+				INFOPLIST_FILE = "Target Support Files/iOSComponents/ResourceBundle-Resources-iOSComponents-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = Resources;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		40C9233BFBBF262F3CA8AA77085C4CEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5759A0E4503444914A1F5CD7ECA1AF93 /* iOSComponents.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -656,22 +676,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		265B6FF1471190D2DAF09846E01B6ED3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0528F72DC7B2378D5979EF947070C1A1 /* iOSComponents.release.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/iOSComponents";
-				IBSC_MODULE = iOSComponents;
-				INFOPLIST_FILE = "Target Support Files/iOSComponents/ResourceBundle-Resources-iOSComponents-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = Resources;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
 		};
 		5B7972F113F6CB293BDFE64937579408 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -795,44 +799,27 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		86F9BEF7453EF633F910531339FEE74E /* Release */ = {
+		8DE6D97151C9E6FCFB3C260788A834BF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0528F72DC7B2378D5979EF947070C1A1 /* iOSComponents.release.xcconfig */;
+			baseConfigurationReference = 5759A0E4503444914A1F5CD7ECA1AF93 /* iOSComponents.debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/iOSComponents/iOSComponents-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/iOSComponents/iOSComponents-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/iOSComponents";
+				IBSC_MODULE = iOSComponents;
+				INFOPLIST_FILE = "Target Support Files/iOSComponents/ResourceBundle-Resources-iOSComponents-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/iOSComponents/iOSComponents.modulemap";
-				PRODUCT_MODULE_NAME = iOSComponents;
-				PRODUCT_NAME = iOSComponents;
+				PRODUCT_NAME = Resources;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
 			};
-			name = Release;
+			name = Debug;
 		};
 		D299434AB35E7FD6F7921C8EF24742FF /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -900,6 +887,38 @@
 			};
 			name = Debug;
 		};
+		D914ECB7173580FAD23513468DC40E2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22E98E76BCE7F0C5CD1D3A566CA70E24 /* iOSComponents.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/iOSComponents/iOSComponents-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/iOSComponents/iOSComponents-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/iOSComponents/iOSComponents.modulemap";
+				PRODUCT_MODULE_NAME = iOSComponents;
+				PRODUCT_NAME = iOSComponents;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		DA4A8276AFC72F1C84DB7952C0304916 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E76C68B339549003EE17B3C89B3CD2C5 /* Pods-iOSComponents_Example.release.xcconfig */;
@@ -933,22 +952,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		F0021BF36AF563786C9732386E18AFD7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 012455B5FDEB6542BC379E880CD72E60 /* iOSComponents.debug.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/iOSComponents";
-				IBSC_MODULE = iOSComponents;
-				INFOPLIST_FILE = "Target Support Files/iOSComponents/ResourceBundle-Resources-iOSComponents-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = Resources;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
 		};
 		F8EA8A68188F2C36536C8C7C433B4ED9 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -986,20 +989,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		01E30045DEA4253CE2F81A66CEC30567 /* Build configuration list for PBXNativeTarget "iOSComponents-Resources" */ = {
+		304A39736EC5BBD865053A52F90236BA /* Build configuration list for PBXNativeTarget "iOSComponents" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F0021BF36AF563786C9732386E18AFD7 /* Debug */,
-				265B6FF1471190D2DAF09846E01B6ED3 /* Release */,
+				40C9233BFBBF262F3CA8AA77085C4CEA /* Debug */,
+				D914ECB7173580FAD23513468DC40E2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		143139CB3405B77B70E532914294F30E /* Build configuration list for PBXNativeTarget "iOSComponents" */ = {
+		3445A05022B3A980DDC1C1B5E22E4FAF /* Build configuration list for PBXNativeTarget "iOSComponents-Resources" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				01B3E9C01E00048DB45E0FD231505579 /* Debug */,
-				86F9BEF7453EF633F910531339FEE74E /* Release */,
+				8DE6D97151C9E6FCFB3C260788A834BF /* Debug */,
+				235601F79AE0BDFB0C8230AC70FDFC66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var chipView: M2PChip?
     @IBOutlet weak var topTabBar: M2PTopTabBar!
     
+    private var indicatorValue: Float = 0.0
+    var progressBarTimer: Timer!
+
     @IBOutlet weak var m2pButton: M2PButton! {
             didSet{
                 self.m2pButton.config(type: .custom, title: "IndusLogo",
@@ -40,6 +43,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.progressBarTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.updateProgressView), userInfo: nil, repeats: true)
+
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = UIColor.background
         self.titleLbl.font = UIFont.customFont(name: "Arial-BoldMT", size: .x34)
@@ -54,6 +60,7 @@ class ViewController: UIViewController {
         chipView?.setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
         
         setupMenuBar()
+        self.progressLoader()
     }
     
     private func setupMenuBar() {
@@ -82,6 +89,65 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func updateProgressView() {
+        self.indicatorValue += 0.01
+
+        M2PProgressLoader.updateProgress(title: "Processing...", percent: self.indicatorValue)
+    }
+    
+    func DotLoader() {
+        var config : M2PDotLoader.ConfigDot = M2PDotLoader.ConfigDot()
+        config.backgroundColor = UIColor.background
+        config.foregroundColor = UIColor.black
+        config.foregroundAlpha = 0.5
+        
+        M2PDotLoader.setConfig(config)
+        M2PDotLoader.show(animated: true)
+        delay(seconds: 6.0) { () -> () in
+    //            M2PDotLoader.hide()
+        }
+    }
+    
+    func SpinnerLoader() {
+        var config : M2PLoader.Config = M2PLoader.Config()
+        config.backgroundColor = UIColor.background
+        config.spinnerLineWidth = 2.0
+        config.foregroundColor = UIColor.black
+        config.foregroundAlpha = 0.5
+        
+        M2PLoader.setConfig(config)
+        
+        M2PLoader.show(animated: true)
+//        M2PLoader.show(title: "Processing...", animated: true)
+        
+    //        delay(seconds: 3.0) { () -> () in
+    //            M2PLoader.show(title: "Loading...", animated: true)
+    //        }
+    //
+        delay(seconds: 6.0) { () -> () in
+    //            M2PLoader.hide()
+        }
+    }
+    
+    func progressLoader() {
+        var config : M2PProgressLoader.ConfigProgress = M2PProgressLoader.ConfigProgress()
+        config.backgroundColor = UIColor.clear
+        config.logoColor = UIColor.background
+        config.foregroundColor = UIColor.black
+        config.foregroundAlpha = 0.5
+        
+        M2PProgressLoader.setConfig(config)
+        M2PProgressLoader.show(animated: true)
+        delay(seconds: 10.0) { () -> () in
+            M2PProgressLoader.hide()
+        }
+    }
+
+
+    func delay(seconds: Double, completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
     }
 }
 
