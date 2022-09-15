@@ -8,7 +8,7 @@
 // MARK: Implementation
 
 /*
-radio5.setUpRadioButton(forSelectedImage: RadioButtonProperties(image: UIImage(named: "radio_select"), tintColor: UIColor.primaryActive), forUnSelectedImage: RadioButtonProperties(image: UIImage(named: "radio_unselect"), tintColor: UIColor.primaryActive), initialState: .unSelected)
+ radio1.setUpRadioButton(forSelectedImage: RadioButtonProperties(lightModeImage: UIImage(named: "radioSelectLight"), darkModeImage: UIImage(named: "radioSelectDark")), forUnSelectedImage: RadioButtonProperties(lightModeImage: UIImage(named: "radioUnSelect"), darkModeImage: UIImage(named: "radioUnSelect")), initialState: .unSelected)
 
 radio1.onClick = { (sender) in
     self.radio1.setSelected()
@@ -30,12 +30,12 @@ public enum RadioButtonSelectionState{
 
 // MARK: For Radio Button Properties
 public class RadioButtonProperties {
-    public var image: UIImage? = nil
-    public var tintColor: UIColor
+    public var lightModeImage: UIImage? = nil
+    public var darkModeImage: UIImage? = nil
     
-    public init(image: UIImage? = nil, tintColor: UIColor) {
-        self.image = image
-        self.tintColor = tintColor
+    public init(lightModeImage: UIImage? = nil, darkModeImage: UIImage? = nil) {
+        self.lightModeImage = lightModeImage
+        self.darkModeImage = darkModeImage
     }
 }
 
@@ -50,15 +50,18 @@ public enum RadioButtonState {
 public class M2PRadioButton: UIView {
     
     // MARK: Store Selected/ UnSelected Image
-    var selectedImageIcon = UIImage()
-    var UnSelectedImageIcon = UIImage()
-    
-    // MARK: Store Selected/ UnSelected TintColor
-    var selectedTintColor = UIColor()
-    var UnSelectedTintColor = UIColor()
+    var selectedImageIconLight = UIImage()
+    var UnSelectedImageIconLight = UIImage()
+    var selectedImageIconDark = UIImage()
+    var UnSelectedImageIconDark = UIImage()
+
+//    // MARK: Store Selected/ UnSelected TintColor
+//    var selectedTintColor = UIColor()
+//    var UnSelectedTintColor = UIColor()
     
     // MARK: For Handling Enable/Disable
     var isEnable = true
+    public var isSelected = false
     
     // MARK: For Click Action
     public var onClick:((UITapGestureRecognizer) -> Void)?
@@ -105,6 +108,33 @@ public class M2PRadioButton: UIView {
         self.radioButtonImageView.layer.cornerRadius = self.radioButtonImageView.frame.height/2
     }
     
+    
+    // MARK: update color while changing Light and Dark Mode
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if #available(iOS 12.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                if self.radioButtonImageView.image == self.selectedImageIconLight {
+                    self.radioButtonImageView.image = self.selectedImageIconDark
+                } else if self.radioButtonImageView.image == self.UnSelectedImageIconLight {
+                    self.radioButtonImageView.image = self.UnSelectedImageIconDark
+                }
+            } else if self.traitCollection.userInterfaceStyle == .light {
+                if self.radioButtonImageView.image == self.selectedImageIconDark{
+                    self.radioButtonImageView.image = self.selectedImageIconLight
+                } else if self.radioButtonImageView.image == self.UnSelectedImageIconDark {
+                    self.radioButtonImageView.image = self.UnSelectedImageIconLight
+                }
+            }
+        } else {
+            if self.radioButtonImageView.image == self.selectedImageIconDark{
+                self.radioButtonImageView.image = self.selectedImageIconLight
+            } else if self.radioButtonImageView.image == self.UnSelectedImageIconDark {
+                self.radioButtonImageView.image = self.UnSelectedImageIconLight
+            }
+        }
+    }
+    
     // MARK: Initial Loads
     private func setUpView() {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -114,13 +144,56 @@ public class M2PRadioButton: UIView {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapAction(_:)))
         self.addGestureRecognizer(tap)
-        setConstraints()
+        self.setConstraints()
+        self.setDefaultRadioButton()
+    }
+    
+    func setDefaultRadioButton() {
+        let resourcesBundle = M2PComponentsBundle.shared.currentBundle
+        let radioSelectDark = UIImage(named: "radioSelectDark.png", in: resourcesBundle, compatibleWith: nil)
+        let radioSelectLight = UIImage(named: "radioSelectLight.png", in: resourcesBundle, compatibleWith: nil)
+        let radioUnSelect = UIImage(named: "radioUnSelect.png", in: resourcesBundle, compatibleWith: nil)
+        
+        
+        guard let radioSelectDark = radioSelectDark, let radioSelectLight = radioSelectLight, let radioUnSelect = radioUnSelect else {
+            return
+        }
+        
+        self.selectedImageIconLight = radioSelectLight
+        self.UnSelectedImageIconLight = radioUnSelect
+        self.selectedImageIconDark = radioSelectDark
+        self.UnSelectedImageIconDark = radioUnSelect
+        
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                print("Dark mode")
+                self.radioButtonImageView.image = self.UnSelectedImageIconDark
+            }
+            else {
+                print("Light mode")
+                self.radioButtonImageView.image = self.UnSelectedImageIconLight
+            }
+        } else {
+            self.radioButtonImageView.image = self.UnSelectedImageIconLight
+        }
     }
     
     // MARK: Tap Action
     @objc public func tapAction(_ sender: UITapGestureRecognizer) {
         if isEnable {
-            self.radioButtonImageView.image = self.selectedImageIcon
+            if #available(iOS 13.0, *) {
+                if UITraitCollection.current.userInterfaceStyle == .dark {
+                    print("Dark mode")
+                    self.radioButtonImageView.image = self.selectedImageIconDark
+                }
+                else {
+                    print("Light mode")
+                    self.radioButtonImageView.image = self.selectedImageIconLight
+                }
+            } else {
+                self.radioButtonImageView.image = self.selectedImageIconLight
+            }
+            isSelected = true
             onClick?(sender)
         }
     }
@@ -143,36 +216,85 @@ public class M2PRadioButton: UIView {
     // MARK: Set Selected
     public func setSelected() {
         if isEnable {
-            self.radioButtonImageView.image = self.selectedImageIcon
+            isSelected = true
+            if #available(iOS 13.0, *) {
+                if UITraitCollection.current.userInterfaceStyle == .dark {
+                    print("Dark mode")
+                    self.radioButtonImageView.image = self.selectedImageIconDark
+                }
+                else {
+                    print("Light mode")
+                    self.radioButtonImageView.image = self.selectedImageIconLight
+                }
+            } else {
+                self.radioButtonImageView.image = self.selectedImageIconLight
+            }
         }
     }
     
     // MARK: Set UnSelected
     public func setUnSelected() {
         if isEnable {
-            self.radioButtonImageView.image = self.UnSelectedImageIcon
+            isSelected = false
+            if #available(iOS 13.0, *) {
+                if UITraitCollection.current.userInterfaceStyle == .dark {
+                    print("Dark mode")
+                    self.radioButtonImageView.image = self.UnSelectedImageIconDark
+                }
+                else {
+                    print("Light mode")
+                    self.radioButtonImageView.image = self.UnSelectedImageIconLight
+                }
+            } else {
+                self.radioButtonImageView.image = self.UnSelectedImageIconLight
+            }
         }
     }
     
     // MARK: SetUp Radio Button
     public func setUpRadioButton(forSelectedImage: RadioButtonProperties, forUnSelectedImage: RadioButtonProperties, initialState: RadioButtonSelectionState) {
-        guard let selectedImageIcon = forSelectedImage.image?.withRenderingMode(.alwaysTemplate), let UnSelectedImageIcon = forUnSelectedImage.image?.withRenderingMode(.alwaysTemplate) else {
+        guard let selectedImageIconLight = forSelectedImage.lightModeImage, let selectedImageIconDark = forSelectedImage.darkModeImage else {
             return
         }
-        self.selectedImageIcon = selectedImageIcon
-        self.UnSelectedImageIcon = UnSelectedImageIcon
-        self.selectedTintColor = forSelectedImage.tintColor
-        self.UnSelectedTintColor = forUnSelectedImage.tintColor
         
-        self.radioButtonImageView.image = initialState == .selected ? self.selectedImageIcon : self.UnSelectedImageIcon
-        
-        self.radioButtonImageView.tintColor = initialState == .selected ? self.selectedTintColor : self.UnSelectedTintColor
+        guard let unSelectedImageIconLight = forUnSelectedImage.lightModeImage, let unSelectedImageIconDark = forUnSelectedImage.darkModeImage else {
+            return
+        }
+        self.selectedImageIconLight = selectedImageIconLight
+        self.UnSelectedImageIconLight = unSelectedImageIconLight
+        self.selectedImageIconDark = selectedImageIconDark
+        self.UnSelectedImageIconDark = unSelectedImageIconDark
+  
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                print("Dark mode")
+                self.radioButtonImageView.image = initialState == .selected ? self.selectedImageIconDark : self.UnSelectedImageIconDark
+            }
+            else {
+                print("Light mode")
+                self.radioButtonImageView.image = initialState == .selected ? self.selectedImageIconLight : self.UnSelectedImageIconLight
+            }
+        } else {
+            self.radioButtonImageView.image = initialState == .selected ? self.selectedImageIconLight : self.UnSelectedImageIconLight
+        }
     }
     
     // MARK: Update Radio Button State
     public func enableDisableRadioButton(state: RadioButtonState = .enable, withState: RadioButtonState.WithState = .selected) {
         self.isEnable = state == .enable ? true : false
         self.disableView.isHidden = state == .disable ? false : true
-        self.radioButtonImageView.image = withState == .unSelected ? self.UnSelectedImageIcon : self.selectedImageIcon
+        
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                print("Dark mode")
+                self.radioButtonImageView.image = withState == .selected ? self.selectedImageIconDark : self.UnSelectedImageIconDark
+            }
+            else {
+                print("Light mode")
+                self.radioButtonImageView.image = withState == .selected ? self.selectedImageIconLight : self.UnSelectedImageIconLight
+            }
+        } else {
+            self.radioButtonImageView.image = withState == .selected ? self.selectedImageIconLight : self.UnSelectedImageIconLight
+        }
     }
 }

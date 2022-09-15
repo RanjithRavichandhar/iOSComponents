@@ -7,16 +7,16 @@
 
 // MARK: Implementation
 
-/* checkBox1.setUpCheckBox(forSelectedImage: CheckBoxProperties(image: UIImage(named: "checkbox_fill"), tintColor: UIColor.primaryActive), forUnSelectedImage: CheckBoxProperties(image: UIImage(named: "checkbox_unfill"), tintColor: UIColor.primaryActive), initialState: .selected, checkBoxShapes: .box)
-
-checkBox2.setUpCheckBox(forSelectedImage: CheckBoxProperties(image: UIImage(named: "checkbox_fill"), tintColor: UIColor.primaryActive), forUnSelectedImage: CheckBoxProperties(image: UIImage(named: "checkbox_unfill"), tintColor: UIColor.primaryActive), initialState: .unSelected, checkBoxShapes: .round)
-
-
-checkBox1.onClick = { (isSelected, sender) in
-    print(isSelected)
-}
-checkBox1.enableDisableCheckBox(state: .enable, withState: .unSelected)
-checkBox2.enableDisableCheckBox(state: .disable, withState: .selected) */
+/* checkBox1.setUpCheckBox(forSelectedImage: CheckBoxProperties(lightModeImage: UIImage(named: "checkbox_fill"), darkModeImage: UIImage(named: "checkboxDark_fill")), forUnSelectedImage: CheckBoxProperties(lightModeImage: UIImage(named: "checkbox_unfill"), darkModeImage: UIImage(named: "checkbox_unfill")), initialState: .selected, checkBoxShapes: .box)
+ 
+ checkBox2.setUpCheckBox(forSelectedImage: CheckBoxProperties(lightModeImage: UIImage(named: "checkbox_round_fill"), darkModeImage: UIImage(named: "checkbox_roundDark_fill")), forUnSelectedImage: CheckBoxProperties(lightModeImage: UIImage(named: "checkbox_round_unfill"), darkModeImage: UIImage(named: "checkbox_round_unfill")), initialState: .unSelected, checkBoxShapes: .round)
+ 
+ 
+ checkBox1.onClick = { (isSelected, sender) in
+ print(isSelected)
+ }
+ checkBox1.enableDisableCheckBox(state: .enable, withState: .unSelected)
+ checkBox2.enableDisableCheckBox(state: .disable, withState: .selected) */
 
 import Foundation
 import UIKit
@@ -28,12 +28,12 @@ public enum CheckBoxSelectionState{
 
 // MARK: For CheckBox Properties
 public class CheckBoxProperties {
-    public var image: UIImage? = nil
-    public var tintColor: UIColor
+    public var lightModeImage: UIImage? = nil
+    public var darkModeImage: UIImage? = nil
     
-    public init(image: UIImage? = nil, tintColor: UIColor) {
-        self.image = image
-        self.tintColor = tintColor
+    public init(lightModeImage: UIImage? = nil, darkModeImage: UIImage? = nil) {
+        self.lightModeImage = lightModeImage
+        self.darkModeImage = darkModeImage
     }
 }
 
@@ -53,12 +53,19 @@ public enum CheckBoxShapes {
 public class M2PCheckBox: UIView {
     
     // MARK: Store Selected/ UnSelected Image
-    var selectedImageIcon = UIImage()
-    var UnSelectedImageIcon = UIImage()
+    var selectedImageIconLight = UIImage()
+    var UnSelectedImageIconLight = UIImage()
+    var selectedImageIconDark = UIImage()
+    var UnSelectedImageIconDark = UIImage()
     
-    // MARK: Store Selected/ UnSelected TintColor
-    var selectedTintColor = UIColor()
-    var UnSelectedTintColor = UIColor()
+    public var checkBoxShapes: CheckBoxShapes = .box {
+        didSet {
+            self.setDefaultCheckBoxShape(shape: self.checkBoxShapes)
+        }
+    }
+    //    // MARK: Store Selected/ UnSelected TintColor
+    //    var selectedTintColor = UIColor()
+    //    var UnSelectedTintColor = UIColor()
     
     // MARK: For Handling Enable/Disable
     var isEnable = true
@@ -103,6 +110,32 @@ public class M2PCheckBox: UIView {
         
     }
     
+    // MARK: update color while changing Light and Dark Mode
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if #available(iOS 12.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                if self.checkBoxImageView.image == self.selectedImageIconLight {
+                    self.checkBoxImageView.image = self.selectedImageIconDark
+                } else if self.checkBoxImageView.image == self.UnSelectedImageIconLight {
+                    self.checkBoxImageView.image = self.UnSelectedImageIconDark
+                }
+            } else if self.traitCollection.userInterfaceStyle == .light {
+                if self.checkBoxImageView.image == self.selectedImageIconDark{
+                    self.checkBoxImageView.image = self.selectedImageIconLight
+                } else if self.checkBoxImageView.image == self.UnSelectedImageIconDark {
+                    self.checkBoxImageView.image = self.UnSelectedImageIconLight
+                }
+            }
+        } else {
+            if self.checkBoxImageView.image == self.selectedImageIconDark{
+                self.checkBoxImageView.image = self.selectedImageIconLight
+            } else if self.checkBoxImageView.image == self.UnSelectedImageIconDark {
+                self.checkBoxImageView.image = self.UnSelectedImageIconLight
+            }
+        }
+    }
+    
     // MARK: Initial Loads
     private func setUpView() {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -111,19 +144,81 @@ public class M2PCheckBox: UIView {
         self.disableView.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapAction(_:)))
         self.addGestureRecognizer(tap)
-        setConstraints()
+        self.setConstraints()
+        self.checkBoxShapes = .round
+        
+    }
+    
+    func setDefaultCheckBoxShape(shape: CheckBoxShapes) {
+        let resourcesBundle = M2PComponentsBundle.shared.currentBundle
+        let checkBoxBlackSelect = UIImage(named: "checkBoxBlackSelect.png", in: resourcesBundle, compatibleWith: nil)
+        let checkBoxUnSelect = UIImage(named: "checkBoxUnSelect.png", in: resourcesBundle, compatibleWith: nil)
+        let checkBoxWhiteSelect = UIImage(named: "checkBoxWhiteSelect.png", in: resourcesBundle, compatibleWith: nil)
+        
+        let checkRoundBlackSelect = UIImage(named: "checkRoundBlackSelect.png", in: resourcesBundle, compatibleWith: nil)
+        let checkRoundUnSelect = UIImage(named: "checkRoundUnSelect.png", in: resourcesBundle, compatibleWith: nil)
+        let checkRoundWhiteSelect = UIImage(named: "checkRoundWhiteSelect.png", in: resourcesBundle, compatibleWith: nil)
+        
+        guard let checkBoxBlackSelect = checkBoxBlackSelect, let checkBoxUnSelect = checkBoxUnSelect, let checkBoxWhiteSelect = checkBoxWhiteSelect, let checkRoundBlackSelect = checkRoundBlackSelect, let checkRoundUnSelect = checkRoundUnSelect, let checkRoundWhiteSelect = checkRoundWhiteSelect else {
+            return
+        }
+        
+        self.selectedImageIconLight = shape == .box ? checkBoxBlackSelect : checkRoundBlackSelect
+        self.UnSelectedImageIconLight = shape == .box ? checkBoxUnSelect : checkRoundUnSelect
+        self.selectedImageIconDark = shape == .box ? checkBoxWhiteSelect : checkRoundWhiteSelect
+        self.UnSelectedImageIconDark = shape == .box ? checkBoxUnSelect : checkRoundUnSelect
+        
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                print("Dark mode")
+                self.checkBoxImageView.image = self.UnSelectedImageIconDark
+            }
+            else {
+                print("Light mode")
+                self.checkBoxImageView.image = self.UnSelectedImageIconLight
+            }
+        } else {
+            self.checkBoxImageView.image = self.UnSelectedImageIconLight
+        }
     }
     
     // MARK: Tap Action
     @objc public func tapAction(_ sender: UITapGestureRecognizer) {
         if isEnable {
-            if self.checkBoxImageView.image == self.selectedImageIcon{
-                self.checkBoxImageView.image = self.UnSelectedImageIcon
-                onClick?(false, sender)
+            
+            if #available(iOS 13.0, *) {
+                if UITraitCollection.current.userInterfaceStyle == .dark {
+                    print("Dark mode")
+                    if self.checkBoxImageView.image == self.selectedImageIconDark{
+                        self.checkBoxImageView.image = self.UnSelectedImageIconDark
+                        onClick?(false, sender)
+                    } else {
+                        self.checkBoxImageView.image = self.selectedImageIconDark
+                        onClick?(true, sender)
+                    }
+                    
+                }
+                else {
+                    print("Light mode")
+                    if self.checkBoxImageView.image == self.selectedImageIconLight{
+                        self.checkBoxImageView.image = self.UnSelectedImageIconLight
+                        onClick?(false, sender)
+                    } else {
+                        self.checkBoxImageView.image = self.selectedImageIconLight
+                        onClick?(true, sender)
+                    }
+                }
             } else {
-                self.checkBoxImageView.image = self.selectedImageIcon
-                onClick?(true, sender)
+                if self.checkBoxImageView.image == self.selectedImageIconLight{
+                    self.checkBoxImageView.image = self.UnSelectedImageIconLight
+                    onClick?(false, sender)
+                } else {
+                    self.checkBoxImageView.image = self.selectedImageIconLight
+                    onClick?(true, sender)
+                }
             }
+            
+            
         }
     }
     
@@ -144,17 +239,31 @@ public class M2PCheckBox: UIView {
     
     // MARK: SetUp CheckBox
     public func setUpCheckBox(forSelectedImage: CheckBoxProperties, forUnSelectedImage: CheckBoxProperties, initialState: CheckBoxSelectionState, checkBoxShapes: CheckBoxShapes) {
-        guard let selectedImageIcon = forSelectedImage.image?.withRenderingMode(.alwaysTemplate), let UnSelectedImageIcon = forUnSelectedImage.image?.withRenderingMode(.alwaysTemplate) else {
+        guard let selectedImageIconLight = forSelectedImage.lightModeImage, let selectedImageIconDark = forSelectedImage.darkModeImage else {
             return
         }
-        self.selectedImageIcon = selectedImageIcon
-        self.UnSelectedImageIcon = UnSelectedImageIcon
-        self.selectedTintColor = forSelectedImage.tintColor
-        self.UnSelectedTintColor = forUnSelectedImage.tintColor
         
-        self.checkBoxImageView.image = initialState == .selected ? self.selectedImageIcon : self.UnSelectedImageIcon
+        guard let unSelectedImageIconLight = forUnSelectedImage.lightModeImage, let unSelectedImageIconDark = forUnSelectedImage.darkModeImage else {
+            return
+        }
+        self.selectedImageIconLight = selectedImageIconLight
+        self.UnSelectedImageIconLight = unSelectedImageIconLight
+        self.selectedImageIconDark = selectedImageIconDark
+        self.UnSelectedImageIconDark = unSelectedImageIconDark
         
-        self.checkBoxImageView.tintColor = initialState == .selected ? self.selectedTintColor : self.UnSelectedTintColor
+        
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                print("Dark mode")
+                self.checkBoxImageView.image = initialState == .selected ? self.selectedImageIconDark : self.UnSelectedImageIconDark
+            }
+            else {
+                print("Light mode")
+                self.checkBoxImageView.image = initialState == .selected ? self.selectedImageIconLight : self.UnSelectedImageIconLight
+            }
+        } else {
+            self.checkBoxImageView.image = initialState == .selected ? self.selectedImageIconLight : self.UnSelectedImageIconLight
+        }
         
         checkBoxImageView.layer.masksToBounds = true
         self.disableView.layer.masksToBounds = true
@@ -174,6 +283,18 @@ public class M2PCheckBox: UIView {
     public func enableDisableCheckBox(state: CheckBoxState = .enable, withState: CheckBoxState.WithState = .selected) {
         self.isEnable = state == .enable ? true : false
         self.disableView.isHidden = state == .disable ? false : true
-        self.checkBoxImageView.image = withState == .unSelected ? self.UnSelectedImageIcon : self.selectedImageIcon
+        
+        if #available(iOS 13.0, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                print("Dark mode")
+                self.checkBoxImageView.image = withState == .selected ? self.selectedImageIconDark : self.UnSelectedImageIconDark
+            }
+            else {
+                print("Light mode")
+                self.checkBoxImageView.image = withState == .selected ? self.selectedImageIconLight : self.UnSelectedImageIconLight
+            }
+        } else {
+            self.checkBoxImageView.image = withState == .selected ? self.selectedImageIconLight : self.UnSelectedImageIconLight
+        }
     }
 }

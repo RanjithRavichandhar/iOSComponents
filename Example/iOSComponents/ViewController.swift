@@ -54,13 +54,11 @@ class ViewController: UIViewController {
         
         
         
-        let primaryContent = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: UIImage(named: ""))
+        let primaryContent = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: ContentImageModel(image: UIImage(named: "")))
         primaryContent?.isAvatorIcon = true
         
-        let secondaryContent = TrailingContentList(contentType: .texts, headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryColor, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: ContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  UIImage(named: "pencil"))
-        secondaryContent?.isToggleEnable = .enable
-        secondaryContent?.isToggleOn = .on
-        
+        let secondaryContent = TrailingContentList(contentType: .radio, headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryColor, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: ContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  ContentImageModel(image: UIImage(named: "pencil")))
+    
         listView?.tag = 5
         listView?.setupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
         listView?.onActionClick = { sender in

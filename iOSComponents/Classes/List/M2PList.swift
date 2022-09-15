@@ -47,7 +47,6 @@ public class M2PList: UIView {
     private lazy var leadingHeaderLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -55,7 +54,6 @@ public class M2PList: UIView {
     private lazy var leadingSubLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -63,7 +61,6 @@ public class M2PList: UIView {
     private lazy var trailingHeaderLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -71,7 +68,6 @@ public class M2PList: UIView {
     private lazy var trailingSubLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -130,11 +126,16 @@ public class M2PList: UIView {
         return view
     }()
     
+    public lazy var radioButtonView: M2PRadioButton = {
+        let radioButton = M2PRadioButton()
+        radioButton.translatesAutoresizingMaskIntoConstraints = false
+        return radioButton
+    }()
+    
     // MARK: Local Variables
     var leadingIconSize: CGFloat = 0
     public var onActionClick: ((_ sender: UIView) -> Void)?
-    public var onSwitchChange: ((_ sender: UISwitch) -> Void)?
-    
+
     // MARK: - View LifeCycles
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -161,8 +162,8 @@ public class M2PList: UIView {
         NSLayoutConstraint.activate([
             contentStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             contentStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
-            contentStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4),
+            contentStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+            contentStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
             leadingImageView.centerYAnchor.constraint(equalTo: self.leadingView.centerYAnchor),
             leadingImageView.leadingAnchor.constraint(equalTo: self.leadingView.leadingAnchor),
             leadingImageView.trailingAnchor.constraint(equalTo: self.leadingView.trailingAnchor, constant: -4),
@@ -191,6 +192,7 @@ public class M2PList: UIView {
             self.leadingHeaderLabel.text = text
             self.leadingHeaderLabel.textColor = leadingContent?.headerTextLabel?.textColor
             self.leadingHeaderLabel.font = leadingContent?.headerTextLabel?.textFont
+            self.leadingHeaderLabel.textAlignment = leadingContent?.headerTextLabel?.textAlignment ?? .left
             self.leadingStackView.addArrangedSubview(leadingHeaderLabel)
         }
 
@@ -198,11 +200,13 @@ public class M2PList: UIView {
             self.leadingSubLabel.text = text
             self.leadingSubLabel.textColor = leadingContent?.subTextLabel?.textColor
             self.leadingSubLabel.font = leadingContent?.subTextLabel?.textFont
+            self.leadingSubLabel.textAlignment = leadingContent?.subTextLabel?.textAlignment ?? .left
             self.leadingStackView.addArrangedSubview(leadingSubLabel)
         }
 
-        if let icon = leadingContent?.icon {
+        if let icon = leadingContent?.icon?.image {
             self.leadingImageView.image = icon
+            self.leadingImageView.tintColor = leadingContent?.icon?.tintColor
             self.leadingView.isHidden = false
         }
 
@@ -217,6 +221,7 @@ public class M2PList: UIView {
                 self.trailingHeaderLabel.text = text
                 self.trailingHeaderLabel.textColor = trailingContent?.headerTextLabel?.textColor
                 self.trailingHeaderLabel.font = trailingContent?.headerTextLabel?.textFont
+                self.trailingHeaderLabel.textAlignment = trailingContent?.headerTextLabel?.textAlignment ?? .right
                 self.trailingStackView.addArrangedSubview(trailingHeaderLabel)
             }
 
@@ -224,12 +229,14 @@ public class M2PList: UIView {
                 self.trailingSubLabel.text = text
                 self.trailingSubLabel.textColor = trailingContent?.subTextLabel?.textColor
                 self.trailingSubLabel.font = trailingContent?.subTextLabel?.textFont
+                self.trailingSubLabel.textAlignment = trailingContent?.subTextLabel?.textAlignment ?? .right
                 self.trailingStackView.addArrangedSubview(trailingSubLabel)
             }
             
         case .icon:
-            if let image = trailingContent?.icon {
+            if let image = trailingContent?.icon?.image {
                 self.trailingImageView.image = image
+                self.trailingImageView.tintColor = trailingContent?.icon?.tintColor
                 self.trailingView.addSubview(trailingImageView)
                 self.trailingStackView.addArrangedSubview(trailingView)
 
@@ -254,24 +261,27 @@ public class M2PList: UIView {
         case .toggle:
             self.trailingView.addSubview(toggleSwitch)
             self.trailingStackView.addArrangedSubview(trailingView)
-            setToggleSwitch(switchState: trailingContent?.isToggleEnable ?? .disable, withState: trailingContent?.isToggleOn ?? .off)
             
             NSLayoutConstraint.activate([
                 toggleSwitch.centerYAnchor.constraint(equalTo: trailingView.centerYAnchor),
                 toggleSwitch.trailingAnchor.constraint(equalTo: trailingView.trailingAnchor, constant: -4),
                 leadingStackView.widthAnchor.constraint(equalTo: self.contentStackView.widthAnchor, multiplier: 0.65)
             ])
+            
+        case .radio:
+            self.trailingView.addSubview(radioButtonView)
+            self.trailingStackView.addArrangedSubview(trailingView)
+            
+            NSLayoutConstraint.activate([
+                radioButtonView.centerYAnchor.constraint(equalTo: trailingView.centerYAnchor),
+                radioButtonView.trailingAnchor.constraint(equalTo: trailingView.trailingAnchor, constant: 0),
+                leadingStackView.widthAnchor.constraint(equalTo: self.contentStackView.widthAnchor, multiplier: 0.7),
+                radioButtonView.widthAnchor.constraint(equalToConstant: 24),
+                radioButtonView.heightAnchor.constraint(equalToConstant: 24)
+            ])
+            
         case .none:
             print("None type")
-        }
-    
-    }
-    
-    // MARK: - Methods
-    private func setToggleSwitch(switchState: SwitchState, withState: SwitchState.WithState) {
-        self.toggleSwitch.setSwitchState(state: switchState, withState: withState)
-        self.toggleSwitch.onClick { [weak self] sender in
-            self?.onSwitchChange?(sender)
         }
     }
 }
