@@ -211,10 +211,10 @@ public class M2PDotLoader: UIView {
         public var indicatorColor = UIColor.secondaryRedColor
         
         /// Foreground color
-        public var foregroundColor = UIColor.clear
+        public var foregroundColor = UIColor.black
         
         /// Foreground alpha CGFloat, between 0.0 and 1.0
-        public var foregroundAlpha:CGFloat = 0.0
+        public var foregroundAlpha:CGFloat = 0.5
         
         /// Corner radius for loader
         public var cornerRadius : CGFloat = 10.0

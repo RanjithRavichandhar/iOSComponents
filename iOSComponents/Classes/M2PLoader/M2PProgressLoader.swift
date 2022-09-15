@@ -120,7 +120,6 @@ public class M2PProgressLoader: UIView {
     }
     
     private func start() {
-        self.loadingView?.startAnimating()
         
         if (self.animated) {
             UIView.animate(withDuration: 0.3, animations: { () -> Void in
@@ -140,14 +139,11 @@ public class M2PProgressLoader: UIView {
             }, completion: { (finished) -> Void in
                 self.removeFromSuperview()
                 self.coverView?.removeFromSuperview()
-//                self.loadingView?.stop()
-                self.loadingView?.stopAnimating()
             });
         } else {
             self.alpha = 0
             self.removeFromSuperview()
             self.coverView?.removeFromSuperview()
-            self.loadingView?.stopAnimating()
         }
     }
     
@@ -175,8 +171,16 @@ public class M2PProgressLoader: UIView {
         public var progressView : UIProgressView?
         public var titleLbl : UILabel?
         public var percentageLbl : UILabel?
-        private var observation: NSKeyValueObservation?
 
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            self.update()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+        }
+        
         var config : ConfigProgress = ConfigProgress() {
             didSet {
                 self.update()
@@ -233,23 +237,6 @@ public class M2PProgressLoader: UIView {
                 self.addSubview(stackView)
             }
         }
-        
-        func startAnimating() {
-//            observation = task.progress.observe(\.fractionCompleted) { progress, _ in
-//              DispatchQueue.main.async {
-//                self.progressView.progress = Float(progress.completedUnitCount)
-//              }
-//            }
-
-        }
-        
-        func stopAnimating() {
-            self.observation?.invalidate()
-        }
-        
-        deinit {
-            self.observation?.invalidate()
-        }
 
     }
     
@@ -282,16 +269,16 @@ public class M2PProgressLoader: UIView {
         public var percentageTextFont : UIFont = UIFont.customFont(name: "Arial-BoldMT", size: .x13)
         
         /// Background color for loader
-        public var backgroundColor = UIColor.background
+        public var backgroundColor = UIColor.clear
         
         /// Logo color for loader
         public var logoColor = UIColor.background
         
         /// Foreground color
-        public var foregroundColor = UIColor.clear
+        public var foregroundColor = UIColor.black
         
         /// Foreground alpha CGFloat, between 0.0 and 1.0
-        public var foregroundAlpha : CGFloat = 0.0
+        public var foregroundAlpha : CGFloat = 0.5
         
         /// Corner radius for loader
         public var cornerRadius : CGFloat = 10.0

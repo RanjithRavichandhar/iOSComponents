@@ -60,7 +60,6 @@ class ViewController: UIViewController {
         chipView?.setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
         
         setupMenuBar()
-        self.progressLoader()
     }
     
     private func setupMenuBar() {
@@ -116,11 +115,11 @@ class ViewController: UIViewController {
         config.spinnerLineWidth = 2.0
         config.foregroundColor = UIColor.black
         config.foregroundAlpha = 0.5
-        
+
         M2PLoader.setConfig(config)
         
-        M2PLoader.show(animated: true)
-//        M2PLoader.show(title: "Processing...", animated: true)
+//        M2PLoader.show(animated: true)
+        M2PLoader.show(title: "Processing...", animated: true)
         
     //        delay(seconds: 3.0) { () -> () in
     //            M2PLoader.show(title: "Loading...", animated: true)

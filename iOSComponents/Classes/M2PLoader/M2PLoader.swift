@@ -39,7 +39,7 @@ public class M2PLoader: UIView {
     
     class var shared: M2PLoader {
         struct Singleton {
-            static let instance = M2PLoader(frame: CGRect(origin: CGPoint(x: 0,y: 0),size: CGSize(width: 56.0,height: 56.0)))
+            static let instance = M2PLoader(frame: CGRect(origin: CGPoint(x: 0,y: 0),size: CGSize(width: 126.0,height: 126.0)))
         }
         return Singleton.instance
     }
@@ -389,7 +389,7 @@ public class M2PLoader: UIView {
         public var spinnerColor = UIColor.secondaryRedColor
         
         /// Line width
-        public var spinnerLineWidth :Float = 1.0
+        public var spinnerLineWidth : Float = 2.0
         
         /// Color of title text
         public var titleTextColor = UIColor.primaryActive
@@ -404,10 +404,10 @@ public class M2PLoader: UIView {
         public var backgroundColor = UIColor.background
         
         /// Foreground color
-        public var foregroundColor = UIColor.clear
+        public var foregroundColor = UIColor.primaryActive
         
         /// Foreground alpha CGFloat, between 0.0 and 1.0
-        public var foregroundAlpha:CGFloat = 0.0
+        public var foregroundAlpha: CGFloat = 0.5
         
         /// Corner radius for loader
         public var cornerRadius : CGFloat = 10.0
