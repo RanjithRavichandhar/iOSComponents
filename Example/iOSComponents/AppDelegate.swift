@@ -19,7 +19,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let colorConfig = M2PColorSystem()
         colorConfig.M2PConfigureColor()
+        
+        self.printFonts()
+        
+        guard let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
+            return false
+        }
+        let navigationController = UINavigationController(rootViewController: rootVC)
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
         return true
+    }
+    
+    func printFonts() {
+        for familyName in UIFont.familyNames {
+            print("\n-- \(familyName) \n")
+            for fontName in UIFont.fontNames(forFamilyName: familyName) {
+                print(fontName)
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
