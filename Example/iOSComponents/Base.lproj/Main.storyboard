@@ -59,6 +59,12 @@
                                     <constraint firstAttribute="height" constant="50" id="a1E-Gx-sHB"/>
                                 </constraints>
                             </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="sdM-A2-89Y" customClass="M2PSlider" customModule="iOSComponents">
+                                <rect key="frame" x="18" y="777" width="378" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="jRS-a0-XEg"/>
+                                </constraints>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -67,10 +73,13 @@
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="AIj-e1-6pA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f3i-VF-GLj" secondAttribute="trailing" constant="20" id="BNH-Po-xPi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7FW-Oc-Cf2" secondAttribute="trailing" constant="20" id="DcW-6a-pAq"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="sdM-A2-89Y" secondAttribute="bottom" constant="30" id="Ewx-I8-Pq7"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="Fyz-OH-HFM"/>
                             <constraint firstItem="jeb-Vn-VXH" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" id="Hsv-pB-G1K"/>
                             <constraint firstAttribute="trailing" secondItem="CSq-cG-MXH" secondAttribute="trailing" constant="30" id="LB5-1n-o5F"/>
+                            <constraint firstItem="sdM-A2-89Y" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Mzh-mP-4ud"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8XG-R9-YPv" secondAttribute="trailing" constant="20" id="SmQ-rk-irx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sdM-A2-89Y" secondAttribute="trailing" id="VL8-Bd-vuW"/>
                             <constraint firstItem="CSq-cG-MXH" firstAttribute="top" secondItem="f3i-VF-GLj" secondAttribute="bottom" constant="30" id="ajK-pU-9gw"/>
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="cID-gd-r4l"/>
                             <constraint firstItem="8XG-R9-YPv" firstAttribute="top" secondItem="7FW-Oc-Cf2" secondAttribute="bottom" constant="100" id="fyV-Lc-Cvi"/>
@@ -85,6 +94,7 @@
                         <outlet property="chipView" destination="8XG-R9-YPv" id="l5X-HW-HyB"/>
                         <outlet property="gradientBgView" destination="f3i-VF-GLj" id="VMo-B8-mcV"/>
                         <outlet property="m2pButton" destination="CSq-cG-MXH" id="WSJ-gg-Fkw"/>
+                        <outlet property="slider" destination="sdM-A2-89Y" id="RsE-6b-Pxa"/>
                         <outlet property="titleLbl" destination="7FW-Oc-Cf2" id="Twn-zB-bzJ"/>
                         <outlet property="topTabBar" destination="jeb-Vn-VXH" id="2gV-ay-1eP"/>
                     </connections>
