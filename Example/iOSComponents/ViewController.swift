@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet private weak var titleLbl: UILabel!
     @IBOutlet weak var chipView: M2PChip?
     @IBOutlet weak var topTabBar: M2PTopTabBar!
-    
+    @IBOutlet weak var slider: M2PSlider!
+
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
 
@@ -60,6 +61,12 @@ class ViewController: UIViewController {
         chipView?.setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
         
         setupMenuBar()
+        
+        self.slider.maximumTrackTintColor = UIColor.backgroundLightVarient
+        self.slider.minimumTrackTintColor = UIColor.secondaryRedColor
+        self.slider.thumbTouchSize = CGSize(width: 24.0, height: 24.0)
+//        self.slider.setThumbImage(UIImage(named: "thumbHightlight"), for: .highlighted)
+//        self.slider.setThumbImage(UIImage(named: "thumbNormal"), for: .normal)
     }
     
     private func setupMenuBar() {
