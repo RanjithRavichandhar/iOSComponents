@@ -9,12 +9,12 @@ import UIKit
 import Foundation
 
 /*To Get bundle Name*/
-class M2PComponentsBundle {
-    static var shared = M2PComponentsBundle()
-    private init() { }
+public class M2PComponentsBundle {
+    public static var shared = M2PComponentsBundle()
+     init() { }
     
     /*Access from Resource Bundle*/
-    var currentBundle: Bundle  {
+   public var currentBundle: Bundle  {
         let frameworkBundle = Bundle(for: M2PComponentsBundle.self)
         let path = frameworkBundle.path(forResource: "Resources", ofType: "bundle")
         let resourcesBundle = Bundle(url: URL(fileURLWithPath: path!))!
@@ -23,7 +23,7 @@ class M2PComponentsBundle {
     }
     
     /*To get DeviceId and BundleId*/
-    var deviceId: String? { return UIDevice.current.identifierForVendor?.uuidString.filter { $0 != "-" } }
-    var bundleId: String? { return Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String }
+    public var deviceId: String? { return UIDevice.current.identifierForVendor?.uuidString.filter { $0 != "-" } }
+    public var bundleId: String? { return Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String }
 }
 

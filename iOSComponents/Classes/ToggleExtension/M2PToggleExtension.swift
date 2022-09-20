@@ -21,14 +21,14 @@ checkToggelSwitch.onClick { sender in
 import Foundation
 import UIKit
 
-extension UISwitch {
-    
-    public enum SwitchState {
-        case enable, disable
-        public enum WithState {
-            case on, off
-        }
+public enum SwitchState {
+    case enable, disable
+    public enum WithState {
+        case on, off
     }
+}
+
+extension UISwitch {
     
     public func setSwitchState(state: SwitchState, withState: SwitchState.WithState) {
         self.isOn = withState == .on ? true : false

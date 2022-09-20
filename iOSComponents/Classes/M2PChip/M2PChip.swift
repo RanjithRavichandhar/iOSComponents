@@ -65,6 +65,9 @@ public class M2PChip: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.contentStackView)
         setConstraints()
+        
+        // Initial Value Setup
+        setUpChip(chipType: .neutral, contentType: .text, borderType: .solid, title: "M2PChip")
     }
     
     private func setConstraints() {
