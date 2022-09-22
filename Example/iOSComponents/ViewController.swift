@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet private weak var titleLbl: UILabel!
     @IBOutlet weak var chipView: M2PChip?
     @IBOutlet weak var topTabBar: M2PTopTabBar!
+    @IBOutlet weak var slider: M2PSlider!
+    @IBOutlet weak var pageControl: M2PCustomPageControl!
     
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
@@ -39,7 +41,12 @@ class ViewController: UIViewController {
             }
         }
     
+    //Page control
+    var customPageControl = M2PCustomPageControl()
+    
+    // Menu bar
     var index = 4
+    var tabItems : [M2PTopTabBarItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +67,23 @@ class ViewController: UIViewController {
         chipView?.setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
         
         setupMenuBar()
+        
+        //Page Control
+        pageControl.setup(for: 4, with: M2PPageControlConfig(image_inactive: UIImage(named: "pageControlIndicator")))
+        self.view.addSubview(pageControl)
+        
+        setupPageControl_LEFT()
+        
+        self.slider.maximumTrackTintColor = UIColor.backgroundLightVarient
+        self.slider.minimumTrackTintColor = UIColor.secondaryRedColor
+        self.slider.thumbTouchSize = CGSize(width: 24.0, height: 24.0)
+//        self.slider.setThumbImage(UIImage(named: "thumbHightlight"), for: .highlighted)
+//        self.slider.setThumbImage(UIImage(named: "thumbNormal"), for: .normal)
     }
     
     private func setupMenuBar() {
         let image = UIImage(named: "plus.png")
         // MenuBar data
-        var tabItems : [M2PTopTabBarItem] = []
         tabItems.append(M2PTopTabBarItem(leftImage: image, title: "Home", rightImage: image))
         tabItems.append(M2PTopTabBarItem(leftImage: image, title: "Trending", rightImage: image))
         tabItems.append(M2PTopTabBarItem(leftImage: image, title: "Account"))
@@ -82,7 +100,26 @@ class ViewController: UIViewController {
         //Handling change
         topTabBar.onSelectedIndexChange = { selectedIndex in
             self.titleLbl.text = "Selected Tab : \(selectedIndex + 1)"
+            
+            self.pageControl?.currentPage = selectedIndex
+            self.customPageControl.currentPage = selectedIndex
         }
+    }
+    
+    func setupPageControl_LEFT() {
+        let indicatorImage = UIImage(named: "pageControlIndicator")
+        
+        customPageControl.setup(for: tabItems.count, with: M2PPageControlConfig(indicatorsAlignment: .leftMost, image_inactive: indicatorImage))
+        customPageControl.translatesAutoresizingMaskIntoConstraints =  false
+        self.view.addSubview(customPageControl)
+        setPageControlConstraints()
+    }
+    
+    private func setPageControlConstraints() {
+        customPageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        customPageControl.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -150).isActive = true
+        customPageControl.widthAnchor.constraint(equalToConstant: customPageControl.size(forNumberOfPages: tabItems.count).width + 10).isActive = true
+        customPageControl.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
 
     override func didReceiveMemoryWarning() {
