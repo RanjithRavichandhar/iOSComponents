@@ -103,11 +103,6 @@ class ViewController: UIViewController {
         M2PProgressLoader.updateProgress(title: "Processing...", percent: self.indicatorValue)
     }
     
-    /* On Click Back */
-    @IBAction private func onClickDotLoader(sender: UIButton) {
-        self.DotLoader()
-    }
-    
     func DotLoader() {
         var config : M2PDotLoader.ConfigDot = M2PDotLoader.ConfigDot()
         config.backgroundColor = UIColor.background
