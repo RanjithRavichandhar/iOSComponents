@@ -20,7 +20,7 @@ public class M2PDotLoader: UIView {
     private var animated : Bool = true
     private var canUpdated = false
     
-    private var config : ConfigDot = ConfigDot() {
+    private var config : M2PConfigDot = M2PConfigDot() {
         didSet {
             self.loadingView?.config = config
         }
@@ -39,7 +39,7 @@ public class M2PDotLoader: UIView {
         return Singleton.instance
     }
     
-    public class func show(animated: Bool) {
+    public class func M2PDotLoaderShow(animated: Bool) {
         self.show(title: nil, animated: animated)
     }
     
@@ -83,12 +83,12 @@ public class M2PDotLoader: UIView {
         }
     }
     
-    public class func hide() {
+    public class func M2PDotLoaderHide() {
         NotificationCenter.default.removeObserver(M2PLoader.shared)
         M2PDotLoader.shared.stop()
     }
     
-    public class func setConfig(_ config: ConfigDot) {
+    public class func M2PDotLoaderSetConfig(_ config: M2PConfigDot) {
         let loader = M2PDotLoader.shared
         loader.config = config
         loader.frame = CGRect(origin: CGPoint(x: 0, y: 0),
@@ -171,7 +171,7 @@ public class M2PDotLoader: UIView {
         
         var backgroundLayer: CAReplicatorLayer?
         
-        var config : ConfigDot = ConfigDot() {
+        var config : M2PConfigDot = M2PConfigDot() {
             didSet {
                 self.update()
             }
@@ -212,7 +212,7 @@ public class M2PDotLoader: UIView {
     }
     
     // MARK: - Loader config
-    public struct ConfigDot {
+    public struct M2PConfigDot {
         
         /// Background color for loader
         public var backgroundColor = UIColor.background
@@ -236,18 +236,18 @@ public class M2PDotLoader: UIView {
 
 // MARK: Implementation Code
 /*
-func DotLoader() {
-    var config : M2PDotLoader.ConfigDot = M2PDotLoader.ConfigDot()
-    config.backgroundColor = UIColor.background
-    config.foregroundColor = UIColor.black
-    config.foregroundAlpha = 0.5
-    
-    M2PDotLoader.setConfig(config)
-    M2PDotLoader.show(animated: true)
-    delay(seconds: 6.0) { () -> () in
-//            M2PDotLoader.hide()
-    }
-}
+ func DotLoader() {
+     var config : M2PDotLoader.M2PConfigDot = M2PDotLoader.M2PConfigDot()
+     config.backgroundColor = UIColor.background
+     config.foregroundColor = UIColor.black
+     config.foregroundAlpha = 0.5
+     
+     M2PDotLoader.M2PDotLoaderSetConfig(config)
+     M2PDotLoader.M2PDotLoaderShow(animated: true)
+     delay(seconds: 6.0) { () -> () in
+             M2PDotLoader.M2PDotLoaderHide()
+     }
+ }
 
 func delay(seconds: Double, completion: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
