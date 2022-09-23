@@ -200,7 +200,7 @@ public class M2PSegmentedControl: UIControl {
         }
     }
     
-    public func configuration(font: UIFont? = nil, cornerRadius: CGFloat = 6.0, color: M2PSegmentColorConfiguration? = nil) {
+    public func M2PSegmentConfiguration(font: UIFont? = nil, cornerRadius: CGFloat = 6.0, color: M2PSegmentColorConfiguration? = nil) {
         if let font = font {
             self.font = font
         } else {
@@ -235,7 +235,7 @@ func configureSegment() {
     segmentColor.borderColor = UIColor.GreenPigment100
     
     self.segment.items = ["Select Currency", "Select Country", "Transactions", "Statement"]
-    self.segment.configuration()
+    self.segment.M2PSegmentConfiguration()
     self.segment.selectedIndex = 0
     self.segment.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
 }
