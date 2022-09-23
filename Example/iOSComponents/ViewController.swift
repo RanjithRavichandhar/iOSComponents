@@ -224,12 +224,12 @@ class ViewController: UIViewController {
         
         let lead = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "Sub", textColor: .primaryActive, textFont: .systemFont(ofSize: 12)), icon: ContentImageModel(image: UIImage(named: "")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive), isAvatorIcon: false)
         
-        action.setUpActionView(headerContent: lead, items: [ActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+        action.m2p_setUpActionView(headerContent: lead, items: [ActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
                                                             ActionItems(text: "Refresh", image: UIImage(named: ""), textColor: .primaryActive, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
                                                             ActionItems(text: "Delete", image: UIImage(named: "delete"), textColor: .red, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
                                                            ]) { index in
             action.dismiss(animated: true, completion: nil)
-            
+
         }
         self.present(action, animated: false, completion: nil)
     }

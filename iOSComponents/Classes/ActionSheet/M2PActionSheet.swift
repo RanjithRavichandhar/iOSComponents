@@ -7,7 +7,7 @@
 
 import UIKit
 
-/* MARK: Implementation
+/* MARK: - Implementation
  
  let actionItems = [
  ActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
@@ -21,7 +21,7 @@ import UIKit
  let actionSheet = M2PActionSheet(title: nil, message: nil, preferredStyle: .actionSheet)
  actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
  
- actionSheet.setUpActionView(headerContent: headerContent, items: actionItems) { index in
+ actionSheet.m2p_setUpActionView(headerContent: headerContent, items: actionItems) { index in
  actionSheet.dismiss(animated: true, completion: nil)
  }
  
@@ -74,7 +74,7 @@ public class M2PActionSheet: UIAlertController {
     }
     
     // MARK: - ActionSheet Setup
-    public func setUpActionView(headerContent: LeadingContentList? = nil, items: [ActionItems] = [], itemHandler: @escaping (_ index: Int) -> Void) {
+    public func m2p_setUpActionView(headerContent: LeadingContentList? = nil, items: [ActionItems] = [], itemHandler: @escaping (_ index: Int) -> Void) {
         onItemHandler = itemHandler
         isHeaderContent = (headerContent != nil && !(headerContent?.subTextLabel?.text?.isEmpty ?? true && headerContent?.headerTextLabel?.text?.isEmpty ?? true)) ? 1 : 0
         self.headerContent = headerContent
@@ -85,8 +85,8 @@ public class M2PActionSheet: UIAlertController {
     }
     
     private func initalValueSetup() {
-        setUpActionView(headerContent: LeadingContentList(headerTextLabel: ContentTextModel(text: "M2PActionSheet", textColor: .primaryActive), subTextLabel: nil, icon: nil), items: []) { _ in
-            
+        m2p_setUpActionView(headerContent: LeadingContentList(headerTextLabel: ContentTextModel(text: "M2PActionSheet", textColor: .primaryActive), subTextLabel: nil, icon: nil), items: []) { _ in
+            self.dismiss(animated: true)
         }
     }
 }
@@ -139,7 +139,7 @@ extension M2PActionSheet: UITableViewDataSource, UITableViewDelegate {
 // MARK: - ActionSheetCell
 class ActionSheetCell: UITableViewCell {
     
-    lazy var listView: M2PList = {
+    fileprivate lazy var listView: M2PList = {
         let view = M2PList()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
