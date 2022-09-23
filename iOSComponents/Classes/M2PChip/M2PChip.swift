@@ -73,7 +73,7 @@ public class M2PChip: UIView {
         setConstraints()
         
         // Initial Value Setup
-        setUpChip(chipType: .neutral, contentType: .text, borderType: .solid, title: "M2PChip")
+        m2p_setUpChip(chipType: .neutral, contentType: .text, borderType: .solid, title: "M2PChip")
     }
     
     private func setConstraints() {
@@ -86,7 +86,7 @@ public class M2PChip: UIView {
     }
 
     // MARK: - Set Chips
-    public func setUpChip(chipType: ChipType, contentType: ChipContentType, borderType: ChipBorderType, title: String? = nil, titleFont: UIFont = .systemFont(ofSize: 12), primaryIcon: UIImage? = nil, secondaryIcon: UIImage? = nil) {
+    public func m2p_setUpChip(chipType: ChipType, contentType: ChipContentType, borderType: ChipBorderType, title: String? = nil, titleFont: UIFont = .systemFont(ofSize: 12), primaryIcon: UIImage? = nil, secondaryIcon: UIImage? = nil) {
        
         let primaryImgIcon = primaryIcon?.withRenderingMode(.alwaysTemplate)
         let secondaryImgIcon = secondaryIcon?.withRenderingMode(.alwaysTemplate)
