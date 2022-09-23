@@ -76,7 +76,7 @@ class ViewController: UIViewController {
         
         self.slider.maximumTrackTintColor = UIColor.backgroundLightVarient
         self.slider.minimumTrackTintColor = UIColor.secondaryRedColor
-        self.slider.thumbTouchSize = CGSize(width: 24.0, height: 24.0)
+        self.slider.M2PThumbTouchSize = CGSize(width: 24.0, height: 24.0)
 //        self.slider.setThumbImage(UIImage(named: "thumbHightlight"), for: .highlighted)
 //        self.slider.setThumbImage(UIImage(named: "thumbNormal"), for: .normal)
     }
