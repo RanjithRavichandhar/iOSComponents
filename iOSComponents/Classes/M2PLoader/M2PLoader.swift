@@ -25,7 +25,7 @@ public class M2PLoader: UIView {
     private var title: String?
     private var speed = 1
 
-    private var config : Config = Config() {
+    private var config : M2PConfig = M2PConfig() {
         didSet {
             self.loadingView?.config = config
         }
@@ -44,11 +44,11 @@ public class M2PLoader: UIView {
         return Singleton.instance
     }
     
-    public class func show(animated: Bool) {
-        self.show(title: nil, animated: animated)
+    public class func M2PLoaderShow(animated: Bool) {
+        self.M2PLoaderShow(title: nil, animated: animated)
     }
     
-    public class func show(title: String?, animated : Bool) {
+    public class func M2PLoaderShow(title: String?, animated : Bool) {
         var currentWindow: UIWindow?
         if #available(iOS 13.0, *) {
             currentWindow = UIApplication
@@ -89,12 +89,12 @@ public class M2PLoader: UIView {
         }
     }
     
-    public class func hide() {
+    public class func M2PLoaderHide() {
         NotificationCenter.default.removeObserver(M2PLoader.shared)
         M2PLoader.shared.stop()
     }
     
-    public class func setConfig(_ config: Config) {
+    public class func M2PLoaderSetConfig(_ config: M2PConfig) {
         let loader = M2PLoader.shared
         loader.config = config
         loader.frame = CGRect(origin: CGPoint(x: 0, y: 0),
@@ -212,7 +212,7 @@ public class M2PLoader: UIView {
         private var duration: TimeInterval = 1.25
         private var timingFunction: CAMediaTimingFunction?
 
-        var config : Config = Config() {
+        var config : M2PConfig = M2PConfig() {
             didSet {
                 self.update()
             }
@@ -380,7 +380,7 @@ public class M2PLoader: UIView {
     }
     
     // MARK: - Loader config
-    public struct Config {
+    public struct M2PConfig {
         
         /// Size of loader
         public var size : CGFloat = 126.0
@@ -419,29 +419,27 @@ public class M2PLoader: UIView {
 
 // MARK: Implementation Code
 /*
-func SpinnerLoader() {
-    var config : M2PLoader.Config = M2PLoader.Config()
-//        config.size = 120
-    config.backgroundColor = UIColor.background//UIColor(red:0.03, green:0.82, blue:0.7, alpha:1)
-//        config.spinnerColor = UIColor.secondaryRedColor
-//        config.titleTextColor = UIColor(red:0.88, green:0.26, blue:0.18, alpha:1)
-    config.spinnerLineWidth = 2.0
-    config.foregroundColor = UIColor.black
-    config.foregroundAlpha = 0.5
-    
-    M2PLoader.setConfig(config)
-    
-    //M2PLoader.show(animated: true)
-    M2PLoader.show(title: "Processing...", animated: true)
-    
-//        delay(seconds: 3.0) { () -> () in
-//            M2PLoader.show(title: "Loading...", animated: true)
-//        }
-//
-    delay(seconds: 6.0) { () -> () in
-//            M2PLoader.hide()
-    }
-}
+ 
+ func SpinnerLoader() {
+     var config : M2PLoader.M2PConfig = M2PLoader.M2PConfig()
+     config.backgroundColor = UIColor.background
+     config.spinnerLineWidth = 2.0
+     config.foregroundColor = UIColor.black
+     config.foregroundAlpha = 0.5
+
+     M2PLoader.M2PLoaderSetConfig(config)
+     
+//        M2PLoader.M2PLoaderShow(animated: true)
+     M2PLoader.M2PLoaderShow(title: "Processing...", animated: true)
+     
+ //        delay(seconds: 3.0) { () -> () in
+ //            M2PLoader.M2PLoaderShow(title: "Loading...", animated: true)
+ //        }
+ //
+     delay(seconds: 6.0) { () -> () in
+             M2PLoader.M2PLoaderHide()
+     }
+ }
  
  func delay(seconds: Double, completion: @escaping () -> Void) {
      DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
