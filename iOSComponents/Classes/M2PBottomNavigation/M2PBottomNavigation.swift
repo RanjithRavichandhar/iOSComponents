@@ -8,22 +8,22 @@
 // MARK: Implementation
 
 /* let tabbarController = M2PBottomNavigation()
- let tabBarItems = [TabBarItems(storyboardName: "Main",
+ let tabBarItems = [M2PTabBarItems(storyboardName: "Main",
  controllerName: "blue",
  image: "Home_tab",
  selectedIimage: "Home_tab_selected",
  order: 0,
  title: "home")]
  
- tabbarController.tintColor = .green
- tabbarController.setUpTabbar(tabBarItems: tabBarItems)
+ tabbarController.M2PTintColor = .green
+ tabbarController.M2PSetUpTabbar(tabBarItems: tabBarItems)
  
  self.navigationController?.pushViewController(tabbarController, animated: true) */
 
 import Foundation
 import UIKit
 
-public class TabBarItems {
+public class M2PTabBarItems {
     public var storyboardName: String
     public var controllerName: String
     public var image: String
@@ -44,7 +44,7 @@ public class M2PBottomNavigation: UITabBarController {
     
     public static let shared = M2PBottomNavigation()
     
-    public var tintColor: UIColor? {
+    public var M2PTintColor: UIColor? {
         didSet {
             updateColor()
         }
@@ -61,7 +61,7 @@ public class M2PBottomNavigation: UITabBarController {
     
     // MARK: Updating color for TabBar
     func updateColor() {
-        self.tabBar.tintColor = tintColor
+        self.tabBar.tintColor = M2PTintColor
         self.tabBar.backgroundColor = .backgroundLightVarient
         
         if let items = tabBar.items {
@@ -73,14 +73,14 @@ public class M2PBottomNavigation: UITabBarController {
     }
     
     
-    public func setUpTabbar(tabBarItems: [TabBarItems]) {
+    public func M2PSetUpTabbar(tabBarItems: [M2PTabBarItems]) {
         let viewControllers = tabBarItems
             .sorted { $0.order < $1.order }
             .compactMap { toViewController(for: $0) }
         self.viewControllers = viewControllers
     }
     
-    private func toViewController(for item: TabBarItems) -> UIViewController {
+    private func toViewController(for item: M2PTabBarItems) -> UIViewController {
         let tabBarItem = UITabBarItem(
             title: item.title,
             image: UIImage(named: item.image)?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
@@ -101,13 +101,13 @@ public class M2PBottomNavigation: UITabBarController {
     
     // MARK: To Present viewController for particular index
     // MARK: Example Usage -> M2PBottomNavigation.presentIndexController(controller: self, index: 2)
-    public static func presentIndexController(controller: UIViewController, index: Int)  {
+    public static func M2PPresentIndexController(controller: UIViewController, index: Int)  {
         controller.tabBarController?.selectedIndex = index
     }
     
     // MARK: To Fetch current index
     // MARK: Example Usage -> let currentIndex = M2PBottomNavigation.shared.getCurrentIndex(controller: self)
-    public func getCurrentIndex(controller: UIViewController) -> Int {
+    public func M2PGetCurrentIndex(controller: UIViewController) -> Int {
         return controller.tabBarController?.selectedIndex ?? 0
     }
 }
