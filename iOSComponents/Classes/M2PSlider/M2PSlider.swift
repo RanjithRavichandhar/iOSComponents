@@ -23,7 +23,7 @@ public class M2PSlider: UISlider {
         initToolTip()
     }
     
-    public var thumbTouchSize = CGSize(width: 24, height: 40)
+    public var M2PThumbTouchSize = CGSize(width: 24, height: 40)
     public static var shared = M2PSlider()
     
     private func initToolTip() {
