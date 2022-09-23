@@ -7,10 +7,10 @@
 
 // MARK: Implementation
 
-/* checkToggelSwitch.setSwitchState(state: .enable, withState: .off)
-checkToggelSwitch2.setSwitchState(state: .disable, withState: .on)
-checkToggelSwitch3.setSwitchState(state: .disable, withState: .off)
-checkToggelSwitch.onClick { sender in
+/* checkToggelSwitch.M2PSetSwitchState(state: .enable, withState: .off)
+checkToggelSwitch2.M2PSetSwitchState(state: .disable, withState: .on)
+checkToggelSwitch3.M2PSetSwitchState(state: .disable, withState: .off)
+checkToggelSwitch.M2POnClick { sender in
     if sender.isOn {
         print("ON---->>>>")
     } else {
@@ -23,14 +23,14 @@ import UIKit
 
 extension UISwitch {
     
-    public enum SwitchState {
+    public enum M2PSwitchState {
         case enable, disable
-        public enum WithState {
+        public enum M2PWithState {
             case on, off
         }
     }
     
-    public func setSwitchState(state: SwitchState, withState: SwitchState.WithState) {
+    public func M2PSetSwitchState(state: M2PSwitchState, withState: M2PSwitchState.M2PWithState) {
         self.isOn = withState == .on ? true : false
         self.isEnabled = state == .enable ? true : false
     }
@@ -38,7 +38,7 @@ extension UISwitch {
 
 extension UIControl {
     
-    public func onClick(for controlEvents: UIControl.Event = .valueChanged, _ closure: @escaping(UISwitch)->()) {
+    public func M2POnClick(for controlEvents: UIControl.Event = .valueChanged, _ closure: @escaping(UISwitch)->()) {
         @objc class ClosureSleeve: NSObject {
             let closure:(UISwitch)->()
             init(_ closure: @escaping(UISwitch)->()) { self.closure = closure }
