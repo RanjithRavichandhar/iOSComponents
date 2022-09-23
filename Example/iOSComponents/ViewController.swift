@@ -134,50 +134,50 @@ class ViewController: UIViewController {
     }
     
     func DotLoader() {
-        var config : M2PDotLoader.ConfigDot = M2PDotLoader.ConfigDot()
+        var config : M2PDotLoader.M2PConfigDot = M2PDotLoader.M2PConfigDot()
         config.backgroundColor = UIColor.background
         config.foregroundColor = UIColor.black
         config.foregroundAlpha = 0.5
         
-        M2PDotLoader.setConfig(config)
-        M2PDotLoader.show(animated: true)
+        M2PDotLoader.M2PDotLoaderSetConfig(config)
+        M2PDotLoader.M2PDotLoaderShow(animated: true)
         delay(seconds: 6.0) { () -> () in
-    //            M2PDotLoader.hide()
+                M2PDotLoader.M2PDotLoaderHide()
         }
     }
     
     func SpinnerLoader() {
-        var config : M2PLoader.Config = M2PLoader.Config()
+        var config : M2PLoader.M2PConfig = M2PLoader.M2PConfig()
         config.backgroundColor = UIColor.background
         config.spinnerLineWidth = 2.0
         config.foregroundColor = UIColor.black
         config.foregroundAlpha = 0.5
 
-        M2PLoader.setConfig(config)
+        M2PLoader.M2PLoaderSetConfig(config)
         
-//        M2PLoader.show(animated: true)
-        M2PLoader.show(title: "Processing...", animated: true)
+//        M2PLoader.M2PLoaderShow(animated: true)
+        M2PLoader.M2PLoaderShow(title: "Processing...", animated: true)
         
     //        delay(seconds: 3.0) { () -> () in
-    //            M2PLoader.show(title: "Loading...", animated: true)
+    //            M2PLoader.M2PLoaderShow(title: "Loading...", animated: true)
     //        }
     //
         delay(seconds: 6.0) { () -> () in
-    //            M2PLoader.hide()
+                M2PLoader.M2PLoaderHide()
         }
     }
     
     func progressLoader() {
-        var config : M2PProgressLoader.ConfigProgress = M2PProgressLoader.ConfigProgress()
+        var config : M2PProgressLoader.M2PConfigProgress = M2PProgressLoader.M2PConfigProgress()
         config.backgroundColor = UIColor.clear
         config.logoColor = UIColor.background
         config.foregroundColor = UIColor.black
         config.foregroundAlpha = 0.5
         
-        M2PProgressLoader.setConfig(config)
-        M2PProgressLoader.show(animated: true)
+        M2PProgressLoader.M2PProgressSetConfig(config)
+        M2PProgressLoader.M2PProgressShow(animated: true)
         delay(seconds: 10.0) { () -> () in
-            M2PProgressLoader.hide()
+            M2PProgressLoader.M2PProgressHide()
         }
     }
 

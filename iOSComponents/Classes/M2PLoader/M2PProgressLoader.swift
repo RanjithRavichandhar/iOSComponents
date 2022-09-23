@@ -17,7 +17,7 @@ public class M2PProgressLoader: UIView {
     private var canUpdated = false
 //    private var indicatorValue: Float = 0.0
 
-    private var config : ConfigProgress = ConfigProgress() {
+    private var config : M2PConfigProgress = M2PConfigProgress() {
         didSet {
             self.loadingView?.config = config
         }
@@ -36,11 +36,11 @@ public class M2PProgressLoader: UIView {
         return Singleton.instance
     }
     
-    public class func show(animated: Bool) {
-        self.show(title: nil, animated: animated)
+    public class func M2PProgressShow(animated: Bool) {
+        self.M2PProgressShow(title: nil, animated: animated)
     }
     
-    public class func show(title: String?, animated : Bool) {
+    public class func M2PProgressShow(title: String?, animated : Bool) {
         var currentWindow: UIWindow?
         if #available(iOS 13.0, *) {
             currentWindow = UIApplication
@@ -95,12 +95,12 @@ public class M2PProgressLoader: UIView {
         loader.loadingView?.percentageLbl?.text = "\(Int(percentage))%"
     }
     
-    public class func hide() {
+    public class func M2PProgressHide() {
         NotificationCenter.default.removeObserver(M2PProgressLoader.shared)
         M2PProgressLoader.shared.stop()
     }
     
-    public class func setConfig(_ config: ConfigProgress) {
+    public class func M2PProgressSetConfig(_ config: M2PConfigProgress) {
         let loader = M2PProgressLoader.shared
         loader.config = config
         loader.frame = CGRect(origin: CGPoint(x: 0, y: 0),
@@ -181,7 +181,7 @@ public class M2PProgressLoader: UIView {
             super.init(coder: aDecoder)
         }
         
-        var config : ConfigProgress = ConfigProgress() {
+        var config : M2PConfigProgress = M2PConfigProgress() {
             didSet {
                 self.update()
             }
@@ -242,7 +242,7 @@ public class M2PProgressLoader: UIView {
     
     
     // MARK: - Loader config
-    public struct ConfigProgress {
+    public struct M2PConfigProgress {
         
         /// Size of loader
         public var size : CGFloat = 120.0
@@ -293,7 +293,7 @@ public class M2PProgressLoader: UIView {
 
 /*
 func progressLoader() {
-    var config : M2PProgressLoader.ConfigProgress = M2PProgressLoader.ConfigProgress()
+    var config : M2PProgressLoader.M2PConfigProgress = M2PProgressLoader.M2PConfigProgress()
     config.backgroundColor = UIColor.clear
     config.logoColor = UIColor.background
     config.foregroundColor = UIColor.black
