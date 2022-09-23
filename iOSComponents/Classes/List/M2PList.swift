@@ -8,6 +8,20 @@
 import Foundation
 import UIKit
 
+/* MARK: Implementation
+ 
+ var listView: M2PList?
+ 
+ let primaryContent = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: ContentImageModel(image: UIImage(named: "side_icon")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive))
+ let secondaryContent = TrailingContentList(contentType: .texts, headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: ContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  ContentImageModel(image: UIImage(named: "pencil")))
+ 
+ listView?.setupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
+ listView?.onActionClick = { sender in
+     print("\(sender.tag)")
+ }
+ 
+ */
+
 // MARK: - M2PList
 public class M2PList: UIView {
     

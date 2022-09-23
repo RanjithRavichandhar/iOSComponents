@@ -114,7 +114,7 @@ public class M2PDotLoader: UIView {
     }
     
     private func start() {
-//        self.loadingView?.start()
+        //        self.loadingView?.start()
         self.loadingView?.showAnimatingDotsInImageView()
         
         if (self.animated) {
@@ -135,15 +135,15 @@ public class M2PDotLoader: UIView {
             }, completion: { (finished) -> Void in
                 self.removeFromSuperview()
                 self.coverView?.removeFromSuperview()
-//                self.loadingView?.stop()
-//                self.loadingView?.stopAnimating()
+                //                self.loadingView?.stop()
+                self.loadingView?.stopAnimate()
             });
         } else {
             self.alpha = 0
             self.removeFromSuperview()
             self.coverView?.removeFromSuperview()
-//            self.loadingView?.stop()
-//            self.loadingView?.stopAnimating()
+            //            self.loadingView?.stop()
+            self.loadingView?.stopAnimate()
         }
     }
     
@@ -169,6 +169,8 @@ public class M2PDotLoader: UIView {
     // MARK: - Dot Loading View
     class M2PDotLoadingView : UIView {
         
+        var backgroundLayer: CAReplicatorLayer?
+        
         var config : ConfigDot = ConfigDot() {
             didSet {
                 self.update()
@@ -180,24 +182,32 @@ public class M2PDotLoader: UIView {
         }
         
         func showAnimatingDotsInImageView() {
-            let lay = CAReplicatorLayer()
-            lay.frame = CGRect(x: self.center.x/2 - 16, y: self.layer.bounds.height/4, width: 0, height: 0) //yPos == 12
+            backgroundLayer = CAReplicatorLayer()
+            backgroundLayer?.frame = CGRect(x: self.center.x/2 - 16, y: self.layer.bounds.height/4, width: 0, height: 0) //yPos == 12
             let circle = CALayer()
             circle.frame = CGRect(x: 0, y: 0, width: 9, height: 9)
             circle.cornerRadius = circle.frame.width / 2
             circle.backgroundColor = config.indicatorColor.cgColor //lightGray.cgColor //UIColor.black.cgColor
-            lay.addSublayer(circle)
-            lay.instanceCount = 3
-            lay.instanceTransform = CATransform3DMakeTranslation(16, 0, 0)
-            let anim = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+            backgroundLayer?.addSublayer(circle)
+            backgroundLayer?.instanceCount = 3
+            backgroundLayer?.instanceTransform = CATransform3DMakeTranslation(16, 0, 0)
+            //            let anim = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+            let anim = CABasicAnimation()
+            anim.keyPath = "opacity"
             anim.fromValue = 1.0
             anim.toValue = 0.2
             anim.duration = 0.9
             anim.repeatCount = .infinity
             circle.add(anim, forKey: nil)
-            lay.instanceDelay = anim.duration / Double(lay.instanceCount)
-            self.layer.contentsCenter = lay.contentsCenter
-            self.layer.addSublayer(lay)
+            backgroundLayer?.instanceDelay = anim.duration / Double(backgroundLayer?.instanceCount ?? 0)
+            self.layer.contentsCenter = backgroundLayer!.contentsCenter
+            self.layer.addSublayer(backgroundLayer!)
+        }
+        
+        func stopAnimate() {
+            self.backgroundLayer?.removeFromSuperlayer()
+            self.backgroundLayer?.removeAnimation(forKey: "opacity")
+            self.backgroundLayer?.removeAllAnimations()
         }
     }
     

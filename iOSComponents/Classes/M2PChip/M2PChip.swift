@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+/* MARK: Implementation
+ 
+ var chipView: M2PChip?
+ chipView?.setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x17), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
+ */
+
 // MARK: - M2PChip
 public class M2PChip: UIView {
     

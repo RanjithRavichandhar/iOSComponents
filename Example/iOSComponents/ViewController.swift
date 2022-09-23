@@ -19,10 +19,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var otpView: OTPFieldView?
     @IBOutlet weak var segmentControl: M2PSegmentedControl?
     @IBOutlet weak var slider: M2PSlider!
+    @IBOutlet weak var pageControll: M2PCustomPageControl?
+    @IBOutlet weak var pageControll_2: M2PCustomPageControl?
     
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
     
+    // MARK: - M2PButton
     @IBOutlet weak var m2pButton: M2PButton! {
         didSet{
             self.m2pButton.config(type: .custom, title: "Tab",
@@ -58,6 +61,7 @@ class ViewController: UIViewController {
         toggle?.thumbTintColor = .PacificBlue100
         toggle?.onTintColor = .ImperialRed66
         
+        setupPageControl()
         setupSlider()
         configureSegment()
         setupChip()
@@ -66,9 +70,9 @@ class ViewController: UIViewController {
         setupStepper()
         setupOtpView()
         self.otpView?.initializeUI()
-        
     }
     
+    // MARK: - Segment Control
     func configureSegment() {
         var segmentColor = M2PSegmentColorConfiguration()
         segmentColor.thumbColor = UIColor.ImperialRed100
@@ -87,10 +91,12 @@ class ViewController: UIViewController {
         print(self.segmentControl?.selectedIndex)
     }
     
+    // MARK: - CHIP
     private func setupChip() {
         chipView?.setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x17), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
     }
     
+    //MARK: - LIST
     private func setupList() {
         let primaryContent = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: ContentImageModel(image: UIImage(named: "side_icon")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive))
         primaryContent?.isAvatorIcon = false
@@ -105,6 +111,7 @@ class ViewController: UIViewController {
         listView?.checkBoxView.checkBoxShapes = .box
     }
     
+    // MARK: - TOP TABBAR
     private func setupMenuBar() {
         let image = UIImage(named: "plus.png")
         // MenuBar data
@@ -125,9 +132,19 @@ class ViewController: UIViewController {
         //Handling change
         topTabBar?.onSelectedIndexChange = { selectedIndex in
             //            self.titleLbl.text = "Selected Tab : \(selectedIndex + 1)"
+            self.pageControll?.currentPage = (selectedIndex)
+            self.pageControll_2?.currentPage = (selectedIndex)
         }
     }
     
+    // MARK: - PageControl
+    
+    func setupPageControl() {
+        pageControll?.setup(for: 4, with: M2PPageControlConfig(indicatorsAlignment: .leftMost, image_inactive: UIImage(named: "pageControlIndicator")))
+        pageControll_2?.setup(for: 4, with: M2PPageControlConfig(indicatorsAlignment: .any, image_inactive: UIImage(named: "pageControlIndicator")))
+    }
+    
+    // MARK: - SLIDER
     func setupSlider() {
         self.slider.maximumTrackTintColor = UIColor.backgroundLightVarient
         self.slider.minimumTrackTintColor = UIColor.secondaryRedColor
@@ -136,6 +153,7 @@ class ViewController: UIViewController {
         //        self.slider.setThumbImage(UIImage(named: "thumbNormal"), for: .normal)
     }
     
+    // MARK: - STEPPER
     private func setupStepper() {
         stepper?.setUpStepper(stepperType: .withCount, colorSet: StepperColorSetup(stepperBGColor: .backgroundLightVarient, buttonBGColor: .clear, buttonTextColor: .secondaryInactive, selectButtonBGColor: .white, selectButtonTextColor: .secondaryRedColor, countLableBGColor: .background, countLableTextColor: .primaryActive))
         
@@ -144,6 +162,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - BOTTOM TABBAR
     private func setupBottomBar() {
         let tabbarController = M2PBottomNavigation()
         let tabBarItems = [TabBarItems(storyboardName: "Main",
@@ -167,6 +186,7 @@ class ViewController: UIViewController {
         //         self.navigationController?.pushViewController(tabbarController, animated: true)
     }
     
+    // MARK: - BOTTOM SHEET
     private func setupBottomSheet() {
         let popupNavController = self.storyboard?.instantiateViewController(withIdentifier: "CheckBottomSheetNavigation") as! CheckBottomSheetNavigation
         popupNavController.height = 500
@@ -177,6 +197,7 @@ class ViewController: UIViewController {
         self.present(popupNavController, animated: true, completion: nil)
     }
     
+    // MARK: - OTP
     func setupOtpView(){
         
         self.otpView?.displayType = .square
@@ -196,15 +217,16 @@ class ViewController: UIViewController {
         setupBottomSheet()
     }
     
+    // MARK: - ACTION SHEET
     @IBAction func actionTapped(_ sender: Any) {
         let action = M2PActionSheet(title: nil, message: nil, preferredStyle: .actionSheet)
         action.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         let lead = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "Sub", textColor: .primaryActive, textFont: .systemFont(ofSize: 12)), icon: ContentImageModel(image: UIImage(named: "")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive), isAvatorIcon: false)
         
-        action.setUpActionView(headerContent: lead, items: [ActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, fontSize: .systemFont(ofSize: 15)),
-                                                            ActionItems(text: "Refresh", image: UIImage(named: ""), textColor: .primaryActive, tintColor: .primaryActive, fontSize: .systemFont(ofSize: 15)),
-                                                            ActionItems(text: "Delete", image: UIImage(named: "delete"), textColor: .red, tintColor: .primaryActive, fontSize: .systemFont(ofSize: 15)),
+        action.setUpActionView(headerContent: lead, items: [ActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+                                                            ActionItems(text: "Refresh", image: UIImage(named: ""), textColor: .primaryActive, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+                                                            ActionItems(text: "Delete", image: UIImage(named: "delete"), textColor: .red, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
                                                            ]) { index in
             action.dismiss(animated: true, completion: nil)
             
@@ -212,6 +234,7 @@ class ViewController: UIViewController {
         self.present(action, animated: false, completion: nil)
     }
     
+    // MARK: - POP ALERT
     @IBAction func alertPopActn(_ sender: UIButton){
         let customAlert = M2PPopAlert(nibName: "M2PPopAlert", bundle: M2PComponentsBundle.shared.currentBundle)
         customAlert.enableButtonList = [.Leading,.Center,.Trailing]
@@ -233,6 +256,8 @@ class ViewController: UIViewController {
         customAlert.centerButton.config(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
         customAlert.trailingButton.config(type: .custom, title: "Ok", bgColor: .primaryActive)
     }
+    
+    // MARK: - CUSTOM ALERT
     @IBAction func alertCustomActn(_ sender: UIButton){
         let customAlert = M2PCustomAlert(nibName: "M2PCustomAlert", bundle: M2PComponentsBundle.shared.currentBundle)
         customAlert.enableButtonList = [.primary, .secondary]
@@ -262,7 +287,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBAction func dotLoaderTapped(_ sender: Any) {
         DotLoader()
     }
@@ -282,6 +306,7 @@ class ViewController: UIViewController {
         M2PProgressLoader.updateProgress(title: "Processing...", percent: self.indicatorValue)
     }
     
+    // MARK: - DOT LOADER
     func DotLoader() {
         var config : M2PDotLoader.ConfigDot = M2PDotLoader.ConfigDot()
         config.backgroundColor = UIColor.background
@@ -295,6 +320,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - SPINNER LOADER
     func SpinnerLoader() {
         var config : M2PLoader.Config = M2PLoader.Config()
         config.backgroundColor = UIColor.background
@@ -316,6 +342,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - PROGRESS LOADER
     func progressLoader() {
         self.progressBarTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.updateProgressView), userInfo: nil, repeats: true)
         
@@ -341,7 +368,7 @@ class ViewController: UIViewController {
     }
 }
 
-
+// MARK: - M2PPopAlertDelegate
 extension ViewController: M2PPopAlertDelegate {
     func learnButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
         print("Learn button pressed")
@@ -353,6 +380,8 @@ extension ViewController: M2PPopAlertDelegate {
         print("Cancel button pressed")
     }
 }
+
+// MARK: - M2PCustomAlertDelegate
 
 extension ViewController: M2PCustomAlertDelegate {
     func closeButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
@@ -367,6 +396,7 @@ extension ViewController: M2PCustomAlertDelegate {
     }
 }
 
+// MARK: - OTPFieldViewDelegate
 extension ViewController: OTPFieldViewDelegate {
     func enteredOTP(otp: String) {
         print("OTP:\(otp)")
