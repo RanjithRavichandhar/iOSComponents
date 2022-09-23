@@ -104,7 +104,7 @@ class ViewController: UIViewController {
         let secondaryContent = TrailingContentList(contentType: .texts, headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: ContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  ContentImageModel(image: UIImage(named: "pencil")))
         
         listView?.tag = 5
-        listView?.setupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
+        listView?.m2p_setupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
         listView?.onActionClick = { sender in
             print("\(sender.tag)")
         }

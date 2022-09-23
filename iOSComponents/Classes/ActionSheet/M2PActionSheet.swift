@@ -111,7 +111,7 @@ extension M2PActionSheet: UITableViewDataSource, UITableViewDelegate {
             leading?.headerTextLabel?.textAlignment = (self.headerContent?.icon?.image != nil) ? NSTextAlignment.left :  NSTextAlignment.center
             leading?.subTextLabel?.textAlignment = (self.headerContent?.icon?.image != nil) ? NSTextAlignment.left :  NSTextAlignment.center
             
-            cell.listView.setupList(leadingContent: leading, trailingContent: nil)
+            cell.listView.m2p_setupList(leadingContent: leading, trailingContent: nil)
             return cell
         }
         
@@ -122,7 +122,7 @@ extension M2PActionSheet: UITableViewDataSource, UITableViewDelegate {
         let leading = LeadingContentList(headerTextLabel: contentText, subTextLabel: nil, icon: nil)
         let trailing = TrailingContentList(contentType: .icon, headerTextLabel: nil, subTextLabel: nil, actionTitleLabel: nil, icon: ContentImageModel(image: singleItem.image?.withRenderingMode(.alwaysTemplate), tintColor: singleItem.tintColor))
         
-        cell.listView.setupList(leadingContent: leading, trailingContent: trailing)
+        cell.listView.m2p_setupList(leadingContent: leading, trailingContent: trailing)
         
         return cell
     }
