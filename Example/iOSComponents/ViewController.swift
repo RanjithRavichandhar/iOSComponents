@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     var progressBarTimer: Timer!
 
     
-    @IBOutlet weak var listView: M2PList!
+    @IBOutlet weak var listView: M2PList?
     
     @IBOutlet weak var m2pButton: M2PButton! {
             didSet{
@@ -200,5 +200,25 @@ class ViewController: UIViewController {
             print("\(sender.tag)")
         }
     }
+    
+    @IBAction func actionSheetTapped(_ sender: Any) {
+        let actionItems = [
+        M2PActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+        M2PActionItems(text: "Refresh", image: UIImage(named: ""), textColor: .primaryActive, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+        M2PActionItems(text: "Delete", image: UIImage(named: "delete"), textColor: .red, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+        ]
+        
+        let headerContent = M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "Sub", textColor: .primaryActive, textFont: .systemFont(ofSize: 12)), icon: M2PContentImageModel(image: UIImage(named: "")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive), isAvatorIcon: false)
+        
+        let actionSheet = M2PActionSheet(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        actionSheet.M2PSetUpActionView(headerContent: headerContent, items: actionItems) { index in
+        actionSheet.dismiss(animated: true, completion: nil)
+        }
+        
+        self.present(actionSheet, animated: false, completion: nil)
+    }
+    
 }
 
