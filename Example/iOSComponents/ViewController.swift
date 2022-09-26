@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var m2pButton: M2PButton! {
         didSet{
             self.m2pButton.config(type: .custom, title: "IndusLogo",
-                                  buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
+                                  buttonStyle: .LEFT_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
                                   isPrimary: true,
                                   bgColor: .clear,
                                   leftImg: UIImage(named:"plus.png"),
@@ -43,6 +43,7 @@ class ViewController: UIViewController {
                 self.index -= 1
                 self.topTabBar.updateSelectedIndexInCollection(at:self.index)
             }
+
         }
     }
     

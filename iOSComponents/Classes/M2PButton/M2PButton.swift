@@ -143,6 +143,9 @@ public class M2PButton: UIButton {
         }
     }
     
+    private var leftImageView = UIImageView()
+    private var rightImageView = UIImageView()
+   
     public var onClick: ((_ : UIButton) -> ())?
     
     override init(frame: CGRect) {
@@ -240,7 +243,12 @@ public class M2PButton: UIButton {
     
     private func addDoubleIcon() {
         //Set left image
-        let leftImageView = UIImageView(image: leftImage)
+        
+        if leftImageView.image == leftImage || rightImageView.image == rightImage {
+            return
+        }
+        
+        leftImageView = UIImageView(image: leftImage)
         leftImageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(leftImageView)
         
@@ -251,7 +259,7 @@ public class M2PButton: UIButton {
             leftImageView.heightAnchor.constraint(equalToConstant: leftImageWidth )
         ])
         
-        let rightImageView = UIImageView(image: rightImage)
+        rightImageView = UIImageView(image: rightImage)
         rightImageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(rightImageView)
         
@@ -266,32 +274,41 @@ public class M2PButton: UIButton {
     
     private func addLeftIcon() {
         //Set left image
-        let imageView = UIImageView(image: leftImage)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(imageView)
+        if leftImageView.image == leftImage {
+            return
+        }
+        
+        leftImageView = UIImageView(image: leftImage)
+        leftImageView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(leftImageView)
         
         self.contentEdgeInsets = UIEdgeInsets(top: 0, left: (leftImageWidth*2), bottom: 0, right: 0)
         
         NSLayoutConstraint.activate([
-            imageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -20),
-            imageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            imageView.widthAnchor.constraint(equalToConstant: leftImageWidth),
-            imageView.heightAnchor.constraint(equalToConstant: leftImageWidth)
+            leftImageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -20),
+            leftImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
+            leftImageView.widthAnchor.constraint(equalToConstant: leftImageWidth),
+            leftImageView.heightAnchor.constraint(equalToConstant: leftImageWidth)
         ])
     }
     
     private func addRightIcon() {
-        let imageView = UIImageView(image: rightImage)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(imageView)
+        
+        if rightImageView.image == rightImage {
+            return
+        }
+    
+        rightImageView = UIImageView(image: rightImage)
+        rightImageView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(rightImageView)
         
         self.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right:  (rightImageWidth*2))
         
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 20),
-            imageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            imageView.widthAnchor.constraint(equalToConstant: rightImageWidth),
-            imageView.heightAnchor.constraint(equalToConstant: rightImageWidth)
+            rightImageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 20),
+            rightImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
+            rightImageView.widthAnchor.constraint(equalToConstant: rightImageWidth),
+            rightImageView.heightAnchor.constraint(equalToConstant: rightImageWidth)
         ])
     }
 }
