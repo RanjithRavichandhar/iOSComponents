@@ -75,6 +75,36 @@
                                     <action selector="toolTipTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MBn-E1-YN4"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fe1-V1-fxn">
+                                <rect key="frame" x="16" y="737" width="382" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBg-PZ-WvF">
+                                        <rect key="frame" x="0.0" y="0.0" width="186" height="50"/>
+                                        <color key="backgroundColor" systemColor="tintColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="PopAlert">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="alertPopActn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WK8-an-CEO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zp1-dA-Mz7">
+                                        <rect key="frame" x="196" y="0.0" width="186" height="50"/>
+                                        <color key="backgroundColor" systemColor="tintColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="CustomAlert">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="alertCustomActn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5lT-hq-VRo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Vxl-7O-sEk"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -84,14 +114,17 @@
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="AIj-e1-6pA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f3i-VF-GLj" secondAttribute="trailing" constant="20" id="BNH-Po-xPi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7FW-Oc-Cf2" secondAttribute="trailing" constant="20" id="DcW-6a-pAq"/>
+                            <constraint firstAttribute="trailing" secondItem="fe1-V1-fxn" secondAttribute="trailing" constant="16" id="E4A-wf-Qo3"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="Fyz-OH-HFM"/>
                             <constraint firstItem="jeb-Vn-VXH" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" id="Hsv-pB-G1K"/>
                             <constraint firstAttribute="trailing" secondItem="CSq-cG-MXH" secondAttribute="trailing" constant="30" id="LB5-1n-o5F"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Ybt-1h-GQP" secondAttribute="bottom" constant="20" id="LrO-KV-Jbz"/>
                             <constraint firstItem="5aX-Du-hx1" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" constant="200" id="MSo-5Z-6pk"/>
+                            <constraint firstItem="fe1-V1-fxn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="Ns0-Ns-9IN"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8XG-R9-YPv" secondAttribute="trailing" constant="20" id="SmQ-rk-irx"/>
                             <constraint firstItem="CSq-cG-MXH" firstAttribute="top" secondItem="f3i-VF-GLj" secondAttribute="bottom" constant="30" id="ajK-pU-9gw"/>
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="cID-gd-r4l"/>
+                            <constraint firstItem="Ybt-1h-GQP" firstAttribute="top" secondItem="fe1-V1-fxn" secondAttribute="bottom" constant="15" id="fN8-BG-4NO"/>
                             <constraint firstItem="8XG-R9-YPv" firstAttribute="top" secondItem="7FW-Oc-Cf2" secondAttribute="bottom" constant="100" id="fyV-Lc-Cvi"/>
                             <constraint firstItem="Ybt-1h-GQP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="gHm-GV-2w3"/>
                             <constraint firstItem="CSq-cG-MXH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="30" id="kuh-4M-nc1"/>
@@ -120,6 +153,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

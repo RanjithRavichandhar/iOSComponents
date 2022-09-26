@@ -76,7 +76,7 @@ class ViewController: UIViewController {
         pageControl.setup(for: 4, with: M2PPageControlConfig(image_inactive: UIImage(named: "pageControlIndicator")))
         self.view.addSubview(pageControl)
         
-        setupPageControl_LEFT()
+       // setupPageControl_LEFT()
         
         self.slider?.maximumTrackTintColor = UIColor.backgroundLightVarient
         self.slider?.minimumTrackTintColor = UIColor.secondaryRedColor
@@ -222,3 +222,82 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController {
+    // MARK: - POP ALERT
+    
+    @IBAction func alertPopActn(_ sender: UIButton){
+         let customAlert = M2PPopAlert(nibName: "M2PPopAlert", bundle: M2PComponentsBundle.shared.currentBundle)
+         customAlert.enableButtonList = [.Leading,.Center,.Trailing]
+         customAlert.posistion = .Top // .Top , .Center , .Bottom
+         customAlert.alertBgColor = UIColor.background
+         customAlert.alertTitleColor = UIColor.primaryActive
+         customAlert.alertMessageColor = UIColor.focusedLine
+         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
+         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
+         customAlert.alertTitle = "Verification"
+         customAlert.alertMessage = "Your Information in the audit, Please wait!"
+         customAlert.statusImage = UIImage.init(named: "alert")
+         customAlert.delegate = self
+         customAlert.alertTag = 1
+         customAlert.show()
+         // MARK:  M2PButton should configure after present Pop (i.e) after func show() called
+         customAlert.leadingButton.config(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
+         customAlert.centerButton.config(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+         customAlert.trailingButton.config(type: .custom, title: "Ok", bgColor: .primaryActive)
+     }
+    
+    // MARK: - CUSTOM ALERT
+
+     @IBAction func alertCustomActn(_ sender: UIButton){
+         let customAlert = M2PCustomAlert(nibName: "M2PCustomAlert", bundle: M2PComponentsBundle.shared.currentBundle)
+         customAlert.enableButtonList = [.primary,.secondary]
+         customAlert.posistion = .Bottom // .Top , .Center , .Bottom
+         customAlert.alertBgColor = UIColor.background
+         customAlert.alertTitleColor = UIColor.primaryActive
+         customAlert.alertMessageColor = UIColor.focusedLine
+         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
+         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
+         customAlert.alertTitle = "Verification"
+         customAlert.alertMessage = "Your Information in the audit, Please wait!"
+         customAlert.statusImage = UIImage.init(named: "alert")
+         customAlert.delegate = self
+         customAlert.alertTag = 1
+         customAlert.closeTintColor = .primaryActive
+         customAlert.delegate = self
+         customAlert.bgImgColor = .DavysGrey100
+         customAlert.show()
+         // MARK: M2PButton should configure after present Pop (i.e) after called func show()
+         customAlert.submitButton.config(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
+         customAlert.secondaryButton.config(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+         // Textfield
+         customAlert.didChange = { text in
+             print(text)
+         }
+     }
+}
+
+// MARK: - M2PPopAlertDelegate
+extension ViewController: M2PPopAlertDelegate {
+    func learnButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
+        print("Learn button pressed")
+    }
+    func okButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
+        print(alert.alertTitle ?? "")
+    }
+    func cancelButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
+        print("Cancel button pressed")
+    }
+}
+// MARK: - M2PCustomAlertDelegate
+extension ViewController: M2PCustomAlertDelegate {
+    func closeButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
+        print(alert.text)
+    }
+    func submitButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
+        print(alert.alertTitle ?? "")
+        print(alert.text)
+    }
+    func secondaryButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
+        print("Cancel button pressed")
+    }
+}
