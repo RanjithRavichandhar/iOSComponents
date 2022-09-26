@@ -11,7 +11,7 @@ import UIKit
 /* MARK: Implementation
  
  var chipView: M2PChip?
- chipView?.m2p_setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x17), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
+ chipView?.M2PSetUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x17), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
  */
 
 // MARK: - M2PChip
@@ -73,7 +73,7 @@ public class M2PChip: UIView {
         setConstraints()
         
         // Initial Value Setup
-        m2p_setUpChip(chipType: .neutral, contentType: .text, borderType: .solid, title: "M2PChip")
+        M2PSetUpChip(chipType: .neutral, contentType: .text, borderType: .solid, title: "M2PChip")
     }
     
     private func setConstraints() {
@@ -86,7 +86,7 @@ public class M2PChip: UIView {
     }
 
     // MARK: - Set Chips
-    public func m2p_setUpChip(chipType: ChipType, contentType: ChipContentType, borderType: ChipBorderType, title: String? = nil, titleFont: UIFont = .systemFont(ofSize: 12), primaryIcon: UIImage? = nil, secondaryIcon: UIImage? = nil) {
+    public func M2PSetUpChip(chipType: M2PChipType, contentType: M2PChipContentType, borderType: M2PChipBorderType, title: String? = nil, titleFont: UIFont = .systemFont(ofSize: 12), primaryIcon: UIImage? = nil, secondaryIcon: UIImage? = nil) {
        
         let primaryImgIcon = primaryIcon?.withRenderingMode(.alwaysTemplate)
         let secondaryImgIcon = secondaryIcon?.withRenderingMode(.alwaysTemplate)

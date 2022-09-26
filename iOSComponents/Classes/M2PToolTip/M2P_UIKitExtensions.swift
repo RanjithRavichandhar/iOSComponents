@@ -1,6 +1,6 @@
 //
 //  UIKitExtensions.swift
-//  EasyTipView
+//  M2PToolTipView
 //
 //  Created by Teodor Patras on 29/06/16.
 //  Copyright © 2016 teodorpatras. All rights reserved.

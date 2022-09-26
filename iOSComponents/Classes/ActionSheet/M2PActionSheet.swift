@@ -10,18 +10,18 @@ import UIKit
 /* MARK: - Implementation
  
  let actionItems = [
- ActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
- ActionItems(text: "Refresh", image: UIImage(named: ""), textColor: .primaryActive, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
- ActionItems(text: "Delete", image: UIImage(named: "delete"), textColor: .red, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+ M2PActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+ M2PActionItems(text: "Refresh", image: UIImage(named: ""), textColor: .primaryActive, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+ M2PActionItems(text: "Delete", image: UIImage(named: "delete"), textColor: .red, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
  ]
  
- let headerContent = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "Sub", textColor: .primaryActive, textFont: .systemFont(ofSize: 12)), icon: ContentImageModel(image: UIImage(named: "")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive), isAvatorIcon: false)
+ let headerContent = M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "Sub", textColor: .primaryActive, textFont: .systemFont(ofSize: 12)), icon: M2PContentImageModel(image: UIImage(named: "")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive), isAvatorIcon: false)
  
  MARK: Setup
  let actionSheet = M2PActionSheet(title: nil, message: nil, preferredStyle: .actionSheet)
  actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
  
- actionSheet.m2p_setUpActionView(headerContent: headerContent, items: actionItems) { index in
+ actionSheet.M2PSetUpActionView(headerContent: headerContent, items: actionItems) { index in
  actionSheet.dismiss(animated: true, completion: nil)
  }
  
@@ -35,11 +35,11 @@ public class M2PActionSheet: UIAlertController {
     // MARK: Local Variables
     private var controller: UITableViewController
     
-    private var headerContent: LeadingContentList?
-    private var actionItems: [ActionItems] = []
+    private var headerContent: M2PLeadingContentList?
+    private var actionItems: [M2PActionItems] = []
     
     private var isHeaderContent = 0
-    private let cellId = "ActionCellID"
+    private let cellId = "M2PActionCellID"
     private var onItemHandler: ((Int) -> Void)?
     
     // MARK: - Life Cycle
@@ -47,7 +47,7 @@ public class M2PActionSheet: UIAlertController {
         controller = UITableViewController(style: .plain)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        controller.tableView.register(ActionSheetCell.self, forCellReuseIdentifier: cellId)
+        controller.tableView.register(M2PActionSheetCell.self, forCellReuseIdentifier: cellId)
         controller.tableView.dataSource = self
         controller.tableView.delegate = self
         controller.tableView.addObserver(self, forKeyPath: "contentSize", options: [.initial,.new], context: nil)
@@ -74,7 +74,7 @@ public class M2PActionSheet: UIAlertController {
     }
     
     // MARK: - ActionSheet Setup
-    public func m2p_setUpActionView(headerContent: LeadingContentList? = nil, items: [ActionItems] = [], itemHandler: @escaping (_ index: Int) -> Void) {
+    public func M2PSetUpActionView(headerContent: M2PLeadingContentList? = nil, items: [M2PActionItems] = [], itemHandler: @escaping (_ index: Int) -> Void) {
         onItemHandler = itemHandler
         isHeaderContent = (headerContent != nil && !(headerContent?.subTextLabel?.text?.isEmpty ?? true && headerContent?.headerTextLabel?.text?.isEmpty ?? true)) ? 1 : 0
         self.headerContent = headerContent
@@ -85,7 +85,7 @@ public class M2PActionSheet: UIAlertController {
     }
     
     private func initalValueSetup() {
-        m2p_setUpActionView(headerContent: LeadingContentList(headerTextLabel: ContentTextModel(text: "M2PActionSheet", textColor: .primaryActive), subTextLabel: nil, icon: nil), items: []) { _ in
+        M2PSetUpActionView(headerContent: M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "M2PActionSheet", textColor: .primaryActive), subTextLabel: nil, icon: nil), items: []) { _ in
             self.dismiss(animated: true)
         }
     }
@@ -99,30 +99,30 @@ extension M2PActionSheet: UITableViewDataSource, UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? ActionSheetCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? M2PActionSheetCell else {
             return UITableViewCell.init()
         }
         cell.selectionStyle = .none
         
         // Show Action Header in First Cell
         guard !(isHeaderContent != 0 && indexPath.row == 0) else {
-            let leading = LeadingContentList(headerTextLabel: self.headerContent?.headerTextLabel, subTextLabel: self.headerContent?.subTextLabel, icon: self.headerContent?.icon)
+            let leading = M2PLeadingContentList(headerTextLabel: self.headerContent?.headerTextLabel, subTextLabel: self.headerContent?.subTextLabel, icon: self.headerContent?.icon)
             
             leading?.headerTextLabel?.textAlignment = (self.headerContent?.icon?.image != nil) ? NSTextAlignment.left :  NSTextAlignment.center
             leading?.subTextLabel?.textAlignment = (self.headerContent?.icon?.image != nil) ? NSTextAlignment.left :  NSTextAlignment.center
             
-            cell.listView.m2p_setupList(leadingContent: leading, trailingContent: nil)
+            cell.listView.M2PSetupList(leadingContent: leading, trailingContent: nil)
             return cell
         }
         
         let singleItem = self.actionItems[indexPath.row - isHeaderContent]
         let textAlign = (singleItem.image == nil) ? NSTextAlignment.center : NSTextAlignment.left
-        let contentText = ContentTextModel(text: singleItem.text, textColor: singleItem.textColor, textFont: singleItem.font, textAlignment: textAlign)
+        let contentText = M2PContentTextModel(text: singleItem.text, textColor: singleItem.textColor, textFont: singleItem.font, textAlignment: textAlign)
         
-        let leading = LeadingContentList(headerTextLabel: contentText, subTextLabel: nil, icon: nil)
-        let trailing = TrailingContentList(contentType: .icon, headerTextLabel: nil, subTextLabel: nil, actionTitleLabel: nil, icon: ContentImageModel(image: singleItem.image?.withRenderingMode(.alwaysTemplate), tintColor: singleItem.tintColor))
+        let leading = M2PLeadingContentList(headerTextLabel: contentText, subTextLabel: nil, icon: nil)
+        let trailing = M2PTrailingContentList(contentType: .icon, headerTextLabel: nil, subTextLabel: nil, actionTitleLabel: nil, icon: M2PContentImageModel(image: singleItem.image?.withRenderingMode(.alwaysTemplate), tintColor: singleItem.tintColor))
         
-        cell.listView.m2p_setupList(leadingContent: leading, trailingContent: trailing)
+        cell.listView.M2PSetupList(leadingContent: leading, trailingContent: trailing)
         
         return cell
     }
@@ -137,7 +137,7 @@ extension M2PActionSheet: UITableViewDataSource, UITableViewDelegate {
 }
 
 // MARK: - ActionSheetCell
-class ActionSheetCell: UITableViewCell {
+class M2PActionSheetCell: UITableViewCell {
     
     fileprivate lazy var listView: M2PList = {
         let view = M2PList()
@@ -162,7 +162,7 @@ class ActionSheetCell: UITableViewCell {
 }
 
 // MARK: - ActionItems
-public struct ActionItems {
+public struct M2PActionItems {
     /// Item Text
     public var text: String?
     

@@ -42,7 +42,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iP-qd-Won">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="850"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="830"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RoL-yp-Bp7" customClass="M2PTopTabBar" customModule="iOSComponents">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -190,28 +190,44 @@
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="CXJ-bT-eX4"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVf-fk-gnY">
-                                                <rect key="frame" x="20" y="780" width="88" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="t1q-8P-YlF"/>
-                                                </constraints>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Action Sheet"/>
-                                                <connections>
-                                                    <action selector="actionTapped:" destination="WEx-Ac-bCr" eventType="touchUpInside" id="eFt-Cs-VyQ"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxb-12-PC2">
-                                                <rect key="frame" x="300" y="780" width="94" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="ll9-1o-NLZ"/>
-                                                </constraints>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Bottom Sheet"/>
-                                                <connections>
-                                                    <action selector="bottomSheetTapped:" destination="WEx-Ac-bCr" eventType="touchUpInside" id="tWN-uh-HMj"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DiY-Jz-y4u">
+                                                <rect key="frame" x="10" y="780" width="394" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVf-fk-gnY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="118" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="t1q-8P-YlF"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Action Sheet"/>
+                                                        <connections>
+                                                            <action selector="actionTapped:" destination="WEx-Ac-bCr" eventType="touchUpInside" id="eFt-Cs-VyQ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYc-ii-Uey">
+                                                        <rect key="frame" x="138" y="0.0" width="118" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="Fr4-yo-adc"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Tool Tip"/>
+                                                        <connections>
+                                                            <action selector="toolTipTapped:" destination="WEx-Ac-bCr" eventType="touchUpInside" id="pDG-CE-i3a"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxb-12-PC2">
+                                                        <rect key="frame" x="276" y="0.0" width="118" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="ll9-1o-NLZ"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Bottom Sheet"/>
+                                                        <connections>
+                                                            <action selector="bottomSheetTapped:" destination="WEx-Ac-bCr" eventType="touchUpInside" id="tWN-uh-HMj"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -225,7 +241,8 @@
                                             <constraint firstAttribute="trailing" secondItem="RoL-yp-Bp7" secondAttribute="trailing" id="Eyz-gs-nDV"/>
                                             <constraint firstItem="GL1-S1-uaB" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leading" constant="20" id="FDW-eY-4Si"/>
                                             <constraint firstItem="71p-jE-rbj" firstAttribute="top" secondItem="a1F-wL-cqn" secondAttribute="bottom" constant="40" id="G0g-Jt-0ki"/>
-                                            <constraint firstItem="fVf-fk-gnY" firstAttribute="top" secondItem="ors-s2-fba" secondAttribute="bottom" constant="40" id="GNp-bL-YTg"/>
+                                            <constraint firstAttribute="trailing" secondItem="DiY-Jz-y4u" secondAttribute="trailing" constant="10" id="Gjs-NM-MlL"/>
+                                            <constraint firstItem="DiY-Jz-y4u" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leading" constant="10" id="IwF-dH-f8P"/>
                                             <constraint firstItem="RoL-yp-Bp7" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leading" id="Jmy-PW-5AW"/>
                                             <constraint firstAttribute="trailing" secondItem="loL-wo-fdn" secondAttribute="trailing" constant="20" id="K0S-9W-lUD"/>
                                             <constraint firstItem="qnD-39-KqG" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leading" id="N7c-xi-cgj"/>
@@ -233,18 +250,16 @@
                                             <constraint firstItem="loL-wo-fdn" firstAttribute="top" secondItem="m7s-XI-bEw" secondAttribute="bottom" constant="40" id="Nww-P9-oju"/>
                                             <constraint firstItem="m7s-XI-bEw" firstAttribute="top" secondItem="2Iw-Q5-eUI" secondAttribute="bottom" constant="40" id="PcU-kh-zCZ"/>
                                             <constraint firstItem="loL-wo-fdn" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leading" constant="20" id="QeK-QO-Rgq"/>
-                                            <constraint firstItem="fVf-fk-gnY" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leading" constant="20" id="Qqw-gY-ctm"/>
                                             <constraint firstItem="71p-jE-rbj" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leading" constant="20" id="R9d-ak-ECh"/>
-                                            <constraint firstAttribute="bottom" secondItem="fVf-fk-gnY" secondAttribute="bottom" constant="40" id="RJv-Hr-e5H"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="m7s-XI-bEw" secondAttribute="trailing" id="SRd-tY-Zxh"/>
                                             <constraint firstItem="m7s-XI-bEw" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leadingMargin" id="Wku-cf-bv3"/>
                                             <constraint firstAttribute="trailing" secondItem="qnD-39-KqG" secondAttribute="trailing" id="XGt-Lq-oRT"/>
+                                            <constraint firstAttribute="bottom" secondItem="DiY-Jz-y4u" secondAttribute="bottom" constant="20" id="aFu-Gy-2fP"/>
                                             <constraint firstItem="2Iw-Q5-eUI" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leadingMargin" constant="5" id="aGi-Fu-JEB"/>
-                                            <constraint firstAttribute="bottom" secondItem="Oxb-12-PC2" secondAttribute="bottom" constant="40" id="des-qp-8SE"/>
+                                            <constraint firstItem="DiY-Jz-y4u" firstAttribute="top" secondItem="ors-s2-fba" secondAttribute="bottom" constant="40" id="bpI-bj-vxB"/>
                                             <constraint firstItem="ikq-Lc-C7r" firstAttribute="top" secondItem="RoL-yp-Bp7" secondAttribute="bottom" constant="40" id="e1Y-4x-c6s"/>
                                             <constraint firstItem="GL1-S1-uaB" firstAttribute="top" secondItem="loL-wo-fdn" secondAttribute="bottom" constant="40" id="gY5-bm-sip"/>
                                             <constraint firstItem="ikq-Lc-C7r" firstAttribute="centerX" secondItem="8iP-qd-Won" secondAttribute="centerX" id="hsg-f8-EG2"/>
-                                            <constraint firstAttribute="trailing" secondItem="Oxb-12-PC2" secondAttribute="trailing" constant="20" id="iEc-tl-yDD"/>
                                             <constraint firstAttribute="trailing" secondItem="2Iw-Q5-eUI" secondAttribute="trailing" constant="5" id="kP9-y9-ux4"/>
                                             <constraint firstItem="ors-s2-fba" firstAttribute="leading" secondItem="8iP-qd-Won" secondAttribute="leading" id="n9c-0Z-g33"/>
                                             <constraint firstItem="vN2-g4-fBd" firstAttribute="top" secondItem="RoL-yp-Bp7" secondAttribute="bottom" constant="14" id="ooB-Uu-Eja"/>

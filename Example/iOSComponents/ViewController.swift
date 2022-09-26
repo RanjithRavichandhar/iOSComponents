@@ -93,18 +93,18 @@ class ViewController: UIViewController {
     
     // MARK: - CHIP
     private func setupChip() {
-        chipView?.m2p_setUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x17), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
+        chipView?.M2PSetUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x17), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
     }
     
     //MARK: - LIST
     private func setupList() {
-        let primaryContent = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: ContentImageModel(image: UIImage(named: "side_icon")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive))
+        let primaryContent = M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: M2PContentImageModel(image: UIImage(named: "side_icon")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive))
         primaryContent?.isAvatorIcon = false
         
-        let secondaryContent = TrailingContentList(contentType: .texts, headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: ContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  ContentImageModel(image: UIImage(named: "pencil")))
+        let secondaryContent = M2PTrailingContentList(contentType: .texts, headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: M2PContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  M2PContentImageModel(image: UIImage(named: "pencil")))
         
         listView?.tag = 5
-        listView?.m2p_setupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
+        listView?.M2PSetupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
         listView?.onActionClick = { sender in
             print("\(sender.tag)")
         }
@@ -222,11 +222,11 @@ class ViewController: UIViewController {
         let action = M2PActionSheet(title: nil, message: nil, preferredStyle: .actionSheet)
         action.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
-        let lead = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "Sub", textColor: .primaryActive, textFont: .systemFont(ofSize: 12)), icon: ContentImageModel(image: UIImage(named: "")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive), isAvatorIcon: false)
+        let lead = M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "Sub", textColor: .primaryActive, textFont: .systemFont(ofSize: 12)), icon: M2PContentImageModel(image: UIImage(named: "")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive), isAvatorIcon: false)
         
-        action.m2p_setUpActionView(headerContent: lead, items: [ActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
-                                                            ActionItems(text: "Refresh", image: UIImage(named: ""), textColor: .primaryActive, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
-                                                            ActionItems(text: "Delete", image: UIImage(named: "delete"), textColor: .red, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+        action.M2PSetUpActionView(headerContent: lead, items: [M2PActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+                                                            M2PActionItems(text: "Refresh", image: UIImage(named: ""), textColor: .primaryActive, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
+                                                            M2PActionItems(text: "Delete", image: UIImage(named: "delete"), textColor: .red, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
                                                            ]) { index in
             action.dismiss(animated: true, completion: nil)
 
@@ -285,6 +285,27 @@ class ViewController: UIViewController {
         customAlert.didChange = { text in
             print(text)
         }
+    }
+    
+    
+    @IBAction func toolTipTapped(_ sender: Any) {
+        var preferences = M2PToolTipView.globalPreferences
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.font = UIFont(name: "HelveticaNeue-Light", size: 14)!
+        preferences.drawing.textAlignment = NSTextAlignment.justified
+        
+        preferences.animating.dismissTransform = CGAffineTransform(translationX: 0, y: -15)
+        preferences.animating.showInitialTransform = CGAffineTransform(translationX: 0, y: 15)
+        preferences.animating.showInitialAlpha = 0
+        preferences.animating.showDuration = 1
+        preferences.animating.dismissDuration = 1
+        preferences.drawing.arrowPosition = .top
+        
+        let text = "Tip view inside the navigation controller's view. Tap to dismiss!"
+        M2PToolTipView.show(forView: (sender as? UIButton)!,
+            withinSuperview: self.navigationController?.view,
+            text: text,
+            preferences: preferences)
     }
     
     @IBAction func dotLoaderTapped(_ sender: Any) {

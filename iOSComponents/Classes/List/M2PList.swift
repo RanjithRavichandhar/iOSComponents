@@ -12,10 +12,10 @@ import UIKit
  
  var listView: M2PList?
  
- let primaryContent = LeadingContentList(headerTextLabel: ContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: ContentImageModel(image: UIImage(named: "side_icon")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive))
- let secondaryContent = TrailingContentList(contentType: .texts, headerTextLabel: ContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: ContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: ContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  ContentImageModel(image: UIImage(named: "pencil")))
+ let primaryContent = M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: M2PContentImageModel(image: UIImage(named: "side_icon")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive))
+ let secondaryContent = M2PTrailingContentList(contentType: .texts, headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: M2PContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  M2PContentImageModel(image: UIImage(named: "pencil")))
  
- listView?.m2p_setupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
+ listView?.M2PSetupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
  listView?.onActionClick = { sender in
      print("\(sender.tag)")
  }
@@ -180,7 +180,7 @@ public class M2PList: UIView {
         setDefaultConstraints()
         
         // Inital Value Setup
-        m2p_setupList(leadingContent: LeadingContentList(headerTextLabel: ContentTextModel(text: "M2PList", textColor: .primaryActive, textAlignment: .center), subTextLabel: nil, icon: nil), trailingContent: nil)
+        M2PSetupList(leadingContent: M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "M2PList", textColor: .primaryActive, textAlignment: .center), subTextLabel: nil, icon: nil), trailingContent: nil)
     }
 
     private func setDefaultConstraints() {
@@ -208,7 +208,7 @@ public class M2PList: UIView {
     }
     
     // MARK: - Setup ListView
-    public func m2p_setupList(leadingContent: LeadingContentList?, trailingContent: TrailingContentList?, isbottomLineView: Bool = false) {
+    public func M2PSetupList(leadingContent: M2PLeadingContentList?, trailingContent: M2PTrailingContentList?, isbottomLineView: Bool = false) {
         
         self.bottomLineView.isHidden = !isbottomLineView
         

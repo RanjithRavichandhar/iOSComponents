@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 // MARK: - LeadingContentList
-public class LeadingContentList {
-    public var headerTextLabel: ContentTextModel?
-    public var subTextLabel: ContentTextModel?
-    public var icon: ContentImageModel?
+public class M2PLeadingContentList {
+    public var headerTextLabel: M2PContentTextModel?
+    public var subTextLabel: M2PContentTextModel?
+    public var icon: M2PContentImageModel?
     public var isAvatorIcon: Bool
     
-    public init?(headerTextLabel: ContentTextModel?, subTextLabel: ContentTextModel?, icon: ContentImageModel?, isAvatorIcon: Bool = false) {
+    public init?(headerTextLabel: M2PContentTextModel?, subTextLabel: M2PContentTextModel?, icon: M2PContentImageModel?, isAvatorIcon: Bool = false) {
         self.headerTextLabel = headerTextLabel
         self.subTextLabel = subTextLabel
         self.icon = icon
@@ -24,14 +24,14 @@ public class LeadingContentList {
 }
 
 // MARK: - TrailingContentList
-public class TrailingContentList {
-    public var contentType: SecondayContentType
-    public var actionTitleLabel: ContentTextModel?
-    public var headerTextLabel: ContentTextModel?
-    public var subTextLabel: ContentTextModel?
-    public var icon: ContentImageModel?
+public class M2PTrailingContentList {
+    public var contentType: M2PSecondayContentType
+    public var actionTitleLabel: M2PContentTextModel?
+    public var headerTextLabel: M2PContentTextModel?
+    public var subTextLabel: M2PContentTextModel?
+    public var icon: M2PContentImageModel?
    
-    public init?(contentType: SecondayContentType = .texts, headerTextLabel: ContentTextModel?, subTextLabel: ContentTextModel?, actionTitleLabel: ContentTextModel?, icon: ContentImageModel?) {
+    public init?(contentType: M2PSecondayContentType = .texts, headerTextLabel: M2PContentTextModel?, subTextLabel: M2PContentTextModel?, actionTitleLabel: M2PContentTextModel?, icon: M2PContentImageModel?) {
         self.actionTitleLabel = actionTitleLabel
         self.headerTextLabel = headerTextLabel
         self.subTextLabel = subTextLabel
@@ -42,7 +42,7 @@ public class TrailingContentList {
 
 // MARK: - ContentTextLabelModel
 
-public class ContentTextModel {
+public class M2PContentTextModel {
     public var text: String?
     public var textColor: UIColor?
     public var textFont: UIFont?
@@ -57,7 +57,7 @@ public class ContentTextModel {
 }
 
 // MARK: - ContentImageModel
-public class ContentImageModel {
+public class M2PContentImageModel {
     public var image: UIImage?
     public var tintColor: UIColor
     
@@ -68,7 +68,7 @@ public class ContentImageModel {
 }
 
 // MARK: - SecondayContentType
-public enum SecondayContentType {
+public enum M2PSecondayContentType {
     case texts
     case icon
     case button
