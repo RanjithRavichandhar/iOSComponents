@@ -15,12 +15,15 @@ class ViewController: UIViewController {
     @IBOutlet private weak var titleLbl: UILabel!
     @IBOutlet weak var chipView: M2PChip?
     @IBOutlet weak var topTabBar: M2PTopTabBar!
-    @IBOutlet weak var slider: M2PSlider!
+    @IBOutlet weak var slider: M2PSlider?
     @IBOutlet weak var pageControl: M2PCustomPageControl!
     
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
 
+    
+    @IBOutlet weak var listView: M2PList!
+    
     @IBOutlet weak var m2pButton: M2PButton! {
             didSet{
                 self.m2pButton.config(type: .custom, title: "IndusLogo",
@@ -74,11 +77,13 @@ class ViewController: UIViewController {
         
         setupPageControl_LEFT()
         
-        self.slider.maximumTrackTintColor = UIColor.backgroundLightVarient
-        self.slider.minimumTrackTintColor = UIColor.secondaryRedColor
-        self.slider.M2PThumbTouchSize = CGSize(width: 24.0, height: 24.0)
+        self.slider?.maximumTrackTintColor = UIColor.backgroundLightVarient
+        self.slider?.minimumTrackTintColor = UIColor.secondaryRedColor
+        self.slider?.M2PThumbTouchSize = CGSize(width: 24.0, height: 24.0)
 //        self.slider.setThumbImage(UIImage(named: "thumbHightlight"), for: .highlighted)
 //        self.slider.setThumbImage(UIImage(named: "thumbNormal"), for: .normal)
+        
+        setList()
     }
     
     private func setupMenuBar() {
@@ -184,6 +189,16 @@ class ViewController: UIViewController {
 
     func delay(seconds: Double, completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
+    }
+    
+    private func setList() {
+        let primaryContent = M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: M2PContentImageModel(image: UIImage(named: "side_icon")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive))
+        let secondaryContent = M2PTrailingContentList(contentType: .texts, headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: M2PContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  M2PContentImageModel(image: UIImage(named: "pencil")))
+        
+        listView?.M2PSetupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
+        listView?.onActionClick = { sender in
+            print("\(sender.tag)")
+        }
     }
 }
 
