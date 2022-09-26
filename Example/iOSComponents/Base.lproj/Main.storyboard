@@ -70,9 +70,9 @@
                                     <constraint firstAttribute="height" constant="40" id="Cgm-cX-PEM"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Action Sheet"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Tool Tip"/>
                                 <connections>
-                                    <action selector="actionSheetTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YPS-4f-LSx"/>
+                                    <action selector="toolTipTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MBn-E1-YN4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -108,6 +108,7 @@
                         <outlet property="m2pButton" destination="CSq-cG-MXH" id="WSJ-gg-Fkw"/>
                         <outlet property="pageControl" destination="5aX-Du-hx1" id="WBt-kC-Yns"/>
                         <outlet property="titleLbl" destination="7FW-Oc-Cf2" id="Twn-zB-bzJ"/>
+                        <outlet property="toolTipBtn" destination="Ybt-1h-GQP" id="mOO-2z-ole"/>
                         <outlet property="topTabBar" destination="jeb-Vn-VXH" id="2gV-ay-1eP"/>
                     </connections>
                 </viewController>

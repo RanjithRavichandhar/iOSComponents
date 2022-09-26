@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
 
+    @IBOutlet weak var toolTipBtn: UIButton!
     
     @IBOutlet weak var listView: M2PList?
     
@@ -201,24 +202,23 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func actionSheetTapped(_ sender: Any) {
-        let actionItems = [
-        M2PActionItems(text: "Open Settings", image: UIImage(named: "setting"), textColor: .primaryActive , tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
-        M2PActionItems(text: "Refresh", image: UIImage(named: ""), textColor: .primaryActive, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
-        M2PActionItems(text: "Delete", image: UIImage(named: "delete"), textColor: .red, tintColor: .primaryActive, font: .systemFont(ofSize: 15)),
-        ]
+    @IBAction func toolTipTapped(_ sender: Any) {
+        var preferences = M2PToolTipView.Preferences()
+        preferences.drawing.backgroundColor = UIColor(hue:0.58, saturation:0.1, brightness:1, alpha:1)
+        preferences.drawing.foregroundColor = UIColor.darkGray
+        preferences.drawing.textAlignment = NSTextAlignment.center
+        preferences.drawing.font = UIFont(name: "HelveticaNeue-Light", size: 14)!
         
-        let headerContent = M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "Sub", textColor: .primaryActive, textFont: .systemFont(ofSize: 12)), icon: M2PContentImageModel(image: UIImage(named: "")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive), isAvatorIcon: false)
+        preferences.animating.dismissTransform = CGAffineTransform(translationX: 0, y: -15)
+        preferences.animating.showInitialTransform = CGAffineTransform(translationX: 0, y: 15)
+        preferences.animating.showInitialAlpha = 0
+        preferences.animating.showDuration = 1
+        preferences.animating.dismissDuration = 1
+        preferences.drawing.arrowPosition = .any
+        preferences.animating.dismissOnTap = true
         
-        let actionSheet = M2PActionSheet(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        actionSheet.M2PSetUpActionView(headerContent: headerContent, items: actionItems) { index in
-        actionSheet.dismiss(animated: true, completion: nil)
-        }
-        
-        self.present(actionSheet, animated: false, completion: nil)
+        let view = M2PToolTipView(text: "Tip view within the green superview. Tap to dismiss.", preferences: preferences)
+        view.show(forView: self.toolTipBtn, withinSuperview: self.view)
     }
-    
 }
 
