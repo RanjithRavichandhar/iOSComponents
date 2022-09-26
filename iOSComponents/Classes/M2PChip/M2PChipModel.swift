@@ -6,13 +6,13 @@
 //
 
 // MARK: - BorderType
-public enum ChipBorderType {
+public enum M2PChipBorderType {
     case solid
     case outline
 }
 
 // MARK: - ContentType
-public enum ChipContentType {
+public enum M2PChipContentType {
     case icons
     case text
     case textWithLeftIcon
@@ -21,7 +21,7 @@ public enum ChipContentType {
 }
 
 // MARK: - ChipType
-public enum ChipType {
+public enum M2PChipType {
     case neutral
     case primary
     case success
