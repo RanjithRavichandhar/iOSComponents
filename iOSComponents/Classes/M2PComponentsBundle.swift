@@ -9,12 +9,12 @@ import UIKit
 import Foundation
 
 /*To Get bundle Name*/
-class M2PComponentsBundle {
-    static var shared = M2PComponentsBundle()
+public class M2PComponentsBundle {
+    public static var shared = M2PComponentsBundle()
     private init() { }
     
     /*Access from Resource Bundle*/
-    var currentBundle: Bundle  {
+    public var currentBundle: Bundle  {
         let frameworkBundle = Bundle(for: M2PComponentsBundle.self)
         let path = frameworkBundle.path(forResource: "Resources", ofType: "bundle")
         let resourcesBundle = Bundle(url: URL(fileURLWithPath: path!))!

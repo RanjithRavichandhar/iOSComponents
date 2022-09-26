@@ -22,7 +22,7 @@
   },
   "resource_bundles": {
     "Resources": [
-      "iOSComponents/Assets/*{.png,.json}"
+      "iOSComponents/Assets/*{.png,.json,.xib}"
     ]
   },
   "frameworks": [
