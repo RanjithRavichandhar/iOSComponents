@@ -28,8 +28,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var m2pButton: M2PButton! {
         didSet{
-            self.m2pButton.config(type: .custom, title: "IndusLogo",
-                                  buttonStyle: .LEFT_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
+            self.m2pButton.M2PConfig(type: .custom, title: "IndusLogo",
+                                  buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
                                   isPrimary: true,
                                   bgColor: .clear,
                                   leftImg: UIImage(named:"plus.png"),
@@ -245,9 +245,9 @@ extension ViewController {
         customAlert.alertTag = 1
         customAlert.show()
         // MARK:  M2PButton should configure after present Pop (i.e) after func show() called
-        customAlert.leadingButton.config(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
-        customAlert.centerButton.config(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
-        customAlert.trailingButton.config(type: .custom, title: "Ok", bgColor: .primaryActive)
+        customAlert.leadingButton.M2PConfig(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
+        customAlert.centerButton.M2PConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.trailingButton.M2PConfig(type: .custom, title: "Ok", bgColor: .primaryActive)
     }
     
     // MARK: - CUSTOM ALERT
@@ -271,8 +271,8 @@ extension ViewController {
         customAlert.bgImgColor = .DavysGrey100
         customAlert.show()
         // MARK: M2PButton should configure after present Pop (i.e) after called func show()
-        customAlert.submitButton.config(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
-        customAlert.secondaryButton.config(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.submitButton.M2PConfig(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
+        customAlert.secondaryButton.M2PConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
         // Textfield
         customAlert.didChange = { text in
             print(text)

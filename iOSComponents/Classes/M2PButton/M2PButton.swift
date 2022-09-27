@@ -73,7 +73,7 @@ public class M2PButton: UIButton {
     
     public var leftImage: UIImage? = nil {
         didSet{
-            setupView()
+            setupImage()
         }
     }
     
@@ -91,7 +91,7 @@ public class M2PButton: UIButton {
     
     public var rightImage: UIImage? = nil {
         didSet{
-            setupView()
+            setupImage()
         }
     }
     
@@ -166,7 +166,6 @@ public class M2PButton: UIButton {
     private func setupView() {
         layer.masksToBounds = false
         self.setupButtonType()
-        self.setupImage()
         self.addTarget(self, action: #selector(actn(_:)), for: [.touchUpInside])
     }
     
@@ -190,7 +189,7 @@ public class M2PButton: UIButton {
         }
     }
     
-    public func config(type: ButtonType ,
+    public func M2PConfig(type: ButtonType ,
                        title: String,
                        cornerRadius: CGFloat? = 10,
                        buttonStyle:ButtonStyle? = .NOICON,
@@ -208,14 +207,14 @@ public class M2PButton: UIButton {
         self.isPrimary = isPrimary ?? true
         self.buttonStyle = buttonStyle
         self.backgroundColor = bgColor
-        self.leftImage = leftImg
-        self.rightImage = rightImg
         self.setTitle(title, for: .normal)
         self.leftImageWidth = leftIconWidth ?? 20
         self.leftImageHeight = leftIconHeight ?? 20
         self.rightImageWidth = rightIconWidth ?? 20
         self.rightImageHeight = rightIconHeight ?? 20
         self.status = state
+        self.leftImage = leftImg
+        self.rightImage = rightImg
     }
     
     fileprivate func setupButtonType() {
@@ -242,73 +241,37 @@ public class M2PButton: UIButton {
     }
     
     private func addDoubleIcon() {
-        //Set left image
-        
-        if leftImageView.image == leftImage || rightImageView.image == rightImage {
-            return
-        }
-        
-        leftImageView = UIImageView(image: leftImage)
-        leftImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(leftImageView)
-        
-        NSLayoutConstraint.activate([
-            leftImageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -20),
-            leftImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            leftImageView.widthAnchor.constraint(equalToConstant: leftImageWidth ),
-            leftImageView.heightAnchor.constraint(equalToConstant: leftImageWidth )
-        ])
-        
-        rightImageView = UIImageView(image: rightImage)
-        rightImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(rightImageView)
-        
-        NSLayoutConstraint.activate([
-            rightImageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 20),
-            rightImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            rightImageView.widthAnchor.constraint(equalToConstant: rightImageWidth ),
-            rightImageView.heightAnchor.constraint(equalToConstant: rightImageWidth )
-        ])
-        
+        self.addLeftIcon()
+        self.addRightIcon()
     }
-    
     private func addLeftIcon() {
-        //Set left image
-        if leftImageView.image == leftImage {
-            return
+        if let leftImageView = leftImage {
+            self.leftImageView.image = leftImageView
+            self.leftImageView.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(self.leftImageView)
+            
+            NSLayoutConstraint.activate([
+                self.leftImageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -20),
+                self.leftImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
+                self.leftImageView.widthAnchor.constraint(equalToConstant: leftImageWidth ),
+                self.leftImageView.heightAnchor.constraint(equalToConstant: leftImageWidth )
+            ])
+            
         }
-        
-        leftImageView = UIImageView(image: leftImage)
-        leftImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(leftImageView)
-        
-        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: (leftImageWidth*2), bottom: 0, right: 0)
-        
-        NSLayoutConstraint.activate([
-            leftImageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -20),
-            leftImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            leftImageView.widthAnchor.constraint(equalToConstant: leftImageWidth),
-            leftImageView.heightAnchor.constraint(equalToConstant: leftImageWidth)
-        ])
     }
     
     private func addRightIcon() {
-        
-        if rightImageView.image == rightImage {
-            return
+        if let rightImageView = rightImage {
+            self.rightImageView.image = rightImageView
+            self.rightImageView.translatesAutoresizingMaskIntoConstraints = false
+            addSubview( self.rightImageView)
+            
+            NSLayoutConstraint.activate([
+                self.rightImageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 20),
+                self.rightImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
+                self.rightImageView.widthAnchor.constraint(equalToConstant: rightImageWidth ),
+                self.rightImageView.heightAnchor.constraint(equalToConstant: rightImageWidth )
+            ])
         }
-    
-        rightImageView = UIImageView(image: rightImage)
-        rightImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(rightImageView)
-        
-        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right:  (rightImageWidth*2))
-        
-        NSLayoutConstraint.activate([
-            rightImageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 20),
-            rightImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            rightImageView.widthAnchor.constraint(equalToConstant: rightImageWidth),
-            rightImageView.heightAnchor.constraint(equalToConstant: rightImageWidth)
-        ])
     }
 }
