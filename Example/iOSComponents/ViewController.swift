@@ -297,7 +297,6 @@ extension ViewController: M2PCustomAlertDelegate {
         print(alert.text)
     }
     func submitButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
-        print(alert.alertTitle ?? "")
         print(alert.text)
     }
     func secondaryButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
