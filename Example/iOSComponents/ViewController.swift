@@ -234,8 +234,8 @@ extension ViewController {
          customAlert.alertMessageColor = UIColor.focusedLine
          customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
          customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
-         customAlert.alertTitle = "Verification"
-         customAlert.alertMessage = "Your Information in the audit, Please wait!"
+         customAlert.alertTitle = "Verification Verification Verification Verification Verification Verification"
+         customAlert.alertMessage = "Your Information in the audit, Please wait! Your Information in the audit, Please wait! Your Information in the audit, Please wait! Your Information in the audit, Please wait Please wait! Your Information in the audit, Please wait Please wait! Your Information in the audit, Please wait"
          customAlert.statusImage = UIImage.init(named: "alert")
          customAlert.delegate = self
          customAlert.alertTag = 1
@@ -251,15 +251,15 @@ extension ViewController {
      @IBAction func alertCustomActn(_ sender: UIButton){
          let customAlert = M2PCustomAlert(nibName: "M2PCustomAlert", bundle: M2PComponentsBundle.shared.currentBundle)
          customAlert.enableButtonList = [.primary,.secondary]
-         customAlert.posistion = .Bottom // .Top , .Center , .Bottom
+         customAlert.posistion = .Center // .Top , .Center , .Bottom
          customAlert.alertBgColor = UIColor.background
          customAlert.alertTitleColor = UIColor.primaryActive
          customAlert.alertMessageColor = UIColor.focusedLine
          customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
          customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
-         customAlert.alertTitle = "Verification"
-         customAlert.alertMessage = "Your Information in the audit, Please wait!"
-         customAlert.statusImage = UIImage.init(named: "alert")
+         customAlert.alertTitle = "Verification Verification Verifiiiiiii ii Verifiiiiiii"
+         customAlert.alertMessage = "Your Information in the audit, Please wait! Your Information in the audit, Please wait! Your Information in the audit, Please wait! Your Information in the audit, Please wait Your Information in the audit, Please wait"
+//         customAlert.statusImage = UIImage.init(named: "alert")
          customAlert.delegate = self
          customAlert.alertTag = 1
          customAlert.closeTintColor = .primaryActive
@@ -294,7 +294,6 @@ extension ViewController: M2PCustomAlertDelegate {
         print(alert.text)
     }
     func submitButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
-        print(alert.alertTitle ?? "")
         print(alert.text)
     }
     func secondaryButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
