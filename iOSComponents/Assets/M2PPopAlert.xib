@@ -77,7 +77,7 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="6yU-Ec-aht"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="6yU-Ec-aht"/>
                                         <constraint firstItem="xw2-Ch-efS" firstAttribute="top" secondItem="18N-fg-VTL" secondAttribute="top" id="G0H-Mq-D6a"/>
                                         <constraint firstItem="xw2-Ch-efS" firstAttribute="leading" secondItem="18N-fg-VTL" secondAttribute="leading" constant="20" id="Ger-DE-I8Z"/>
                                         <constraint firstAttribute="bottom" secondItem="xw2-Ch-efS" secondAttribute="bottom" id="UdS-mc-E4Q"/>
@@ -96,7 +96,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="nSu-2A-rsL" firstAttribute="leading" secondItem="SUX-bO-YUA" secondAttribute="leading" constant="20" id="ZgM-RH-wYz"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="fLu-gk-K0Z"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="fLu-gk-K0Z"/>
                                         <constraint firstAttribute="bottom" secondItem="nSu-2A-rsL" secondAttribute="bottom" id="iuW-ia-gV2"/>
                                         <constraint firstItem="nSu-2A-rsL" firstAttribute="top" secondItem="SUX-bO-YUA" secondAttribute="top" id="m2h-ZX-e1z"/>
                                         <constraint firstAttribute="trailing" secondItem="nSu-2A-rsL" secondAttribute="trailing" constant="20" id="zRv-li-g9C"/>
@@ -106,10 +106,10 @@
                                     <rect key="frame" x="0.0" y="195" width="288" height="74"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YEs-wH-PNy">
-                                            <rect key="frame" x="10" y="0.0" width="268" height="74"/>
+                                            <rect key="frame" x="10" y="10" width="268" height="40"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4M-bh-Ok1" customClass="M2PButton" customModule="iOSComponents">
-                                                    <rect key="frame" x="0.0" y="0.0" width="82.5" height="74"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="82.5" height="40"/>
                                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="Learn More">
@@ -120,7 +120,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnK-l7-JlH" customClass="M2PButton" customModule="iOSComponents">
-                                                    <rect key="frame" x="92.5" y="0.0" width="83" height="74"/>
+                                                    <rect key="frame" x="92.5" y="0.0" width="83" height="40"/>
                                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="Cancel">
@@ -131,7 +131,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUt-G1-xWz" customClass="M2PButton" customModule="iOSComponents">
-                                                    <rect key="frame" x="185.5" y="0.0" width="82.5" height="74"/>
+                                                    <rect key="frame" x="185.5" y="0.0" width="82.5" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="FCQ-Cb-NHn"/>
                                                     </constraints>
@@ -145,15 +145,17 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="4kM-7G-Zor"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="YEs-wH-PNy" secondAttribute="trailing" constant="10" id="2eR-RB-0Jg"/>
-                                        <constraint firstAttribute="height" constant="40" id="34Z-fi-BA0"/>
                                         <constraint firstAttribute="bottom" secondItem="YEs-wH-PNy" secondAttribute="bottom" id="JMx-Mv-RTC"/>
                                         <constraint firstItem="YEs-wH-PNy" firstAttribute="leading" secondItem="DIl-cc-knf" secondAttribute="leading" constant="10" id="M0Q-y1-yUd"/>
-                                        <constraint firstItem="YEs-wH-PNy" firstAttribute="top" secondItem="DIl-cc-knf" secondAttribute="top" id="rhZ-2a-mtA"/>
+                                        <constraint firstItem="YEs-wH-PNy" firstAttribute="top" secondItem="DIl-cc-knf" secondAttribute="top" constant="10" id="rhZ-2a-mtA"/>
                                     </constraints>
                                 </view>
                             </subviews>

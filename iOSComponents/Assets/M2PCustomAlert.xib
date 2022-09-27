@@ -82,7 +82,7 @@
                                     <constraints>
                                         <constraint firstItem="NHh-A2-svW" firstAttribute="top" secondItem="XPj-2a-reM" secondAttribute="top" id="Sa8-SP-jNk"/>
                                         <constraint firstAttribute="bottom" secondItem="NHh-A2-svW" secondAttribute="bottom" id="U1f-UH-nwl"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="gFB-GV-N6K"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="gFB-GV-N6K"/>
                                         <constraint firstItem="NHh-A2-svW" firstAttribute="leading" secondItem="XPj-2a-reM" secondAttribute="leading" constant="20" id="nfv-zB-Fgv"/>
                                         <constraint firstAttribute="trailing" secondItem="NHh-A2-svW" secondAttribute="trailing" constant="20" id="u07-bi-rbh"/>
                                     </constraints>
@@ -102,7 +102,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="ucd-cA-d8H" secondAttribute="bottom" id="C1i-qF-ijM"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="LgQ-UF-ZZx"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="LgQ-UF-ZZx"/>
                                         <constraint firstAttribute="trailing" secondItem="ucd-cA-d8H" secondAttribute="trailing" constant="20" id="fwX-78-owf"/>
                                         <constraint firstItem="ucd-cA-d8H" firstAttribute="leading" secondItem="6we-jd-sjV" secondAttribute="leading" constant="20" id="jy6-aY-2Dz"/>
                                         <constraint firstItem="ucd-cA-d8H" firstAttribute="top" secondItem="6we-jd-sjV" secondAttribute="top" id="v2g-jc-aQk"/>
@@ -121,7 +121,7 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="SCq-Eb-0Cu" secondAttribute="bottom" constant="5" id="0Hw-m9-Rf8"/>
+                                        <constraint firstAttribute="bottom" secondItem="SCq-Eb-0Cu" secondAttribute="bottom" id="0Hw-m9-Rf8"/>
                                         <constraint firstItem="SCq-Eb-0Cu" firstAttribute="leading" secondItem="pEb-Xg-h5e" secondAttribute="leading" constant="20" id="fEb-vy-xxS"/>
                                         <constraint firstAttribute="trailing" secondItem="SCq-Eb-0Cu" secondAttribute="trailing" constant="20" id="l87-lj-6ZP"/>
                                         <constraint firstItem="SCq-Eb-0Cu" firstAttribute="top" secondItem="pEb-Xg-h5e" secondAttribute="top" constant="5" id="yhB-5S-bYs"/>
@@ -131,7 +131,7 @@
                                     <rect key="frame" x="0.0" y="260" width="373" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wiw-EI-ZAn" customClass="M2PButton" customModule="iOSComponents">
-                                            <rect key="frame" x="20" y="5" width="333" height="40"/>
+                                            <rect key="frame" x="20" y="0.0" width="333" height="40"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="d5k-A1-Rln"/>
@@ -144,17 +144,17 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="wiw-EI-ZAn" firstAttribute="top" secondItem="JRq-lp-yOf" secondAttribute="top" constant="5" id="4dK-zd-WPw"/>
+                                        <constraint firstItem="wiw-EI-ZAn" firstAttribute="top" secondItem="JRq-lp-yOf" secondAttribute="top" id="4dK-zd-WPw"/>
                                         <constraint firstAttribute="trailing" secondItem="wiw-EI-ZAn" secondAttribute="trailing" constant="20" id="NRy-eb-E26"/>
                                         <constraint firstItem="wiw-EI-ZAn" firstAttribute="leading" secondItem="JRq-lp-yOf" secondAttribute="leading" constant="20" id="Opl-pA-thK"/>
-                                        <constraint firstAttribute="bottom" secondItem="wiw-EI-ZAn" secondAttribute="bottom" constant="5" id="Zdp-8D-Kjh"/>
+                                        <constraint firstAttribute="bottom" secondItem="wiw-EI-ZAn" secondAttribute="bottom" id="Zdp-8D-Kjh"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwH-Ns-tQc" userLabel="secView">
                                     <rect key="frame" x="0.0" y="325" width="373" height="50"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUU-Hr-wIz" customClass="M2PButton" customModule="iOSComponents">
-                                            <rect key="frame" x="20" y="5" width="333" height="40"/>
+                                            <rect key="frame" x="20" y="0.0" width="333" height="40"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="Odt-Xh-Ids"/>
@@ -167,10 +167,10 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="hUU-Hr-wIz" firstAttribute="top" secondItem="dwH-Ns-tQc" secondAttribute="top" constant="5" id="7o7-uX-TYf"/>
+                                        <constraint firstItem="hUU-Hr-wIz" firstAttribute="top" secondItem="dwH-Ns-tQc" secondAttribute="top" id="7o7-uX-TYf"/>
                                         <constraint firstItem="hUU-Hr-wIz" firstAttribute="leading" secondItem="dwH-Ns-tQc" secondAttribute="leading" constant="20" id="PBO-v4-UgZ"/>
                                         <constraint firstAttribute="trailing" secondItem="hUU-Hr-wIz" secondAttribute="trailing" constant="20" id="aZc-gx-VTF"/>
-                                        <constraint firstAttribute="bottom" secondItem="hUU-Hr-wIz" secondAttribute="bottom" constant="5" id="ku7-iA-wce"/>
+                                        <constraint firstAttribute="bottom" secondItem="hUU-Hr-wIz" secondAttribute="bottom" id="ku7-iA-wce"/>
                                     </constraints>
                                 </view>
                             </subviews>
