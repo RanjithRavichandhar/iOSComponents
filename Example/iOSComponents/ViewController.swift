@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var topTabBar: M2PTopTabBar!
     @IBOutlet weak var slider: M2PSlider?
     @IBOutlet weak var otpView: OTPFieldView?
+    @IBOutlet weak var otpView_Two: OTPFieldView?
     @IBOutlet weak var pageControl: M2PCustomPageControl!
     
     private var indicatorValue: Float = 0.0
@@ -57,6 +58,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.m2pSetupOtpView()
         self.otpView?.initializeUI()
+        
+        self.m2pSetupOtpView_Two()
+        self.otpView_Two?.initializeUI()
         
         self.progressBarTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.updateProgressView), userInfo: nil, repeats: true)
         
@@ -237,8 +241,8 @@ extension ViewController {
         customAlert.alertMessageColor = UIColor.focusedLine
         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
-        customAlert.alertTitle = "Verification"
-        customAlert.alertMessage = "Your Information in the audit, Please wait!"
+        customAlert.alertTitle = "Verification Verification Verification Verification Verification"
+        customAlert.alertMessage = "Your Information in the audit, Please wait! It might be helpful to note that, inside my workspace Project Navigator, for some reason I have "
         customAlert.statusImage = UIImage.init(named: "alert")
         customAlert.delegate = self
         customAlert.alertTag = 1
@@ -249,7 +253,7 @@ extension ViewController {
         customAlert.trailingButton.config(type: .custom, title: "Ok", bgColor: .primaryActive)
     }
     
-    // MARK: - CUSTOM ALERT
+    // MARK: - CUSTOM ALERT func enteredOTP(_ OTPView: OTPFieldView,otp: String)
     
     @IBAction func alertCustomActn(_ sender: UIButton){
         let customAlert = M2PCustomAlert(nibName: "M2PCustomAlert", bundle: M2PComponentsBundle.shared.currentBundle)
@@ -260,8 +264,8 @@ extension ViewController {
         customAlert.alertMessageColor = UIColor.focusedLine
         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
-        customAlert.alertTitle = "Verification"
-        customAlert.alertMessage = "Your Information in the audit, Please wait!"
+        customAlert.alertTitle = "Verification VerificationVerification Verification VerificationVerification"
+        customAlert.alertMessage = "Your Information in the audit, Please wait! It might be helpful to note that, inside my workspace Project Navigator, for some reason I have "
         customAlert.statusImage = UIImage.init(named: "alert")
         customAlert.delegate = self
         customAlert.alertTag = 1
@@ -318,12 +322,28 @@ extension ViewController: OTPFieldViewDelegate {
         self.otpView?.filledBackgroundColor = UIColor.background
         self.otpView?.fieldSize = 42
         self.otpView?.separatorSpace = 15
+        self.otpView?.tag = 1
         self.otpView?.shouldAllowIntermediateEditing = false
         self.otpView?.delegate = self
     }
     
-    func enteredOTP(otp: String) {
-        print("OTP:\(otp)")
+    func m2pSetupOtpView_Two(){
+        self.otpView_Two?.displayType = .square
+        self.otpView_Two?.fieldsCount = 6
+        self.otpView_Two?.fieldBorderWidth = 1
+        self.otpView_Two?.defaultBorderColor = UIColor.borderDefault
+        self.otpView_Two?.filledBorderColor = UIColor.linksText
+        self.otpView_Two?.cursorColor = UIColor.primaryActive
+        self.otpView_Two?.filledBackgroundColor = UIColor.background
+        self.otpView_Two?.fieldSize = 42
+        self.otpView_Two?.separatorSpace = 15
+        self.otpView_Two?.tag = 2
+        self.otpView_Two?.shouldAllowIntermediateEditing = false
+        self.otpView_Two?.delegate = self
+    }
+    
+    func enteredOTP(_ OTPView: OTPFieldView,otp: String) {
+        print("OTP:\((OTPView.tag,otp))")
     }
     func hasEnteredAllOTP(hasEnteredAll hasEntered: Bool) -> Bool {
         if hasEntered {
