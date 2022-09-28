@@ -1,5 +1,5 @@
 PODS:
-  - iOSComponents (0.1.0)
+  - iOSComponents (0.1.4)
 
 DEPENDENCIES:
   - iOSComponents (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  iOSComponents: 9562bea6ccf8e54bd69e54bb37f3de89f177ddcc
+  iOSComponents: 090850af80fb5082ad7e87db4da2993fdb1c97a5
 
 PODFILE CHECKSUM: 9f5e66f799a788725f112c8064a886e2e6bb0684
 

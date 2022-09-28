@@ -28,17 +28,20 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var m2pButton: M2PButton! {
         didSet{
-            self.m2pButton.M2PConfig(type: .custom, title: "IndusLogo",
-                                  buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
-                                  isPrimary: true,
-                                  bgColor: .clear,
-                                  leftImg: UIImage(named:"plus.png"),
-                                  rightImg: UIImage(named:"plus.png"),
-                                  leftIconWidth: 20,
-                                  leftIconHeight: 20,
-                                  rightIconWidth: 20,
-                                  rightIconHeight: 20,
-                                  state: .ENABLE) // ENABLE / DISABLE
+            self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
+                                           buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
+                                           isPrimary: true,
+                                           bgColor: .clear,
+                                           leftImg: UIImage(named:"plus.png"),
+                                           rightImg: UIImage(named:"plus.png"),
+                                           leftIconWidth: 20,
+                                           leftIconHeight: 20,
+                                           rightIconWidth: 20,
+                                           rightIconHeight: 20,
+                                           state: .ENABLE, // ENABLE / DISABLE
+                                           leftIconTint: .orange,
+                                           rightIconTint: .lightGray
+                                        )
             self.m2pButton.onClick = { sender in
                 self.index -= 1
                 self.topTabBar.updateSelectedIndexInCollection(at:self.index)
@@ -231,23 +234,23 @@ extension ViewController {
     
     @IBAction func alertPopActn(_ sender: UIButton){
         let customAlert = M2PPopAlert(nibName: "M2PPopAlert", bundle: M2PComponentsBundle.shared.currentBundle)
-        customAlert.enableButtonList = [.Leading,.Center,.Trailing]
-        customAlert.posistion = .Top // .Top , .Center , .Bottom
+        customAlert.enableButtonList = [.Center,.Trailing,.Leading]
+        customAlert.posistion = .Center // .Top , .Center , .Bottom
         customAlert.alertBgColor = UIColor.background
         customAlert.alertTitleColor = UIColor.primaryActive
         customAlert.alertMessageColor = UIColor.focusedLine
         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
-        customAlert.alertTitle = "Verification"
-        customAlert.alertMessage = "Your Information in the audit, Please wait!"
+        customAlert.alertTitle = "Verification Verification Verification Verification"
+        customAlert.alertMessage = "Your Information in the audit, Once it done your account has been activated within 5hrs."
         customAlert.statusImage = UIImage.init(named: "alert")
         customAlert.delegate = self
         customAlert.alertTag = 1
         customAlert.show()
         // MARK:  M2PButton should configure after present Pop (i.e) after func show() called
-        customAlert.leadingButton.M2PConfig(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
-        customAlert.centerButton.M2PConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
-        customAlert.trailingButton.M2PConfig(type: .custom, title: "Ok", bgColor: .primaryActive)
+        customAlert.leadingButton.M2PButtonConfig(type: .custom,title: "Learn More", isPrimary: false, bgColor: .primaryActive)
+        customAlert.centerButton.M2PButtonConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.trailingButton.M2PButtonConfig(type: .custom, title: "Ok", bgColor: .primaryActive)
     }
     
     // MARK: - CUSTOM ALERT
@@ -271,8 +274,8 @@ extension ViewController {
         customAlert.bgImgColor = .DavysGrey100
         customAlert.show()
         // MARK: M2PButton should configure after present Pop (i.e) after called func show()
-        customAlert.submitButton.M2PConfig(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
-        customAlert.secondaryButton.M2PConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.submitButton.M2PButtonConfig(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
+        customAlert.secondaryButton.M2PButtonConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
         // Textfield
         customAlert.didChange = { text in
             print(text)
@@ -292,8 +295,10 @@ extension ViewController: M2PPopAlertDelegate {
         print("Cancel button pressed")
     }
 }
+
 // MARK: - M2PCustomAlertDelegate
 extension ViewController: M2PCustomAlertDelegate {
+    
     func closeButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
         print(alert.text)
     }
