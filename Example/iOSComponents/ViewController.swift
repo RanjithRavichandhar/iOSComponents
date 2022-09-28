@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var m2pButton: M2PButton! {
         didSet{
-            self.m2pButton.config(type: .custom, title: "IndusLogo",
+            self.m2pButton.M2PConfig(type: .custom, title: "IndusLogo",
                                   buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
                                   isPrimary: true,
                                   bgColor: .clear,
@@ -43,12 +43,16 @@ class ViewController: UIViewController {
             self.m2pButton.onClick = { sender in
                 self.index -= 1
                 self.topTabBar.updateSelectedIndexInCollection(at:self.index)
+                self.inputFieldView?.M2PhideErrorMessage()
             }
+
         }
     }
     
     //Page control
     var customPageControl = M2PCustomPageControl()
+    //Input field
+    var inputFieldView: M2PInputField?
     
     // Menu bar
     var index = 4
@@ -56,8 +60,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.m2pSetupOtpView()
-        self.otpView?.initializeUI()
+//        self.m2pSetupOtpView()
+//        self.otpView?.initializeUI()
         
         self.m2pSetupOtpView_Two()
         self.otpView_Two?.initializeUI()
@@ -78,6 +82,8 @@ class ViewController: UIViewController {
         chipView?.M2PSetUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
         
         setupMenuBar()
+        
+        setupInputField()
         
         //Page Control
         pageControl.setup(for: 4, with: M2PPageControlConfig(image_inactive: UIImage(named: "pageControlIndicator")))
@@ -116,7 +122,35 @@ class ViewController: UIViewController {
             
             self.pageControl?.currentPage = selectedIndex
             self.customPageControl.currentPage = selectedIndex
+            
+            self.inputFieldView?.M2PshowErrorWith(message: "Error \(selectedIndex)")
         }
+    }
+    
+    private func setupInputField() {
+        inputFieldView = M2PInputField(frame: CGRect(x: 20, y: view.frame.midY - 120, width: view.frame.width - 40 , height: 80))
+        
+        guard let inputField = inputFieldView else {
+            return
+        }
+        
+//        var colors = M2PInputFieldColorConfig()
+//        colors.title = .linksText
+//        var fonts = M2PInputFieldFontConfig()
+//        fonts.placeHolderFont = UIFont.customFont(name: "Arial-BoldMT", size: .x14)
+//        let config = M2PInputFieldConfig(placeholder: "Enter name", fieldStyle: .Form_Floating, fieldFonts: fonts, fieldColors: colors)
+        let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Floating)
+        
+        inputField.M2Psetup(type: .Default_TextField, config: config) // , leftImage: UIImage(named: "pencil"))
+        
+        inputField.M2PonClickFieldTypeView = { (type, isActive) in
+            if type == .Dropdown {
+                self.titleLbl.text = "Dropdown \(isActive ? "Active" : "Inactive")"
+            }
+        }
+        
+        view.addSubview(inputField)
+        
     }
     
     func setupPageControl_LEFT() {
@@ -248,9 +282,9 @@ extension ViewController {
         customAlert.alertTag = 1
         customAlert.show()
         // MARK:  M2PButton should configure after present Pop (i.e) after func show() called
-        customAlert.leadingButton.config(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
-        customAlert.centerButton.config(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
-        customAlert.trailingButton.config(type: .custom, title: "Ok", bgColor: .primaryActive)
+        customAlert.leadingButton.M2PConfig(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
+        customAlert.centerButton.M2PConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.trailingButton.M2PConfig(type: .custom, title: "Ok", bgColor: .primaryActive)
     }
     
     // MARK: - CUSTOM ALERT func enteredOTP(_ OTPView: OTPFieldView,otp: String)
@@ -274,8 +308,8 @@ extension ViewController {
         customAlert.bgImgColor = .DavysGrey100
         customAlert.show()
         // MARK: M2PButton should configure after present Pop (i.e) after called func show()
-        customAlert.submitButton.config(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
-        customAlert.secondaryButton.config(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.submitButton.M2PConfig(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
+        customAlert.secondaryButton.M2PConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
         // Textfield
         customAlert.didChange = { text in
             print(text)
