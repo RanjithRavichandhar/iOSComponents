@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3i-VF-GLj" customClass="M2PGradientView" customModule="iOSComponents">
-                                <rect key="frame" x="40" y="144" width="334" height="100"/>
+                                <rect key="frame" x="40" y="64" width="334" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="oS4-48-Jk6"/>
@@ -44,7 +44,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSq-cG-MXH" customClass="M2PButton" customModule="iOSComponents">
-                                <rect key="frame" x="30" y="274" width="354" height="40"/>
+                                <rect key="frame" x="30" y="194" width="354" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Vlm-Uc-Rc1"/>
                                 </constraints>
@@ -112,6 +112,13 @@
                                     <constraint firstAttribute="height" constant="50" id="axc-xs-MdN"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpM-6H-YnZ" customClass="OTPFieldView" customModule="iOSComponents">
+                                <rect key="frame" x="16" y="345.5" width="382" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="89g-T9-g07"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -130,18 +137,21 @@
                             <constraint firstItem="fe1-V1-fxn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="Ns0-Ns-9IN"/>
                             <constraint firstAttribute="trailing" secondItem="j4C-lc-dtV" secondAttribute="trailing" constant="16" id="R9w-GY-nh5"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8XG-R9-YPv" secondAttribute="trailing" constant="20" id="SmQ-rk-irx"/>
+                            <constraint firstItem="j4C-lc-dtV" firstAttribute="trailing" secondItem="wpM-6H-YnZ" secondAttribute="trailing" id="Z7g-Ns-l33"/>
                             <constraint firstItem="CSq-cG-MXH" firstAttribute="top" secondItem="f3i-VF-GLj" secondAttribute="bottom" constant="30" id="ajK-pU-9gw"/>
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="cID-gd-r4l"/>
                             <constraint firstItem="Ybt-1h-GQP" firstAttribute="top" secondItem="fe1-V1-fxn" secondAttribute="bottom" constant="15" id="fN8-BG-4NO"/>
                             <constraint firstItem="8XG-R9-YPv" firstAttribute="top" secondItem="7FW-Oc-Cf2" secondAttribute="bottom" constant="20" id="fyV-Lc-Cvi"/>
                             <constraint firstItem="Ybt-1h-GQP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="gHm-GV-2w3"/>
                             <constraint firstItem="CSq-cG-MXH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="30" id="kuh-4M-nc1"/>
-                            <constraint firstItem="f3i-VF-GLj" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="lRU-AM-kmg"/>
+                            <constraint firstItem="f3i-VF-GLj" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="lRU-AM-kmg"/>
+                            <constraint firstItem="j4C-lc-dtV" firstAttribute="leading" secondItem="wpM-6H-YnZ" secondAttribute="leading" id="lZj-YU-md2"/>
                             <constraint firstItem="jeb-Vn-VXH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="5" id="nGz-wT-i8C"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ybt-1h-GQP" secondAttribute="trailing" constant="20" id="nXM-Ko-bIg"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="top" secondItem="j4C-lc-dtV" secondAttribute="bottom" constant="20" id="p6t-c7-aeB"/>
                             <constraint firstItem="j4C-lc-dtV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="s7m-0L-GfC"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" constant="50" id="v2A-bz-ELN"/>
+                            <constraint firstItem="j4C-lc-dtV" firstAttribute="top" secondItem="wpM-6H-YnZ" secondAttribute="bottom" constant="10" id="vIb-PK-EI6"/>
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="wrl-Uo-4MQ"/>
                         </constraints>
                     </view>
@@ -150,6 +160,7 @@
                         <outlet property="gradientBgView" destination="f3i-VF-GLj" id="VMo-B8-mcV"/>
                         <outlet property="m2pButton" destination="CSq-cG-MXH" id="WSJ-gg-Fkw"/>
                         <outlet property="otpView" destination="j4C-lc-dtV" id="e6q-Mu-aH5"/>
+                        <outlet property="otpView_Two" destination="wpM-6H-YnZ" id="scU-3O-jkb"/>
                         <outlet property="pageControl" destination="5aX-Du-hx1" id="WBt-kC-Yns"/>
                         <outlet property="titleLbl" destination="7FW-Oc-Cf2" id="Twn-zB-bzJ"/>
                         <outlet property="toolTipBtn" destination="Ybt-1h-GQP" id="mOO-2z-ole"/>

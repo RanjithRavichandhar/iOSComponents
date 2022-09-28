@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var topTabBar: M2PTopTabBar!
     @IBOutlet weak var slider: M2PSlider?
     @IBOutlet weak var otpView: OTPFieldView?
+    @IBOutlet weak var otpView_Two: OTPFieldView?
     @IBOutlet weak var pageControl: M2PCustomPageControl!
     
     private var indicatorValue: Float = 0.0
@@ -57,6 +58,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.m2pSetupOtpView()
         self.otpView?.initializeUI()
+        
+        self.m2pSetupotpView_Two()
+        self.otpView_Two?.initializeUI()
         
         self.progressBarTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.updateProgressView), userInfo: nil, repeats: true)
         
@@ -307,6 +311,7 @@ extension ViewController: M2PCustomAlertDelegate {
 
 // MARK: - OTPFieldViewDelegate
 extension ViewController: OTPFieldViewDelegate {
+  
     
     // MARK: - OTP
     func m2pSetupOtpView(){
@@ -320,13 +325,33 @@ extension ViewController: OTPFieldViewDelegate {
         self.otpView?.fieldSize = 42
         self.otpView?.separatorSpace = 15
         self.otpView?.shouldAllowIntermediateEditing = false
+        self.otpView?.secureEntry = true
+        self.otpView?.OTPTag = 1
         self.otpView?.delegate = self
+    }
+    
+    // MARK: - OTP
+    func m2pSetupotpView_Two(){
+        self.otpView_Two?.displayType = .underlinedBottom
+        self.otpView_Two?.fieldsCount = 6
+        self.otpView_Two?.fieldBorderWidth = 1
+        self.otpView_Two?.defaultBorderColor = UIColor.borderDefault
+        self.otpView_Two?.filledBorderColor = UIColor.linksText
+        self.otpView_Two?.cursorColor = UIColor.primaryActive
+        self.otpView_Two?.filledBackgroundColor = UIColor.background
+        self.otpView_Two?.fieldSize = 42
+        self.otpView_Two?.separatorSpace = 15
+        self.otpView_Two?.shouldAllowIntermediateEditing = false
+        self.otpView_Two?.secureEntry = true
+        self.otpView_Two?.secureType = .STAR
+        self.otpView_Two?.OTPTag = 2
+        self.otpView_Two?.delegate = self
     }
     
     func enteredOTP(otp: String) {
         print("OTP:\(otp)")
     }
-    func hasEnteredAllOTP(hasEnteredAll hasEntered: Bool) -> Bool {
+    func hasEnteredAllOTP(_ otpView: OTPFieldView,hasEnteredAll hasEntered: Bool) -> Bool {
         if hasEntered {
             return true
         }else{
@@ -337,7 +362,7 @@ extension ViewController: OTPFieldViewDelegate {
         print("otp index:\(index)")
         return true
     }
-    func enteredOTP(otp otpString: String, otpView: OTPFieldView) {
-        print("OTPString: \(otpString)")
+    func enteredOTP(_ otpView: OTPFieldView,otp otpString: String) {
+        print("OTPString: \(otpView.OTPTag) :\(otpString)")
     }
 }
