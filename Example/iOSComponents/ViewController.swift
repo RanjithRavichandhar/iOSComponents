@@ -275,8 +275,8 @@ extension ViewController {
         customAlert.alertMessageColor = UIColor.focusedLine
         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
-        customAlert.alertTitle = "Verification Verification Verification Verification Verification"
-        customAlert.alertMessage = "Your Information in the audit, Please wait! It might be helpful to note that, inside my workspace Project Navigator, for some reason I have "
+        customAlert.alertTitle = "Verification"
+        customAlert.alertMessage = "Your Information in the audit"
         customAlert.statusImage = UIImage.init(named: "alert")
         customAlert.delegate = self
         customAlert.alertTag = 1
@@ -298,8 +298,8 @@ extension ViewController {
         customAlert.alertMessageColor = UIColor.focusedLine
         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
-        customAlert.alertTitle = "Verification VerificationVerification Verification VerificationVerification"
-        customAlert.alertMessage = "Your Information in the audit, Please wait! It might be helpful to note that, inside my workspace Project Navigator, for some reason I have "
+        customAlert.alertTitle = "Verification"
+        customAlert.alertMessage = "Your Information in the audit, Please wait!"
         customAlert.statusImage = UIImage.init(named: "alert")
         customAlert.delegate = self
         customAlert.alertTag = 1
@@ -344,7 +344,7 @@ extension ViewController: M2PCustomAlertDelegate {
 
 // MARK: - OTPFieldViewDelegate
 extension ViewController: OTPFieldViewDelegate {
-    
+   
     // MARK: - OTP
     func m2pSetupOtpView(){
         self.otpView?.displayType = .square
@@ -376,9 +376,10 @@ extension ViewController: OTPFieldViewDelegate {
         self.otpView_Two?.delegate = self
     }
     
-    func enteredOTP(_ OTPView: OTPFieldView,otp: String) {
-        print("OTP:\((OTPView.tag,otp))")
+    func enteredOTP(otp: String) {
+        print("OTP:\(otp))")
     }
+    
     func hasEnteredAllOTP(hasEnteredAll hasEntered: Bool) -> Bool {
         if hasEntered {
             return true
