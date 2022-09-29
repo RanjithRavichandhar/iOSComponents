@@ -19,7 +19,11 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'iOSComponents'
 ```
-
+## Usage
+```js
+func Setup() {
+}
+```
 ## Author
 
 RanjithRavichandhar, ranjith@m2p.in
