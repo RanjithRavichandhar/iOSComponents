@@ -11,7 +11,8 @@ public enum M2PInputFieldType {
     case Default_TextField
     case Password
     case Dropdown
-    case Calendar
+    case CalendarDefault
+    case CalendarCustom
 }
 
 public enum M2PInputFieldStyle {

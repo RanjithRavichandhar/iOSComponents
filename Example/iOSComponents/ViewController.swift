@@ -140,12 +140,16 @@ class ViewController: UIViewController {
 //        let config = M2PInputFieldConfig(placeholder: "Enter name", fieldStyle: .Form_Floating, fieldFonts: fonts, fieldColors: colors)
         let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Floating)
         
-        inputField.M2Psetup(type: .Default_TextField, config: config) // , leftImage: UIImage(named: "pencil"))
+        inputField.M2Psetup(type: .CalendarDefault, config: config) // , leftImage: UIImage(named: "pencil"))
         
         inputField.M2PonClickFieldTypeView = { (type, isActive) in
             if type == .Dropdown {
                 self.titleLbl.text = "Dropdown \(isActive ? "Active" : "Inactive")"
             }
+            if type == .CalendarCustom {
+                inputField.M2PSetInputFieldState(isActive: isActive)
+            }
+            
         }
         
         view.addSubview(inputField)
