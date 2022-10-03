@@ -80,6 +80,8 @@ class ViewController: UIViewController {
         
         setupMenuBar()
         
+        setupSearchBar()  
+        
         setupInputField()
         
         //Page Control
@@ -126,6 +128,30 @@ class ViewController: UIViewController {
         }
     }
     
+    private func setupSearchBar() {
+        let searchbox = M2PSearchBar()
+        searchbox.translatesAutoresizingMaskIntoConstraints = false
+        
+        searchbox.M2PonClickMic = {
+            print("##Clicked Mic")
+        }
+        
+        searchbox.M2PonClickCancel = {
+            print("##Clicked Cancel button")
+        }
+        
+        searchbox.M2PonSearchTextChange = { text in
+            print("##Search Text: \(text)")
+        }
+        
+        view.addSubview(searchbox)
+        //Constraints
+        searchbox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        searchbox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        searchbox.topAnchor.constraint(equalTo: self.gradientBgView.bottomAnchor, constant: 10).isActive = true
+        searchbox.heightAnchor.constraint(equalToConstant: 52).isActive = true
+    }
+    
     private func setupInputField() {
         inputFieldView = M2PInputField(frame: CGRect(x: 20, y: view.frame.midY - 120, width: view.frame.width - 40 , height: 80))
         
@@ -140,7 +166,7 @@ class ViewController: UIViewController {
 //        let config = M2PInputFieldConfig(placeholder: "Enter name", fieldStyle: .Form_Floating, fieldFonts: fonts, fieldColors: colors)
         let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Floating)
         
-        inputField.M2Psetup(type: .CalendarDefault, config: config) // , leftImage: UIImage(named: "pencil"))
+        inputField.M2Psetup(type: .Default_TextField, config: config) // , leftImage: UIImage(named: "pencil"))
         
         inputField.M2PonClickFieldTypeView = { (type, isActive) in
             if type == .Dropdown {
