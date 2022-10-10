@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var slider: M2PSlider?
     @IBOutlet weak var otpView: OTPFieldView?
     @IBOutlet weak var pageControl: M2PCustomPageControl!
+    @IBOutlet private weak var datepickerTF:UITextField!
     
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
@@ -94,6 +95,8 @@ class ViewController: UIViewController {
         //        self.slider.setThumbImage(UIImage(named: "thumbNormal"), for: .normal)
         
         setList()
+        datepickerTF.isUserInteractionEnabled = true
+        datepickerTF.addTarget(self, action: #selector(loadDatePicker), for: .touchDown)
     }
     
     private func setupMenuBar() {
@@ -137,12 +140,16 @@ class ViewController: UIViewController {
 //        let config = M2PInputFieldConfig(placeholder: "Enter name", fieldStyle: .Form_Floating, fieldFonts: fonts, fieldColors: colors)
         let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Floating)
         
-        inputField.M2Psetup(type: .Default_TextField, config: config) // , leftImage: UIImage(named: "pencil"))
+        inputField.M2Psetup(type: .CalendarDefault, config: config) // , leftImage: UIImage(named: "pencil"))
         
         inputField.M2PonClickFieldTypeView = { (type, isActive) in
             if type == .Dropdown {
                 self.titleLbl.text = "Dropdown \(isActive ? "Active" : "Inactive")"
             }
+            if type == .CalendarCustom {
+                inputField.M2PSetInputFieldState(isActive: isActive)
+            }
+            
         }
         
         view.addSubview(inputField)
@@ -373,4 +380,14 @@ extension ViewController: OTPFieldViewDelegate {
     func enteredOTP(otp otpString: String, otpView: OTPFieldView) {
         print("OTPString: \(otpString)")
     }
+    
+    @objc private func loadDatePicker(){
+        M2PDatePicker.shared.m2pAddDatePicker(backGroundColor: .background, textColor: .secondaryRedColor)
+        M2PDatePicker.shared.getSelectedDate = { date in
+            if let fetchdate = date {
+                self.datepickerTF.text = fetchdate.description
+            }
+        }
+    }
+    
 }

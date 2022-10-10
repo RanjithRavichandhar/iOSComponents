@@ -121,8 +121,9 @@ public class M2PDatePicker:UIView {
 //MARK: Initialize UI and its Actions
 extension M2PDatePicker {
     
-    public func m2pConfigureDatePicker(contentView: UIViewController, backGroundColor: UIColor, textColor: UIColor, minDate: Date?, maxDate: Date?, dismissOuter: Bool){
+    public func m2pAddDatePicker(backGroundColor: UIColor, textColor: UIColor, minDate: Date? = nil, maxDate: Date? = nil){
         
+        if let topVC = getTopViewController() {
 //      viewContent.backgroundColor = backGroundColor
         date_Picker.backgroundColor = backGroundColor
 //      date_Picker.inputView?.backgroundColor = backGroundColor
@@ -131,21 +132,22 @@ extension M2PDatePicker {
         date_Picker.setValue(textColor, forKey: "textColor")
         date_Picker.maximumDate = (maxDate != nil) ? maxDate! : maxDate
         date_Picker.minimumDate = (minDate != nil) ? minDate! : minDate
-        self.datePickerView(view:contentView)
+            self.datePickerView(view:topVC.view)
+        }
     }
     
-    private func datePickerView(view: UIViewController) {
-        view.view.addSubview(dimmedView)
+    private func datePickerView(view: UIView) {
+        view.addSubview(dimmedView)
         self.dimmedView.addSubview(viewContent)
         self.viewContent.addSubview(self.tool_Bar)
         self.viewContent.addSubview(self.date_Picker)
         NSLayoutConstraint.activate([
-            dimmedView.topAnchor.constraint(equalTo: view.view.topAnchor),
-            dimmedView.trailingAnchor.constraint(equalTo: view.view.trailingAnchor),
-            dimmedView.leadingAnchor.constraint(equalTo: view.view.leadingAnchor),
-            dimmedView.bottomAnchor.constraint(equalTo: view.view.bottomAnchor),
-            viewContent.centerXAnchor.constraint(equalTo: view.view.centerXAnchor),
-            viewContent.centerYAnchor.constraint(equalTo: view.view.centerYAnchor),
+            dimmedView.topAnchor.constraint(equalTo: view.topAnchor),
+            dimmedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dimmedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dimmedView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            viewContent.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            viewContent.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             viewContent.heightAnchor.constraint(equalTo: dimmedView.heightAnchor, multiplier: 0.45),
             viewContent.widthAnchor.constraint(equalTo: dimmedView.widthAnchor, multiplier: 0.9),
             tool_Bar.heightAnchor.constraint(equalToConstant: 50),
@@ -157,6 +159,19 @@ extension M2PDatePicker {
             date_Picker.trailingAnchor.constraint(equalTo: viewContent.trailingAnchor),
             date_Picker.bottomAnchor.constraint(equalTo: viewContent.bottomAnchor,constant: 0)
         ])
+    }
+    
+    private func getTopViewController(base: UIViewController? = UIApplication.shared.windows.first?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return getTopViewController(base: nav.visibleViewController)
+
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopViewController(base: selected)
+
+        } else if let presented = base?.presentedViewController {
+            return getTopViewController(base: presented)
+        }
+        return base
     }
 }
 
