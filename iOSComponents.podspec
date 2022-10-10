@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   s.source_files = 'iOSComponents/Classes/**/*'
   s.source           = { :git => 'https://github.com/RanjithRavichandhar/iOSComponents.git', :tag => s.version.to_s }
   s.resource_bundles = {
-    'Resources' => ['iOSComponents/Assets/*{.png,.json,.xib}']
+    'Resources' => ['iOSComponents/Assets/*{.png,.json,.xib,.wav}']
   }
   
   # build settings
