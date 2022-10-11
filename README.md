@@ -287,7 +287,7 @@ topNavigation.M2POnClickBack = {
 
 # M2PBottomSheet
 
-![BottomSheet](https://user-images.githubusercontent.com/112399679/195091561-340131bd-db7a-4d7c-ad4f-35812665c766.png)
+<img width="299" alt="Screenshot 2022-10-11 at 6 25 23 PM" src="https://user-images.githubusercontent.com/112399679/195097056-584fd576-7702-4619-b328-fdc8260616a0.png">
 
 **Note:- Root View Controller Must set in app delegate.**
 
