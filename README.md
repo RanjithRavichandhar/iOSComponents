@@ -373,7 +373,7 @@ chipView?.M2PSetUpChip(chipType: .info,
 
 # M2PActionSheet
 
-![MicrosoftTeams-image (1)](https://user-images.githubusercontent.com/112399679/195091669-87e23569-48c5-4505-af30-d2596178a8bd.png)
+<img width="301" alt="Screenshot 2022-10-11 at 6 19 15 PM" src="https://user-images.githubusercontent.com/112399679/195095360-c1c4ed5f-8f15-408f-a4e7-18848794ca40.png">
 
 - Here, `M2PActionSheet` is a class of UIAlertController. As usual you can initiate the M2PActionSheet as UIAlertController. And also you can add additional functionality like Cancel, Ok button ect...
 ```js
