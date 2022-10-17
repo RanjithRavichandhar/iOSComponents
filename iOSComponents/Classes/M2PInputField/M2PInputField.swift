@@ -6,12 +6,7 @@
 //
 
 import Foundation
-
-//public enum FieldState : String {
-//    case active = "Active"
-//    case inactive = "Inactive"
-//}
-
+import UIKit
 
 public class M2PInputField: UIView {
     
@@ -19,39 +14,7 @@ public class M2PInputField: UIView {
     
     let minimumHeight = 85
     
-    let imageHeight = 24
-    let imageWidth = 24
-        
-    let dateFormatForDatePicker = "dd/MM/yyyy"
-    
     // MARK: Main Content View
-    
-    var textFieldColor_Active: UIColor {
-        if #available(iOS 13, *) {
-            if UITraitCollection.current.userInterfaceStyle == .dark {
-                /// Return the color for Dark Mode
-                return UIColor.secondaryWhiteColor
-            } else {
-                /// Return the color for Light Mode
-                return UIColor.primaryColor
-            }
-        } else {
-            /// Return a fallback color for iOS 12 and lower.
-            return UIColor.secondaryWhiteColor
-        }
-    }
-    
-    var textFieldColor_Inactive: UIColor = {
-        if #available(iOS 13, *) {
-            if UITraitCollection().userInterfaceStyle == .dark {
-                return UIColor.lightGray
-            } else {
-                return UIColor.lightGray
-            }
-        } else {
-            return UIColor.lightGray
-        }
-    }()
     
     let contentView: UIView = {
         let mainView = UIView()
@@ -155,14 +118,48 @@ public class M2PInputField: UIView {
     let floatingLabel: UILabel = UILabel(frame: CGRect.zero) // Label
     let floatingLabelHeight: CGFloat = 20 // Default height
     
+    // MARK: Variables
+    
+    var rightImageSize =  CGSize(width: 24, height: 24)
+    var leftImageSize =  CGSize(width: 24, height: 24)
+    
     var fieldConfig = M2PInputFieldConfig()
     
     var isTextFieldActive = false
     var fieldType: M2PInputFieldType = .Default_TextField
     var fieldStyle: M2PInputFieldStyle = .Form_Floating
     var isFieldTypeIconOn = false
+
+    var textFieldColor_Active: UIColor {
+        if #available(iOS 13, *) {
+            if UITraitCollection.current.userInterfaceStyle == .dark {
+                /// Return the color for Dark Mode
+                return UIColor.secondaryWhiteColor
+            } else {
+                /// Return the color for Light Mode
+                return UIColor.primaryColor
+            }
+        } else {
+            /// Return a fallback color for iOS 12 and lower.
+            return UIColor.secondaryWhiteColor
+        }
+    }
+    
+    var textFieldColor_Inactive: UIColor = {
+        if #available(iOS 13, *) {
+            if UITraitCollection().userInterfaceStyle == .dark {
+                return UIColor.lightGray
+            } else {
+                return UIColor.lightGray
+            }
+        } else {
+            return UIColor.lightGray
+        }
+    }()
     
     var datePicker = UIDatePicker()
+    
+    public var M2PdateFormatForDatePicker = "dd/MM/yyyy"
     
     public var M2PonClickLeftView: (() -> ())?
     public var M2PonClickRightView: (() -> ())?
@@ -216,19 +213,19 @@ public class M2PInputField: UIView {
     }
     
     private func setupDatePicker() {
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        //datePicker.backgroundColor = .gray
-        datePicker.setValue(1, forKeyPath: "alpha")
-        
-        datePicker.datePickerMode = .date
-        datePicker.calendar = Calendar.init(identifier: .gregorian)
-        if #available(iOS 13.4, *) {
-            datePicker.preferredDatePickerStyle = .compact
-        } else {
-            // Fallback on earlier versions
-        }
-        setupDoneToolbar()
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
+//        datePicker.translatesAutoresizingMaskIntoConstraints = false
+//        //datePicker.backgroundColor = .gray
+//        datePicker.setValue(1, forKeyPath: "alpha")
+//
+//        datePicker.datePickerMode = .date
+//        datePicker.calendar = Calendar.init(identifier: .gregorian)
+//        if #available(iOS 13.4, *) {
+//            datePicker.preferredDatePickerStyle = .compact
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//        setupDoneToolbar()
+//        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
     }
     
     private func setupDoneToolbar() {
@@ -279,31 +276,28 @@ public class M2PInputField: UIView {
     
     @objc func onClickFieldTypeIcon() {
         isFieldTypeIconOn = !isFieldTypeIconOn
-        if fieldType == .Dropdown || fieldType == .Calendar {
-            if fieldType == .Calendar {
-                if isFieldTypeIconOn, let topVC = getTopViewController() {
-                    topVC.view.addSubview(datePicker)
-                    setDatePickerConstraints(on: topVC.view)
-                } else if !isFieldTypeIconOn {
-                    datePicker.removeFromSuperview()
-                }
-            }
-            setActiveInactiveState(isActiveflag: !isTextFieldActive)
-        }
         setupFieldTypeImage()
         fieldTypeIconAction()
     }
     
+    @objc func onClickLeftView() {
+        M2PonClickLeftView?()
+    }
+    
+    @objc func onClickRightView() {
+        M2PonClickRightView?()
+    }
+    
     @objc private func datePickerValueChanged(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat  = dateFormatForDatePicker
+        dateFormatter.dateFormat  = M2PdateFormatForDatePicker
         // textField.text = dateFormatter.string(from: sender.date)
         setTextFieldValue(with: dateFormatter.string(from: sender.date) )
     }
     
     @objc private func handleDoneButton(sender: UIButton) {
         let formatter = DateFormatter()
-        formatter.dateFormat = dateFormatForDatePicker
+        formatter.dateFormat = M2PdateFormatForDatePicker
         if let selectedDate = (textField.inputView as? UIDatePicker)?.date {
             // textField.text = formatter.string(from: selectedDate)
             setTextFieldValue(with: formatter.string(from: selectedDate))
@@ -364,9 +358,8 @@ public class M2PInputField: UIView {
         case .Dropdown:
             textField.isUserInteractionEnabled = false
             textFieldStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickFieldTypeIcon)))
-        case .Calendar:
+        case .CalendarDefault, .CalendarCustom:
             textField.isUserInteractionEnabled = false
-            setupDatePicker()
             textFieldStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickFieldTypeIcon)))
         }
     }
@@ -380,7 +373,7 @@ public class M2PInputField: UIView {
             fieldTypeImageView.image = textField.isSecureTextEntry ? getImage(with: "eye.png") : getImage(with: "eye_off.png")
         case .Dropdown:
             fieldTypeImageView.image = isFieldTypeIconOn ? getImage(with: "dropdown_active.png") : getImage(with: "dropdown_inactive.png")
-        case .Calendar:
+        case .CalendarDefault, .CalendarCustom:
             fieldTypeImageView.image = getImage(with: "calendar.png") // Calendar icon
         }
         
@@ -395,8 +388,21 @@ public class M2PInputField: UIView {
         case .Password:
             break
         case .Dropdown:
+            setActiveInactiveState(isActiveflag: !isTextFieldActive)
             M2PonClickFieldTypeView?(fieldType, isFieldTypeIconOn)
-        case .Calendar:
+        case .CalendarDefault:
+            setActiveInactiveState(isActiveflag: true)
+            M2PDatePicker.shared.m2pAddDatePicker(backGroundColor: .backgroundLightVarient, textColor: .primaryActive)
+            M2PDatePicker.shared.getSelectedDate = { selectedDate in
+                if let date = selectedDate {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat  = self.M2PdateFormatForDatePicker
+                    self.setTextFieldValue(with: dateFormatter.string(from: date))
+                    self.setActiveInactiveState(isActiveflag: false)
+                }
+            }
+            M2PonClickFieldTypeView?(fieldType, isFieldTypeIconOn)
+        case .CalendarCustom:
             M2PonClickFieldTypeView?(fieldType, isFieldTypeIconOn)
         }
     }
@@ -406,9 +412,7 @@ public class M2PInputField: UIView {
     public func M2Psetup(type: M2PInputFieldType, config: M2PInputFieldConfig, leftImage: UIImage? = nil, rightImage: UIImage? = nil) {
         
         self.fieldType = type
-        //if let configuration =  config {
         self.fieldConfig = config
-        //}
         self.fieldStyle = fieldConfig.fieldStyle
         
         //Input Field data - related
@@ -422,11 +426,7 @@ public class M2PInputField: UIView {
         
         // Left View
         if let image = leftImage {
-            leftImageView.image = image
-            leftView.addSubview(leftImageView)
-            leftView.widthAnchor.constraint(equalToConstant: 24).isActive = true
-            setLeftImageConstraints()
-            contentStackView.insertArrangedSubview(leftView, at: 0)
+            M2PsetLeftImage(image: image)
         }
         
         // Field Type configurations
@@ -442,11 +442,7 @@ public class M2PInputField: UIView {
         
         // Right View
         if let image = rightImage {
-            rightImageView.image = image
-            rightView.addSubview(rightImageView)
-            rightView.widthAnchor.constraint(equalToConstant: 24).isActive = true
-            setRightImageConstraints()
-            contentStackView.addArrangedSubview(rightView)
+            M2PsetRightImage(image: image)
         }
         
         updateConstraintsBasedOnType()
@@ -457,7 +453,6 @@ public class M2PInputField: UIView {
         if fieldStyle == .Form_Floating || fieldStyle == .BottomLine_Floating {
             addFloatingLabel()
         }
-//        self.textField.text = value
         setTextFieldValue(with: value)
     }
     
@@ -488,6 +483,45 @@ public class M2PInputField: UIView {
         setActiveInactiveState(isActiveflag: isTextFieldActive)
     }
     
+    public func M2PsetLeftImage(image: UIImage?, size: CGSize? = nil) {
+        if let leftImage = image {
+            leftImageSize = size ?? leftImageSize
+            leftImageView.image = leftImage
+            leftView.addSubview(leftImageView)
+            leftView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickLeftView)))
+            leftView.widthAnchor.constraint(equalToConstant: leftImageSize.width).isActive = true
+            setLeftImageConstraints()
+            contentStackView.insertArrangedSubview(leftView, at: 0)
+        } else {
+            // contentStackView.removeArrangedSubview(leftView)
+            if let leftView = contentStackView.arrangedSubviews.first(where: {$0 == leftView}) {
+                leftView.removeFromSuperview()
+            }
+        }
+    }
+
+    public func M2PsetRightImage(image: UIImage?, size: CGSize? = nil) {
+        if let rightImage = image {
+            rightImageSize = size ?? rightImageSize
+            rightImageView.image = rightImage
+            rightView.addSubview(rightImageView)
+            rightView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickRightView)))
+            rightView.widthAnchor.constraint(equalToConstant: rightImageSize.width).isActive = true
+            setRightImageConstraints()
+            contentStackView.addArrangedSubview(rightView)
+        } else {
+            // contentStackView.removeArrangedSubview(rightView)
+            if let rightView = contentStackView.arrangedSubviews.first(where: {$0 == rightView}) {
+                rightView.removeFromSuperview()
+            }
+        }
+    }
+    
+    public func M2PSetInputFieldState(isActive: Bool) {
+        setActiveInactiveState(isActiveflag: isActive)
+    }
+    
+    
     private func setupFeildView(for style: M2PInputFieldStyle) {
         let currentStateColor = isTextFieldActive ? textFieldColor_Active : textFieldColor_Inactive
         switch style {
@@ -516,7 +550,7 @@ public class M2PInputField: UIView {
         contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         // contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalToConstant: self.frame.height * 0.75).isActive = true
+        contentView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.75).isActive = true
     }
     
     func setBottomInfoViewConstraints() {
@@ -549,22 +583,23 @@ public class M2PInputField: UIView {
     }
     
     func setLeftImageConstraints() {
-        leftImageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        leftImageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        leftImageView.heightAnchor.constraint(equalToConstant: leftImageSize.height).isActive = true
+        leftImageView.widthAnchor.constraint(equalToConstant: leftImageSize.width).isActive = true
         leftImageView.centerXAnchor.constraint(equalTo: leftView.centerXAnchor).isActive = true
         leftImageView.centerYAnchor.constraint(equalTo: leftView.centerYAnchor).isActive = true
     }
     
     func setFieldTypeImageConstraints() {
-        fieldTypeImageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        fieldTypeImageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        let value : CGFloat = fieldType == .Default_TextField ? 20 : 24
+        fieldTypeImageView.heightAnchor.constraint(equalToConstant: value).isActive = true
+        fieldTypeImageView.widthAnchor.constraint(equalToConstant: value).isActive = true
        fieldTypeImageView.centerXAnchor.constraint(equalTo: fieldTypeView.centerXAnchor).isActive = true
         fieldTypeImageView.centerYAnchor.constraint(equalTo: fieldTypeView.centerYAnchor).isActive = true
     }
     
     func setRightImageConstraints() {
-        rightImageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        rightImageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        rightImageView.heightAnchor.constraint(equalToConstant: rightImageSize.height).isActive = true
+        rightImageView.widthAnchor.constraint(equalToConstant: rightImageSize.width).isActive = true
         rightImageView.centerXAnchor.constraint(equalTo: rightView.centerXAnchor).isActive = true
         rightImageView.centerYAnchor.constraint(equalTo: rightView.centerYAnchor).isActive = true
     }

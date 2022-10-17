@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var otpView: OTPFieldView?
     @IBOutlet weak var otpView_Two: OTPFieldView?
     @IBOutlet weak var pageControl: M2PCustomPageControl!
+    @IBOutlet private weak var datepickerTF:UITextField!
     
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
@@ -83,6 +84,8 @@ class ViewController: UIViewController {
         
         setupMenuBar()
         
+        setupSearchBar()  
+        
         setupInputField()
         
         //Page Control
@@ -98,6 +101,8 @@ class ViewController: UIViewController {
         //        self.slider.setThumbImage(UIImage(named: "thumbNormal"), for: .normal)
         
         setList()
+        datepickerTF.isUserInteractionEnabled = true
+        datepickerTF.addTarget(self, action: #selector(loadDatePicker), for: .touchDown)
     }
     
     private func setupMenuBar() {
@@ -127,6 +132,30 @@ class ViewController: UIViewController {
         }
     }
     
+    private func setupSearchBar() {
+        let searchbox = M2PSearchBar()
+        searchbox.translatesAutoresizingMaskIntoConstraints = false
+        
+        searchbox.M2PonClickMic = {
+            print("##Clicked Mic")
+        }
+        
+        searchbox.M2PonClickCancel = {
+            print("##Clicked Cancel button")
+        }
+        
+        searchbox.M2PonSearchTextChange = { text in
+            print("##Search Text: \(text)")
+        }
+        
+        view.addSubview(searchbox)
+        //Constraints
+        searchbox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        searchbox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        searchbox.topAnchor.constraint(equalTo: self.gradientBgView.bottomAnchor, constant: 10).isActive = true
+        searchbox.heightAnchor.constraint(equalToConstant: 52).isActive = true
+    }
+    
     private func setupInputField() {
         inputFieldView = M2PInputField(frame: CGRect(x: 20, y: view.frame.midY - 120, width: view.frame.width - 40 , height: 80))
         
@@ -147,6 +176,10 @@ class ViewController: UIViewController {
             if type == .Dropdown {
                 self.titleLbl.text = "Dropdown \(isActive ? "Active" : "Inactive")"
             }
+            if type == .CalendarCustom {
+                inputField.M2PSetInputFieldState(isActive: isActive)
+            }
+            
         }
         
         view.addSubview(inputField)
@@ -392,4 +425,14 @@ extension ViewController: OTPFieldViewDelegate {
     func enteredOTP(otp otpString: String, otpView: OTPFieldView) {
         print("OTPString: \(otpString)")
     }
+    
+    @objc private func loadDatePicker(){
+        M2PDatePicker.shared.m2pAddDatePicker(backGroundColor: .background, textColor: .secondaryRedColor)
+        M2PDatePicker.shared.getSelectedDate = { date in
+            if let fetchdate = date {
+                self.datepickerTF.text = fetchdate.description
+            }
+        }
+    }
+    
 }
