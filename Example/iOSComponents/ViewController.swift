@@ -319,7 +319,7 @@ extension ViewController {
 
 // MARK: - M2PPopAlertDelegate
 extension ViewController: M2PPopAlertDelegate {
-    func learnButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
+    func secondaryButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
         print("Learn button pressed")
     }
     func okButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
@@ -344,7 +344,7 @@ extension ViewController: M2PCustomAlertDelegate {
 
 // MARK: - OTPFieldViewDelegate
 extension ViewController: OTPFieldViewDelegate {
-   
+    
     // MARK: - OTP
     func m2pSetupOtpView(){
         self.otpView?.displayType = .square
@@ -356,7 +356,6 @@ extension ViewController: OTPFieldViewDelegate {
         self.otpView?.filledBackgroundColor = UIColor.background
         self.otpView?.fieldSize = 42
         self.otpView?.separatorSpace = 15
-        self.otpView?.tag = 1
         self.otpView?.shouldAllowIntermediateEditing = false
         self.otpView?.delegate = self
     }
@@ -371,7 +370,6 @@ extension ViewController: OTPFieldViewDelegate {
         self.otpView_Two?.filledBackgroundColor = UIColor.background
         self.otpView_Two?.fieldSize = 42
         self.otpView_Two?.separatorSpace = 15
-        self.otpView_Two?.tag = 2
         self.otpView_Two?.shouldAllowIntermediateEditing = false
         self.otpView_Two?.delegate = self
     }
