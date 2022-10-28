@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var slider: M2PSlider?
     @IBOutlet weak var otpView: OTPFieldView?
     @IBOutlet weak var pageControl: M2PCustomPageControl!
-    @IBOutlet private weak var datepickerTF:UITextField!
     
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
@@ -29,21 +28,23 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var m2pButton: M2PButton! {
         didSet{
-            self.m2pButton.M2PConfig(type: .custom, title: "IndusLogo",
-                                  buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
-                                  isPrimary: true,
-                                  bgColor: .clear,
-                                  leftImg: UIImage(named:"plus.png"),
-                                  rightImg: UIImage(named:"plus.png"),
-                                  leftIconWidth: 20,
-                                  leftIconHeight: 20,
-                                  rightIconWidth: 20,
-                                  rightIconHeight: 20,
-                                  state: .ENABLE) // ENABLE / DISABLE
+            self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
+                                           buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
+                                           isPrimary: true,
+                                           bgColor: .clear,
+                                           leftImg: UIImage(named:"plus.png"),
+                                           rightImg: UIImage(named:"plus.png"),
+                                           leftIconWidth: 20,
+                                           leftIconHeight: 20,
+                                           rightIconWidth: 20,
+                                           rightIconHeight: 20,
+                                           state: .ENABLE, // ENABLE / DISABLE
+                                           leftIconTint: .orange,
+                                           rightIconTint: .lightGray
+                                        )
             self.m2pButton.onClick = { sender in
                 self.index -= 1
                 self.topTabBar.updateSelectedIndexInCollection(at:self.index)
-                self.inputFieldView?.M2PhideErrorMessage()
             }
 
         }
@@ -51,8 +52,6 @@ class ViewController: UIViewController {
     
     //Page control
     var customPageControl = M2PCustomPageControl()
-    //Input field
-    var inputFieldView: M2PInputField?
     
     // Menu bar
     var index = 4
@@ -60,8 +59,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.m2pSetupOtpView()
-//        self.otpView?.initializeUI()
+        self.m2pSetupOtpView()
+        self.otpView?.initializeUI()
         
         self.progressBarTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.updateProgressView), userInfo: nil, repeats: true)
         
@@ -80,10 +79,6 @@ class ViewController: UIViewController {
         
         setupMenuBar()
         
-        setupSearchBar()  
-        
-        setupInputField()
-        
         //Page Control
         pageControl.setup(for: 4, with: M2PPageControlConfig(image_inactive: UIImage(named: "pageControlIndicator")))
         self.view.addSubview(pageControl)
@@ -97,8 +92,6 @@ class ViewController: UIViewController {
         //        self.slider.setThumbImage(UIImage(named: "thumbNormal"), for: .normal)
         
         setList()
-        datepickerTF.isUserInteractionEnabled = true
-        datepickerTF.addTarget(self, action: #selector(loadDatePicker), for: .touchDown)
     }
     
     private func setupMenuBar() {
@@ -123,63 +116,7 @@ class ViewController: UIViewController {
             
             self.pageControl?.currentPage = selectedIndex
             self.customPageControl.currentPage = selectedIndex
-            
-            self.inputFieldView?.M2PshowErrorWith(message: "Error \(selectedIndex)")
         }
-    }
-    
-    private func setupSearchBar() {
-        let searchbox = M2PSearchBar()
-        searchbox.translatesAutoresizingMaskIntoConstraints = false
-        
-        searchbox.M2PonClickMic = {
-            print("##Clicked Mic")
-        }
-        
-        searchbox.M2PonClickCancel = {
-            print("##Clicked Cancel button")
-        }
-        
-        searchbox.M2PonSearchTextChange = { text in
-            print("##Search Text: \(text)")
-        }
-        
-        view.addSubview(searchbox)
-        //Constraints
-        searchbox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        searchbox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        searchbox.topAnchor.constraint(equalTo: self.gradientBgView.bottomAnchor, constant: 10).isActive = true
-        searchbox.heightAnchor.constraint(equalToConstant: 52).isActive = true
-    }
-    
-    private func setupInputField() {
-        inputFieldView = M2PInputField(frame: CGRect(x: 20, y: view.frame.midY - 120, width: view.frame.width - 40 , height: 80))
-        
-        guard let inputField = inputFieldView else {
-            return
-        }
-        
-//        var colors = M2PInputFieldColorConfig()
-//        colors.title = .linksText
-//        var fonts = M2PInputFieldFontConfig()
-//        fonts.placeHolderFont = UIFont.customFont(name: "Arial-BoldMT", size: .x14)
-//        let config = M2PInputFieldConfig(placeholder: "Enter name", fieldStyle: .Form_Floating, fieldFonts: fonts, fieldColors: colors)
-        let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Floating)
-        
-        inputField.M2Psetup(type: .Default_TextField, config: config) // , leftImage: UIImage(named: "pencil"))
-        
-        inputField.M2PonClickFieldTypeView = { (type, isActive) in
-            if type == .Dropdown {
-                self.titleLbl.text = "Dropdown \(isActive ? "Active" : "Inactive")"
-            }
-            if type == .CalendarCustom {
-                inputField.M2PSetInputFieldState(isActive: isActive)
-            }
-            
-        }
-        
-        view.addSubview(inputField)
-        
     }
     
     func setupPageControl_LEFT() {
@@ -297,23 +234,23 @@ extension ViewController {
     
     @IBAction func alertPopActn(_ sender: UIButton){
         let customAlert = M2PPopAlert(nibName: "M2PPopAlert", bundle: M2PComponentsBundle.shared.currentBundle)
-        customAlert.enableButtonList = [.Leading,.Center,.Trailing]
-        customAlert.posistion = .Top // .Top , .Center , .Bottom
+        customAlert.enableButtonList = [.Center,.Trailing,.Leading]
+        customAlert.posistion = .Center // .Top , .Center , .Bottom
         customAlert.alertBgColor = UIColor.background
         customAlert.alertTitleColor = UIColor.primaryActive
         customAlert.alertMessageColor = UIColor.focusedLine
         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
-        customAlert.alertTitle = "Verification"
-        customAlert.alertMessage = "Your Information in the audit, Please wait!"
+        customAlert.alertTitle = "Verification Verification Verification Verification"
+        customAlert.alertMessage = "Your Information in the audit, Once it done your account has been activated within 5hrs."
         customAlert.statusImage = UIImage.init(named: "alert")
         customAlert.delegate = self
         customAlert.alertTag = 1
         customAlert.show()
         // MARK:  M2PButton should configure after present Pop (i.e) after func show() called
-        customAlert.leadingButton.M2PConfig(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
-        customAlert.centerButton.M2PConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
-        customAlert.trailingButton.M2PConfig(type: .custom, title: "Ok", bgColor: .primaryActive)
+        customAlert.leadingButton.M2PButtonConfig(type: .custom,title: "Learn More", isPrimary: false, bgColor: .primaryActive)
+        customAlert.centerButton.M2PButtonConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.trailingButton.M2PButtonConfig(type: .custom, title: "Ok", bgColor: .primaryActive)
     }
     
     // MARK: - CUSTOM ALERT
@@ -337,8 +274,8 @@ extension ViewController {
         customAlert.bgImgColor = .DavysGrey100
         customAlert.show()
         // MARK: M2PButton should configure after present Pop (i.e) after called func show()
-        customAlert.submitButton.M2PConfig(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
-        customAlert.secondaryButton.M2PConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.submitButton.M2PButtonConfig(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
+        customAlert.secondaryButton.M2PButtonConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
         // Textfield
         customAlert.didChange = { text in
             print(text)
@@ -358,8 +295,10 @@ extension ViewController: M2PPopAlertDelegate {
         print("Cancel button pressed")
     }
 }
+
 // MARK: - M2PCustomAlertDelegate
 extension ViewController: M2PCustomAlertDelegate {
+    
     func closeButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
         print(alert.text)
     }
@@ -406,14 +345,4 @@ extension ViewController: OTPFieldViewDelegate {
     func enteredOTP(otp otpString: String, otpView: OTPFieldView) {
         print("OTPString: \(otpString)")
     }
-    
-    @objc private func loadDatePicker(){
-        M2PDatePicker.shared.m2pAddDatePicker(backGroundColor: .background, textColor: .secondaryRedColor)
-        M2PDatePicker.shared.getSelectedDate = { date in
-            if let fetchdate = date {
-                self.datepickerTF.text = fetchdate.description
-            }
-        }
-    }
-    
 }

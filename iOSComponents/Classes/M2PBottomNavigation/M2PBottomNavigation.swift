@@ -11,7 +11,7 @@
  let tabBarItems = [M2PTabBarItems(storyboardName: "Main",
  controllerName: "blue",
  image: "Home_tab",
- selectedImage: "Home_tab_selected",
+ selectedIimage: "Home_tab_selected",
  order: 0,
  title: "home")]
  
@@ -27,15 +27,15 @@ public class M2PTabBarItems {
     public var storyboardName: String
     public var controllerName: String
     public var image: String
-    public var selectedImage: String
+    public var selectedIimage: String
     public var order: Int
     public var title: String
     
-    public init(storyboardName: String, controllerName: String, image: String, selectedImage: String, order: Int, title: String) {
+    public init(storyboardName: String, controllerName: String, image: String, selectedIimage: String, order: Int, title: String) {
         self.storyboardName = storyboardName
         self.controllerName = controllerName
         self.image = image
-        self.selectedImage = selectedImage
+        self.selectedIimage = selectedIimage
         self.order = order
         self.title = title
     }
@@ -84,7 +84,7 @@ public class M2PBottomNavigation: UITabBarController {
         let tabBarItem = UITabBarItem(
             title: item.title,
             image: UIImage(named: item.image)?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
-            selectedImage: UIImage(named: item.selectedImage)
+            selectedImage: UIImage(named: item.selectedIimage)
         )
         tabBarItem.tag = item.order
         

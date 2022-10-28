@@ -12,8 +12,7 @@
  popupNavController.topCornerRadius = 35
  popupNavController.presentDuration = 0.5
  popupNavController.dismissDuration = 0.5
- popupNavController.shouldBeganDismiss = true // dismiss using both tap and swipe
- popupNavController.shouldDismissInteractivelty = true // used to restrict the swipe dismiss
+ popupNavController.shouldDismissInteractivelty = true
  self.navigationController?.present(popupNavController, animated: true, completion: nil)
  
  import UIKit
@@ -27,7 +26,6 @@
      var presentDuration: Double?
      var dismissDuration: Double?
      var shouldDismissInteractivelty: Bool?
-     var shouldBeganDismiss: Bool?
      
      // Bottom popup attribute variables
      // You can override the desired variable to change appearance
@@ -43,8 +41,6 @@
      
      override var M2PPopupDismissDuration: Double { return dismissDuration ?? 1.0 }
      
-     override var M2PPopupShouldBeganDismiss: Bool { return shouldBeganDismiss ?? true }
- 
      override var M2PPopupShouldDismissInteractivelty: Bool { return shouldDismissInteractivelty ?? true }
      
      override var M2PPopupDimmingViewAlpha: CGFloat {

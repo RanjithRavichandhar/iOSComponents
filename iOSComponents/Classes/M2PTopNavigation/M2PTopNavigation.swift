@@ -6,7 +6,7 @@
 //
 
 // MARK: Implementation
-/* topNavigation.M2PSetTopNavigation(contentType: .withSearchAndAdd, contentProperty: M2PContentProperty(backImage: UIImage(named: "backk"), searchImage: UIImage(named: "searchh"), addImage: UIImage(named: "pluss"), userProfileImage: UIImage(named: "profilee"), userProfileName: "vinoth", title: "Cart", backTitle: "Shop"))
+/* topNavigation.setTopNavigation(contentType: .withSearchAndAdd, contentProperty: M2PContentProperty(backImage: UIImage(named: "backk"), searchImage: UIImage(named: "searchh"), addImage: UIImage(named: "pluss"), userProfileImage: UIImage(named: "profilee"), userProfileName: "vinoth", title: "Cart", backTitle: "Shop"))
  topNavigation.M2PSearchButton.isHidden = true
  topNavigation.M2PBackButton.isHidden = true
  topNavigation.M2PBackTitleLabel.isHidden = true
@@ -54,7 +54,7 @@ public class M2PTopNavigation: UIView {
     public var M2POnClickAdd:(() -> Void)?
     public var M2POnClickProfile:(() -> Void)?
     
-    private var topNavigationType: M2PTopNavigationType = .withSearchAndAdd {
+    public var topNavigationType: M2PTopNavigationType = .withSearchAndAdd {
         didSet {
             self.M2PUserProfileView.isHidden = topNavigationType == .withSearchAndAdd ? true : false
             self.M2PContentStackView.isHidden = topNavigationType == .withSearchAndAdd ? false : true
@@ -250,7 +250,7 @@ public class M2PTopNavigation: UIView {
         M2POnClickProfile?()
     }
     
-    public func M2PSetTopNavigation(contentType: M2PTopNavigationType, contentProperty: M2PContentProperty?) {
+    public func setTopNavigation(contentType: M2PTopNavigationType, contentProperty: M2PContentProperty?) {
         
         self.topNavigationType = contentType
         

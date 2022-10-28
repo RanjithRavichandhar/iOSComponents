@@ -10,9 +10,7 @@
 /* checkBox1.M2PSetUpCheckBox(forSelectedImage: M2PCheckBoxProperties(lightModeImage: UIImage(named: "checkbox_fill"), darkModeImage: UIImage(named: "checkboxDark_fill")), forUnSelectedImage: M2PCheckBoxProperties(lightModeImage: UIImage(named: "checkbox_unfill"), darkModeImage: UIImage(named: "checkbox_unfill")), initialState: .selected, checkBoxShapes: .box)
  
  checkBox2.M2PSetUpCheckBox(forSelectedImage: M2PCheckBoxProperties(lightModeImage: UIImage(named: "checkbox_round_fill"), darkModeImage: UIImage(named: "checkbox_roundDark_fill")), forUnSelectedImage: M2PCheckBoxProperties(lightModeImage: UIImage(named: "checkbox_round_unfill"), darkModeImage: UIImage(named: "checkbox_round_unfill")), initialState: .unSelected, checkBoxShapes: .round)
-                        
- checkBox1.checkBoxShapes = .round
- checkBox2.checkBoxShapes = .box
+ 
  
  checkBox1.M2POnClick = { (isSelected, sender) in
  print(isSelected)
@@ -60,9 +58,9 @@ public class M2PCheckBox: UIView {
     var selectedImageIconDark = UIImage()
     var UnSelectedImageIconDark = UIImage()
     
-    public var M2PCheckBoxShapes: M2PCheckBoxShapes = .box {
+    public var checkBoxShapes: M2PCheckBoxShapes = .box {
         didSet {
-            self.setDefaultCheckBoxShape(shape: self.M2PCheckBoxShapes)
+            self.setDefaultCheckBoxShape(shape: self.checkBoxShapes)
         }
     }
     //    // MARK: Store Selected/ UnSelected TintColor
@@ -147,7 +145,7 @@ public class M2PCheckBox: UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapAction(_:)))
         self.addGestureRecognizer(tap)
         self.setConstraints()
-        self.M2PCheckBoxShapes = .box
+        self.checkBoxShapes = .box
         
     }
     
