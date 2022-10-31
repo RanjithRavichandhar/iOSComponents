@@ -41,11 +41,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.m2pSetupOtpView()
-//        self.otpView?.initializeUI()
         
-        self.m2pSetupOtpView_Two()
-        self.otpView_Two?.initializeUI()
+        self.m2pSetupOtpView()
+        self.otpView?.initializeUI()
         
         self.m2pSetupotpView_Two()
         self.otpView_Two?.initializeUI()
@@ -67,9 +65,9 @@ class ViewController: UIViewController {
         
         setupMenuBar()
         
-        setupSearchBar()  
+        setupSearchBar()
         
-        setupInputField()
+       // setupInputField()
         
         setupButton()
         

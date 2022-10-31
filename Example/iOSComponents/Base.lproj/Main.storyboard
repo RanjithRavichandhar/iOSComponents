@@ -119,6 +119,11 @@
                                     <constraint firstAttribute="height" constant="50" id="89g-T9-g07"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wnV-dH-fpv">
+                                <rect key="frame" x="20" y="683" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -143,13 +148,16 @@
                             <constraint firstItem="Ybt-1h-GQP" firstAttribute="top" secondItem="fe1-V1-fxn" secondAttribute="bottom" constant="15" id="fN8-BG-4NO"/>
                             <constraint firstItem="8XG-R9-YPv" firstAttribute="top" secondItem="7FW-Oc-Cf2" secondAttribute="bottom" constant="20" id="fyV-Lc-Cvi"/>
                             <constraint firstItem="Ybt-1h-GQP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="gHm-GV-2w3"/>
+                            <constraint firstItem="fe1-V1-fxn" firstAttribute="top" secondItem="wnV-dH-fpv" secondAttribute="bottom" constant="20" id="ie6-cM-vun"/>
                             <constraint firstItem="CSq-cG-MXH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="30" id="kuh-4M-nc1"/>
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="lRU-AM-kmg"/>
                             <constraint firstItem="j4C-lc-dtV" firstAttribute="leading" secondItem="wpM-6H-YnZ" secondAttribute="leading" id="lZj-YU-md2"/>
                             <constraint firstItem="jeb-Vn-VXH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="5" id="nGz-wT-i8C"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ybt-1h-GQP" secondAttribute="trailing" constant="20" id="nXM-Ko-bIg"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="top" secondItem="j4C-lc-dtV" secondAttribute="bottom" constant="20" id="p6t-c7-aeB"/>
+                            <constraint firstAttribute="trailing" secondItem="wnV-dH-fpv" secondAttribute="trailing" constant="20" id="qhb-Gp-MUj"/>
                             <constraint firstItem="j4C-lc-dtV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="s7m-0L-GfC"/>
+                            <constraint firstItem="wnV-dH-fpv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="svn-Ti-P3B"/>
                             <constraint firstItem="7FW-Oc-Cf2" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" constant="50" id="v2A-bz-ELN"/>
                             <constraint firstItem="j4C-lc-dtV" firstAttribute="top" secondItem="wpM-6H-YnZ" secondAttribute="bottom" constant="10" id="vIb-PK-EI6"/>
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="wrl-Uo-4MQ"/>
@@ -157,6 +165,7 @@
                     </view>
                     <connections>
                         <outlet property="chipView" destination="8XG-R9-YPv" id="l5X-HW-HyB"/>
+                        <outlet property="datepickerTF" destination="wnV-dH-fpv" id="thn-NX-H6B"/>
                         <outlet property="gradientBgView" destination="f3i-VF-GLj" id="VMo-B8-mcV"/>
                         <outlet property="m2pButton" destination="CSq-cG-MXH" id="WSJ-gg-Fkw"/>
                         <outlet property="otpView" destination="j4C-lc-dtV" id="e6q-Mu-aH5"/>
