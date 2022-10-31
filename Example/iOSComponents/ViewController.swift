@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var otpView: OTPFieldView?
     @IBOutlet weak var otpView_Two: OTPFieldView?
     @IBOutlet weak var pageControl: M2PCustomPageControl!
+    @IBOutlet private weak var datepickerTF:UITextField!
     
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
@@ -27,28 +28,12 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var listView: M2PList?
     
-    @IBOutlet weak var m2pButton: M2PButton! {
-        didSet{
-            self.m2pButton.config(type: .custom, title: "IndusLogo",
-                                  buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
-                                  isPrimary: true,
-                                  bgColor: .clear,
-                                  leftImg: UIImage(named:"plus.png"),
-                                  rightImg: UIImage(named:"plus.png"),
-                                  leftIconWidth: 20,
-                                  leftIconHeight: 20,
-                                  rightIconWidth: 20,
-                                  rightIconHeight: 20,
-                                  state: .ENABLE) // ENABLE / DISABLE
-            self.m2pButton.onClick = { sender in
-                self.index -= 1
-                self.topTabBar.updateSelectedIndexInCollection(at:self.index)
-            }
-        }
-    }
+    @IBOutlet weak var m2pButton: M2PButton!
     
     //Page control
     var customPageControl = M2PCustomPageControl()
+    //Input field
+    var inputFieldView: M2PInputField?
     
     // Menu bar
     var index = 4
@@ -56,8 +41,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.m2pSetupOtpView()
-        self.otpView?.initializeUI()
+//        self.m2pSetupOtpView()
+//        self.otpView?.initializeUI()
+        
+        self.m2pSetupOtpView_Two()
+        self.otpView_Two?.initializeUI()
         
         self.m2pSetupotpView_Two()
         self.otpView_Two?.initializeUI()
@@ -79,6 +67,12 @@ class ViewController: UIViewController {
         
         setupMenuBar()
         
+        setupSearchBar()  
+        
+        setupInputField()
+        
+        setupButton()
+        
         //Page Control
         pageControl.setup(for: 4, with: M2PPageControlConfig(image_inactive: UIImage(named: "pageControlIndicator")))
         self.view.addSubview(pageControl)
@@ -92,6 +86,8 @@ class ViewController: UIViewController {
         //        self.slider.setThumbImage(UIImage(named: "thumbNormal"), for: .normal)
         
         setList()
+        datepickerTF.isUserInteractionEnabled = true
+        datepickerTF.addTarget(self, action: #selector(loadDatePicker), for: .touchDown)
     }
     
     private func setupMenuBar() {
@@ -116,7 +112,86 @@ class ViewController: UIViewController {
             
             self.pageControl?.currentPage = selectedIndex
             self.customPageControl.currentPage = selectedIndex
+            
+            self.inputFieldView?.M2PshowErrorWith(message: "Error \(selectedIndex)")
         }
+    }
+    
+    private func setupSearchBar() {
+        let searchbox = M2PSearchBar()
+        searchbox.translatesAutoresizingMaskIntoConstraints = false
+        
+        searchbox.M2PonClickMic = {
+            print("##Clicked Mic")
+        }
+        
+        searchbox.M2PonClickCancel = {
+            print("##Clicked Cancel button")
+        }
+        
+        searchbox.M2PonSearchTextChange = { text in
+            print("##Search Text: \(text)")
+        }
+        
+        view.addSubview(searchbox)
+        //Constraints
+        searchbox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        searchbox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        searchbox.topAnchor.constraint(equalTo: self.gradientBgView.bottomAnchor, constant: 10).isActive = true
+        searchbox.heightAnchor.constraint(equalToConstant: 52).isActive = true
+    }
+    
+    // MARK: - CUSTOM Button
+    private func setupButton(){
+        self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
+                                       buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
+                                       isPrimary: true,
+                                       bgColor: .clear,
+                                       leftImg: UIImage(named:"plus.png"),
+                                       rightImg: UIImage(named:"plus.png"),
+                                       leftIconWidth: 20,
+                                       leftIconHeight: 20,
+                                       rightIconWidth: 20,
+                                       rightIconHeight: 20,
+                                       state: .ENABLE,// ENABLE / DISABLE
+                                       leftIconTint:.blue,
+                                       rightIconTint: .orange)
+        self.m2pButton.onClick = { sender in
+            self.index -= 1
+            self.topTabBar.updateSelectedIndexInCollection(at:self.index)
+            self.inputFieldView?.M2PhideErrorMessage()
+        }
+
+    }
+    
+    private func setupInputField() {
+        inputFieldView = M2PInputField(frame: CGRect(x: 20, y: view.frame.midY - 120, width: view.frame.width - 40 , height: 80))
+        
+        guard let inputField = inputFieldView else {
+            return
+        }
+        
+//        var colors = M2PInputFieldColorConfig()
+//        colors.title = .linksText
+//        var fonts = M2PInputFieldFontConfig()
+//        fonts.placeHolderFont = UIFont.customFont(name: "Arial-BoldMT", size: .x14)
+//        let config = M2PInputFieldConfig(placeholder: "Enter name", fieldStyle: .Form_Floating, fieldFonts: fonts, fieldColors: colors)
+        let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Floating)
+        
+        inputField.M2Psetup(type: .Default_TextField, config: config) // , leftImage: UIImage(named: "pencil"))
+        
+        inputField.M2PonClickFieldTypeView = { (type, isActive) in
+            if type == .Dropdown {
+                self.titleLbl.text = "Dropdown \(isActive ? "Active" : "Inactive")"
+            }
+            if type == .CalendarCustom {
+                inputField.M2PSetInputFieldState(isActive: isActive)
+            }
+            
+        }
+        
+        view.addSubview(inputField)
+        
     }
     
     func setupPageControl_LEFT() {
@@ -242,18 +317,18 @@ extension ViewController {
         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
         customAlert.alertTitle = "Verification"
-        customAlert.alertMessage = "Your Information in the audit, Please wait!"
+        customAlert.alertMessage = "Your Information in the audit"
         customAlert.statusImage = UIImage.init(named: "alert")
         customAlert.delegate = self
         customAlert.alertTag = 1
         customAlert.show()
         // MARK:  M2PButton should configure after present Pop (i.e) after func show() called
-        customAlert.leadingButton.config(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
-        customAlert.centerButton.config(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
-        customAlert.trailingButton.config(type: .custom, title: "Ok", bgColor: .primaryActive)
+        customAlert.leadingButton.M2PButtonConfig(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
+        customAlert.centerButton.M2PButtonConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.trailingButton.M2PButtonConfig(type: .custom, title: "Ok", bgColor: .primaryActive)
     }
     
-    // MARK: - CUSTOM ALERT
+    // MARK: - CUSTOM ALERT func enteredOTP(_ OTPView: OTPFieldView,otp: String)
     
     @IBAction func alertCustomActn(_ sender: UIButton){
         let customAlert = M2PCustomAlert(nibName: "M2PCustomAlert", bundle: M2PComponentsBundle.shared.currentBundle)
@@ -274,8 +349,8 @@ extension ViewController {
         customAlert.bgImgColor = .DavysGrey100
         customAlert.show()
         // MARK: M2PButton should configure after present Pop (i.e) after called func show()
-        customAlert.submitButton.config(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
-        customAlert.secondaryButton.config(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.submitButton.M2PButtonConfig(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
+        customAlert.secondaryButton.M2PButtonConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
         // Textfield
         customAlert.didChange = { text in
             print(text)
@@ -285,7 +360,7 @@ extension ViewController {
 
 // MARK: - M2PPopAlertDelegate
 extension ViewController: M2PPopAlertDelegate {
-    func learnButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
+    func secondaryButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
         print("Learn button pressed")
     }
     func okButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
@@ -301,7 +376,6 @@ extension ViewController: M2PCustomAlertDelegate {
         print(alert.text)
     }
     func submitButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
-        print(alert.alertTitle ?? "")
         print(alert.text)
     }
     func secondaryButtonPressed(_ alert: M2PCustomAlert, alertTag: Int) {
@@ -349,7 +423,7 @@ extension ViewController: OTPFieldViewDelegate {
     }
     
     func enteredOTP(otp: String) {
-        print("OTP:\(otp)")
+        print("OTP:\(otp))")
     }
     func hasEnteredAllOTP(_ otpView: OTPFieldView,hasEnteredAll hasEntered: Bool) -> Bool {
         if hasEntered {
@@ -365,4 +439,14 @@ extension ViewController: OTPFieldViewDelegate {
     func enteredOTP(_ otpView: OTPFieldView,otp otpString: String) {
         print("OTPString: \(otpView.OTPTag) :\(otpString)")
     }
+    
+    @objc private func loadDatePicker(){
+        M2PDatePicker.shared.m2pAddDatePicker(backGroundColor: .background, textColor: .secondaryRedColor)
+        M2PDatePicker.shared.getSelectedDate = { date in
+            if let fetchdate = date {
+                self.datepickerTF.text = fetchdate.description
+            }
+        }
+    }
+    
 }

@@ -11,7 +11,7 @@ import UIKit
 public protocol M2PPopAlertDelegate: AnyObject {
     func okButtonPressed(_ alert: M2PPopAlert, alertTag: Int)
     func cancelButtonPressed(_ alert: M2PPopAlert, alertTag: Int)
-    func learnButtonPressed(_ alert: M2PPopAlert, alertTag: Int)
+    func secondaryButtonPressed(_ alert: M2PPopAlert, alertTag: Int)
 }
 
 public class M2PPopAlert: UIViewController {
@@ -142,7 +142,7 @@ public class M2PPopAlert: UIViewController {
     
     @IBAction func actionOnLearnButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        delegate?.learnButtonPressed(self, alertTag: alertTag)
+        delegate?.secondaryButtonPressed(self, alertTag: alertTag)
     }
 }
 

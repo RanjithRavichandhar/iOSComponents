@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'iOSComponents'
-  s.version          = '0.1.0'
+  s.version          = '0.1.8'
   s.summary          = 'iOSComponents is created by M2P build iOS Applications and Frameworks.'
   s.license = 'MIT'
   
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   s.source_files = 'iOSComponents/Classes/**/*'
   s.source           = { :git => 'https://github.com/RanjithRavichandhar/iOSComponents.git', :tag => s.version.to_s }
   s.resource_bundles = {
-    'Resources' => ['iOSComponents/Assets/*{.png,.json,.xib}']
+    'Resources' => ['iOSComponents/Assets/*{.png,.json,.xib,.wav}']
   }
   
   # build settings

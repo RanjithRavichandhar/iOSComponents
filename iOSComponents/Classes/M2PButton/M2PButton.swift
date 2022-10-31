@@ -73,7 +73,7 @@ public class M2PButton: UIButton {
     
     public var leftImage: UIImage? = nil {
         didSet{
-            setupView()
+            setupImage()
         }
     }
     
@@ -91,7 +91,7 @@ public class M2PButton: UIButton {
     
     public var rightImage: UIImage? = nil {
         didSet{
-            setupView()
+            setupImage()
         }
     }
     
@@ -107,25 +107,13 @@ public class M2PButton: UIButton {
         }
     }
     
-    public var primaryBgColor: UIColor? = UIColor.black {
+    public var leftIconTint: UIColor? = UIColor.lightGray {
         didSet{
             setupView()
         }
     }
     
-    public var lightBgColor: UIColor? = UIColor.white {
-        didSet{
-            setupView()
-        }
-    }
-    
-    public var primaryTitleColor: UIColor? = UIColor.white {
-        didSet{
-            setupView()
-        }
-    }
-    
-    public var lightTitleColor: UIColor? = UIColor.black {
+    public var rightIconTint: UIColor? = UIColor.lightGray {
         didSet{
             setupView()
         }
@@ -143,6 +131,9 @@ public class M2PButton: UIButton {
         }
     }
     
+    private var leftImageView = UIImageView()
+    private var rightImageView = UIImageView()
+   
     public var onClick: ((_ : UIButton) -> ())?
     
     override init(frame: CGRect) {
@@ -163,7 +154,6 @@ public class M2PButton: UIButton {
     private func setupView() {
         layer.masksToBounds = false
         self.setupButtonType()
-        self.setupImage()
         self.addTarget(self, action: #selector(actn(_:)), for: [.touchUpInside])
     }
     
@@ -187,36 +177,39 @@ public class M2PButton: UIButton {
         }
     }
     
-    public func config(type: ButtonType ,
-                       title: String,
-                       cornerRadius: CGFloat? = 10,
-                       buttonStyle:ButtonStyle? = .NOICON,
-                       isPrimary:Bool? = true,
-                       bgColor:UIColor,
-                       leftImg:UIImage? = nil,
-                       rightImg:UIImage? = nil,
-                       leftIconWidth:CGFloat? = 10,
-                       leftIconHeight:CGFloat? = 10,
-                       rightIconWidth:CGFloat? = 10,
-                       rightIconHeight:CGFloat? = 10,
-                       state: ButtonStatus? = .ENABLE
+    public func M2PButtonConfig(type: ButtonType ,
+                                title: String,
+                                cornerRadius: CGFloat? = 10,
+                                buttonStyle:ButtonStyle? = .NOICON,
+                                isPrimary:Bool? = true,
+                                bgColor:UIColor,
+                                leftImg:UIImage? = nil,
+                                rightImg:UIImage? = nil,
+                                leftIconWidth:CGFloat? = 10,
+                                leftIconHeight:CGFloat? = 10,
+                                rightIconWidth:CGFloat? = 10,
+                                rightIconHeight:CGFloat? = 10,
+                                state: ButtonStatus? = .ENABLE,
+                                leftIconTint: UIColor? = .lightGray,
+                                rightIconTint: UIColor? = .lightGray
     ){
         self.cornerRadius = cornerRadius ?? 10
         self.isPrimary = isPrimary ?? true
         self.buttonStyle = buttonStyle
         self.backgroundColor = bgColor
-        self.leftImage = leftImg
-        self.rightImage = rightImg
         self.setTitle(title, for: .normal)
         self.leftImageWidth = leftIconWidth ?? 20
         self.leftImageHeight = leftIconHeight ?? 20
         self.rightImageWidth = rightIconWidth ?? 20
         self.rightImageHeight = rightIconHeight ?? 20
         self.status = state
+        self.leftIconTint = leftIconTint
+        self.rightIconTint = rightIconTint
+        self.leftImage = leftImg
+        self.rightImage = rightImg
     }
     
     fileprivate func setupButtonType() {
-        print("Style=>\(self.isPrimary) ")
         if isPrimary{
             self.isEnabled = status == .ENABLE ? true : false
             self.backgroundColor = (status == .ENABLE ? UIColor.primaryActive : .DavysGrey66)
@@ -239,59 +232,38 @@ public class M2PButton: UIButton {
     }
     
     private func addDoubleIcon() {
-        //Set left image
-        let leftImageView = UIImageView(image: leftImage)
-        leftImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(leftImageView)
-        
-        NSLayoutConstraint.activate([
-            leftImageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -20),
-            leftImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            leftImageView.widthAnchor.constraint(equalToConstant: leftImageWidth ),
-            leftImageView.heightAnchor.constraint(equalToConstant: leftImageWidth )
-        ])
-        
-        let rightImageView = UIImageView(image: rightImage)
-        rightImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(rightImageView)
-        
-        NSLayoutConstraint.activate([
-            rightImageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 20),
-            rightImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            rightImageView.widthAnchor.constraint(equalToConstant: rightImageWidth ),
-            rightImageView.heightAnchor.constraint(equalToConstant: rightImageWidth )
-        ])
-        
+        self.addLeftIcon()
+        self.addRightIcon()
     }
-    
     private func addLeftIcon() {
-        //Set left image
-        let imageView = UIImageView(image: leftImage)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(imageView)
-        
-        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: (leftImageWidth*2), bottom: 0, right: 0)
-        
-        NSLayoutConstraint.activate([
-            imageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -20),
-            imageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            imageView.widthAnchor.constraint(equalToConstant: leftImageWidth),
-            imageView.heightAnchor.constraint(equalToConstant: leftImageWidth)
-        ])
+        if let leftImageView = leftImage {
+            self.leftImageView.image = leftImageView
+            self.leftImageView.tintColor = leftIconTint
+            self.leftImageView.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(self.leftImageView)
+            
+            NSLayoutConstraint.activate([
+                self.leftImageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -20),
+                self.leftImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
+                self.leftImageView.widthAnchor.constraint(equalToConstant: leftImageWidth ),
+                self.leftImageView.heightAnchor.constraint(equalToConstant: leftImageWidth )
+            ])
+        }
     }
     
     private func addRightIcon() {
-        let imageView = UIImageView(image: rightImage)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(imageView)
-        
-        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right:  (rightImageWidth*2))
-        
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 20),
-            imageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-            imageView.widthAnchor.constraint(equalToConstant: rightImageWidth),
-            imageView.heightAnchor.constraint(equalToConstant: rightImageWidth)
-        ])
+        if let rightImageView = rightImage {
+            self.rightImageView.image = rightImageView
+            self.rightImageView.tintColor = rightIconTint
+            self.rightImageView.translatesAutoresizingMaskIntoConstraints = false
+            addSubview( self.rightImageView)
+            
+            NSLayoutConstraint.activate([
+                self.rightImageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 20),
+                self.rightImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
+                self.rightImageView.widthAnchor.constraint(equalToConstant: rightImageWidth ),
+                self.rightImageView.heightAnchor.constraint(equalToConstant: rightImageWidth )
+            ])
+        }
     }
 }
