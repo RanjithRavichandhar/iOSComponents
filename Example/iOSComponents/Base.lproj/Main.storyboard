@@ -119,6 +119,11 @@
                                     <constraint firstAttribute="height" constant="50" id="Ddg-CE-9e5"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MhJ-Hb-0fO">
+                                <rect key="frame" x="20" y="593" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -135,6 +140,7 @@
                             <constraint firstItem="jeb-Vn-VXH" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" id="Hsv-pB-G1K"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Ybt-1h-GQP" secondAttribute="bottom" constant="20" id="LrO-KV-Jbz"/>
                             <constraint firstItem="fe1-V1-fxn" firstAttribute="top" secondItem="5aX-Du-hx1" secondAttribute="bottom" constant="20" id="MOV-eD-zvo"/>
+                            <constraint firstAttribute="trailing" secondItem="MhJ-Hb-0fO" secondAttribute="trailing" constant="20" id="NN3-Co-Lus"/>
                             <constraint firstItem="fe1-V1-fxn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="Ns0-Ns-9IN"/>
                             <constraint firstItem="cJ2-Te-r1V" firstAttribute="top" secondItem="j4C-lc-dtV" secondAttribute="bottom" constant="20" id="O5J-6R-MfC"/>
                             <constraint firstAttribute="trailing" secondItem="j4C-lc-dtV" secondAttribute="trailing" constant="16" id="R9w-GY-nh5"/>
@@ -145,8 +151,10 @@
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="cID-gd-r4l"/>
                             <constraint firstItem="cJ2-Te-r1V" firstAttribute="trailing" secondItem="j4C-lc-dtV" secondAttribute="trailing" id="dWc-nP-jcb"/>
                             <constraint firstItem="Ybt-1h-GQP" firstAttribute="top" secondItem="fe1-V1-fxn" secondAttribute="bottom" constant="15" id="fN8-BG-4NO"/>
+                            <constraint firstItem="8XG-R9-YPv" firstAttribute="top" secondItem="MhJ-Hb-0fO" secondAttribute="bottom" constant="20" id="g7P-YT-Sdn"/>
                             <constraint firstItem="Ybt-1h-GQP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="gHm-GV-2w3"/>
                             <constraint firstItem="cJ2-Te-r1V" firstAttribute="leading" secondItem="j4C-lc-dtV" secondAttribute="leading" id="hML-xN-xq0"/>
+                            <constraint firstItem="MhJ-Hb-0fO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="l3J-IO-ae3"/>
                             <constraint firstItem="f3i-VF-GLj" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="lRU-AM-kmg"/>
                             <constraint firstItem="jeb-Vn-VXH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="5" id="nGz-wT-i8C"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ybt-1h-GQP" secondAttribute="trailing" constant="20" id="nXM-Ko-bIg"/>
@@ -157,6 +165,7 @@
                     </view>
                     <connections>
                         <outlet property="chipView" destination="8XG-R9-YPv" id="l5X-HW-HyB"/>
+                        <outlet property="datepickerTF" destination="MhJ-Hb-0fO" id="q5c-be-ngl"/>
                         <outlet property="gradientBgView" destination="f3i-VF-GLj" id="VMo-B8-mcV"/>
                         <outlet property="m2pButton" destination="CSq-cG-MXH" id="WSJ-gg-Fkw"/>
                         <outlet property="otpView" destination="j4C-lc-dtV" id="e6q-Mu-aH5"/>
