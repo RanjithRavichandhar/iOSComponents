@@ -135,7 +135,6 @@ open class M2PBottomSheetViewController: UIViewController, M2PBottomPopupAttribu
     open override  func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        curveTopCorners()
         popupDelegate?.M2PBottomPopupWillAppear()
     }
     
@@ -155,6 +154,11 @@ open class M2PBottomSheetViewController: UIViewController, M2PBottomPopupAttribu
         super.viewDidDisappear(animated)
         
         popupDelegate?.M2PBottomPopupDidDismiss()
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        curveTopCorners()
     }
     
     //MARK: Private Methods
@@ -337,7 +341,7 @@ final class M2PBottomPopupPresentationController: UIPresentationController {
     
     override var frameOfPresentedViewInContainerView: CGRect {
         get {
-            return CGRect(origin: CGPoint(x: 0, y: UIScreen.main.bounds.size.height - popupHeight), size: CGSize(width: presentedViewController.view.frame.size.width, height: popupHeight))
+            return CGRect(origin: CGPoint(x: 0, y: UIScreen.main.bounds.size.height - popupHeight), size: CGSize(width: UIScreen.main.bounds.width, height: popupHeight))
         }
     }
     
