@@ -38,7 +38,6 @@ open class M2PBottomSheetNavigationController: UINavigationController, M2PBottom
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        curveTopCorners()
         popupDelegate?.M2PBottomPopupWillAppear()
         
         
@@ -60,6 +59,11 @@ open class M2PBottomSheetNavigationController: UINavigationController, M2PBottom
         super.viewDidDisappear(animated)
         
         popupDelegate?.M2PBottomPopupDidDismiss()
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        curveTopCorners()
     }
     
     //MARK: Private Methods
