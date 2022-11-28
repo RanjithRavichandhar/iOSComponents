@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 
 @objc public protocol OTPFieldViewDelegate: AnyObject {
-    
     func shouldBecomeFirstResponderForOTP(otpTextFieldIndex index: Int) -> Bool
-    func enteredOTP(otp: String)
-    func hasEnteredAllOTP(hasEnteredAll: Bool) -> Bool
+    func enteredOTP(_ otpView:OTPFieldView, otp: String)
+    func hasEnteredAllOTP(_ otpView:OTPFieldView,hasEnteredAll: Bool) -> Bool
+}
+
+public enum SecureType {
+    case DOT
+    case STAR
 }
 
 @objc public enum DisplayType: Int {
@@ -35,12 +39,13 @@ import UIKit
     
     /// Different display type for text fields.
     
-    
+    public var OTPTag: Int = 0
     public var displayType: DisplayType = .circular
     public var fieldsCount: Int = 4
     public var otpInputType: KeyboardType = .numeric
     public var fieldFont: UIFont = UIFont.systemFont(ofSize: 20)
     public var secureEntry: Bool = false
+    public var secureType: SecureType = .DOT
     public var hideEnteredText: Bool = false
     public var requireCursor: Bool = true
     public var cursorColor: UIColor = UIColor.blue
@@ -60,6 +65,10 @@ import UIKit
     
     override public func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        initializeOTPFields()
     }
     
     public func initializeUI() {
@@ -166,7 +175,7 @@ import UIKit
     fileprivate func calculateEnteredOTPSTring(isDeleted: Bool) {
        
         if isDeleted {
-            _ = delegate?.hasEnteredAllOTP(hasEnteredAll: false)
+            _ = delegate?.hasEnteredAllOTP(self, hasEnteredAll: false)
             
             // Set the default enteres state for otp entry
             for index in stride(from: 0, to: fieldsCount, by: 1) {
@@ -200,10 +209,10 @@ import UIKit
             }
             
             if enteredOTPString.count == fieldsCount {
-                delegate?.enteredOTP(otp: enteredOTPString)
+                delegate?.enteredOTP(self, otp: enteredOTPString)
                 
                 // Check if all OTP fields have been filled or not. Based on that call the 2 delegate methods.
-                let isValid = delegate?.hasEnteredAllOTP(hasEnteredAll: (enteredOTPString.count == fieldsCount)) ?? false
+                let isValid = delegate?.hasEnteredAllOTP(self, hasEnteredAll: (enteredOTPString.count == fieldsCount)) ?? false
                 
                 // Set the error state for invalid otp entry
                 for index in stride(from: 0, to: fieldsCount, by: 1) {
@@ -256,7 +265,8 @@ extension OTPFieldView: UITextFieldDelegate {
             }
             else {
                 if secureEntry {
-                    textField.text = "•"
+                    //textField.text = secureType == .DOT ? "•" : "\u{FF0A}"
+                    textField.text = secureType == .DOT ? "\u{2022}" : "\u{FF0A}"
                 }
                 else {
                     textField.text = string
@@ -333,17 +343,19 @@ extension OTPFieldView: UITextFieldDelegate {
  self.otpView?.initializeUI()
  
  /*Config OTP sample*/
- func m2pSetupOtpView(){
-     self.otpView?.displayType = .square
-     self.otpView?.fieldsCount = 6
-     self.otpView?.fieldBorderWidth = 1
-     self.otpView?.defaultBorderColor = UIColor.borderDefault
-     self.otpView?.filledBorderColor = UIColor.linksText
-     self.otpView?.cursorColor = UIColor.primaryActive
-     self.otpView?.filledBackgroundColor = UIColor.background
-     self.otpView?.fieldSize = 42
-     self.otpView?.separatorSpace = 15
-     self.otpView?.shouldAllowIntermediateEditing = false
-     self.otpView?.delegate = self
- }
+func m2pSetupOtpView(){＊＊
+    self.otpView?.displayType = .square
+    self.otpView?.fieldsCount = 6
+    self.otpView?.fieldBorderWidth = 1
+    self.otpView?.defaultBorderColor = UIColor.borderDefault
+    self.otpView?.filledBorderColor = UIColor.linksText
+    self.otpView?.cursorColor = UIColor.primaryActive
+    self.otpView?.filledBackgroundColor = UIColor.background
+    self.otpView?.fieldSize = 42
+    self.otpView?.separatorSpace = 15
+    self.otpView?.shouldAllowIntermediateEditing = false
+    self.otpView?.secureEntry = true
+    self.otpView?.OTPTag = 1
+    self.otpView?.delegate = self
+}
  */
