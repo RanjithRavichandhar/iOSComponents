@@ -107,25 +107,13 @@ public class M2PButton: UIButton {
         }
     }
     
-    public var primaryBgColor: UIColor? = UIColor.black {
+    public var leftIconTint: UIColor? = UIColor.lightGray {
         didSet{
             setupView()
         }
     }
     
-    public var lightBgColor: UIColor? = UIColor.white {
-        didSet{
-            setupView()
-        }
-    }
-    
-    public var primaryTitleColor: UIColor? = UIColor.white {
-        didSet{
-            setupView()
-        }
-    }
-    
-    public var lightTitleColor: UIColor? = UIColor.black {
+    public var rightIconTint: UIColor? = UIColor.lightGray {
         didSet{
             setupView()
         }
@@ -189,19 +177,21 @@ public class M2PButton: UIButton {
         }
     }
     
-    public func M2PConfig(type: ButtonType ,
-                       title: String,
-                       cornerRadius: CGFloat? = 10,
-                       buttonStyle:ButtonStyle? = .NOICON,
-                       isPrimary:Bool? = true,
-                       bgColor:UIColor,
-                       leftImg:UIImage? = nil,
-                       rightImg:UIImage? = nil,
-                       leftIconWidth:CGFloat? = 10,
-                       leftIconHeight:CGFloat? = 10,
-                       rightIconWidth:CGFloat? = 10,
-                       rightIconHeight:CGFloat? = 10,
-                       state: ButtonStatus? = .ENABLE
+    public func M2PButtonConfig(type: ButtonType ,
+                                title: String,
+                                cornerRadius: CGFloat? = 10,
+                                buttonStyle:ButtonStyle? = .NOICON,
+                                isPrimary:Bool? = true,
+                                bgColor:UIColor,
+                                leftImg:UIImage? = nil,
+                                rightImg:UIImage? = nil,
+                                leftIconWidth:CGFloat? = 10,
+                                leftIconHeight:CGFloat? = 10,
+                                rightIconWidth:CGFloat? = 10,
+                                rightIconHeight:CGFloat? = 10,
+                                state: ButtonStatus? = .ENABLE,
+                                leftIconTint: UIColor? = .lightGray,
+                                rightIconTint: UIColor? = .lightGray
     ){
         self.cornerRadius = cornerRadius ?? 10
         self.isPrimary = isPrimary ?? true
@@ -213,12 +203,13 @@ public class M2PButton: UIButton {
         self.rightImageWidth = rightIconWidth ?? 20
         self.rightImageHeight = rightIconHeight ?? 20
         self.status = state
+        self.leftIconTint = leftIconTint
+        self.rightIconTint = rightIconTint
         self.leftImage = leftImg
         self.rightImage = rightImg
     }
     
     fileprivate func setupButtonType() {
-        print("Style=>\(self.isPrimary) ")
         if isPrimary{
             self.isEnabled = status == .ENABLE ? true : false
             self.backgroundColor = (status == .ENABLE ? UIColor.primaryActive : .DavysGrey66)
@@ -247,6 +238,7 @@ public class M2PButton: UIButton {
     private func addLeftIcon() {
         if let leftImageView = leftImage {
             self.leftImageView.image = leftImageView
+            self.leftImageView.tintColor = leftIconTint
             self.leftImageView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(self.leftImageView)
             
@@ -256,13 +248,13 @@ public class M2PButton: UIButton {
                 self.leftImageView.widthAnchor.constraint(equalToConstant: leftImageWidth ),
                 self.leftImageView.heightAnchor.constraint(equalToConstant: leftImageWidth )
             ])
-            
         }
     }
     
     private func addRightIcon() {
         if let rightImageView = rightImage {
             self.rightImageView.image = rightImageView
+            self.rightImageView.tintColor = rightIconTint
             self.rightImageView.translatesAutoresizingMaskIntoConstraints = false
             addSubview( self.rightImageView)
             
