@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         self.gradientBgView.layer.cornerRadius = 10.0
         self.gradientBgView.layer.masksToBounds = true
         
-        chipView?.M2PSetUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
+        chipView?.M2PSetUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, textContent: M2PContentTextModel(text: "Chip", textColor: nil), primaryIcon: M2PContentImageModel(image: UIImage(named: "pencil"), tintColor: nil), secondaryIcon: M2PContentImageModel(image: UIImage(named: "pencil"), tintColor: nil), customBgColor: nil)
         
         setupMenuBar()
         
@@ -274,8 +274,8 @@ class ViewController: UIViewController {
     
     private func setList() {
         let primaryContent = M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: M2PContentImageModel(image: UIImage(named: "side_icon")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive))
-        let secondaryContent = M2PTrailingContentList(contentType: .texts, headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: M2PContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  M2PContentImageModel(image: UIImage(named: "pencil")))
-        
+        let secondaryContent = M2PTrailingContentList(contentType: .texts, headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: M2PContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  M2PContentImageModel(image: UIImage(named: "pencil"), tintColor: nil))
+
         listView?.M2PSetupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
         listView?.onActionClick = { sender in
             print("\(sender.tag)")

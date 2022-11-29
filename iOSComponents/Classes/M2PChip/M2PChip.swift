@@ -11,7 +11,7 @@ import UIKit
 /* MARK: Implementation
  
  var chipView: M2PChip?
- chipView?.M2PSetUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x17), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
+ chipView?.M2PSetUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, textContent: M2PContentTextModel(text: "M2PChip", textColor: nil), primaryIcon: M2PContentImageModel(image: UIImage(named: "pencil"), tintColor: nil), secondaryIcon: M2PContentImageModel(image: UIImage(named: "pencil"), tintColor: nil), customBgColor: nil)
  */
 
 // MARK: - M2PChip
@@ -73,7 +73,8 @@ public class M2PChip: UIView {
         setConstraints()
         
         // Initial Value Setup
-        M2PSetUpChip(chipType: .neutral, contentType: .text, borderType: .solid, title: "M2PChip")
+        M2PSetUpChip(chipType: .neutral, contentType: .text, borderType: .solid, textContent: M2PContentTextModel(text: "M2PChip", textColor: UIColor.black))
+        
     }
     
     private func setConstraints() {
@@ -86,25 +87,26 @@ public class M2PChip: UIView {
     }
 
     // MARK: - Set Chips
-    public func M2PSetUpChip(chipType: M2PChipType, contentType: M2PChipContentType, borderType: M2PChipBorderType, title: String? = nil, titleFont: UIFont = .systemFont(ofSize: 12), primaryIcon: UIImage? = nil, secondaryIcon: UIImage? = nil) {
+    public func M2PSetUpChip(chipType: M2PChipType, contentType: M2PChipContentType, borderType: M2PChipBorderType, textContent: M2PContentTextModel?, primaryIcon: M2PContentImageModel? = nil, secondaryIcon: M2PContentImageModel? = nil, customBgColor: UIColor? = nil) {
        
-        let primaryImgIcon = primaryIcon?.withRenderingMode(.alwaysTemplate)
-        let secondaryImgIcon = secondaryIcon?.withRenderingMode(.alwaysTemplate)
-        primaryImageView.tintColor =  chipType.textColor
-        secondaryImageView.tintColor = chipType.textColor
-        titleLabel.textColor = chipType.textColor
-        titleLabel.font = titleFont
+        let primaryImgIcon = primaryIcon?.image?.withRenderingMode(.alwaysTemplate)
+        let secondaryImgIcon = secondaryIcon?.image?.withRenderingMode(.alwaysTemplate)
+        primaryImageView.tintColor = (primaryIcon?.tintColor == nil) ? chipType.textColor : primaryIcon?.tintColor
+        secondaryImageView.tintColor = (secondaryIcon?.tintColor == nil) ? chipType.textColor : secondaryIcon?.tintColor
+        titleLabel.textColor = (textContent?.textColor == nil) ? chipType.textColor : textContent?.textColor
+        titleLabel.font = textContent?.textFont
         
         switch borderType {
         case .solid:
-            self.layer.backgroundColor = chipType.backGroundColor.cgColor
+            self.layer.backgroundColor = (customBgColor == nil) ? chipType.backGroundColor.cgColor : customBgColor?.cgColor
+            
         case .outline:
             self.layer.borderWidth = 1
             if #available(iOS 12.0, *) {
-                self.layer.borderColor = UIScreen.main.traitCollection.userInterfaceStyle == .dark ? chipType.textColor.cgColor : chipType.backGroundColor.cgColor
+                self.layer.borderColor =  (customBgColor == nil) ?  (UIScreen.main.traitCollection.userInterfaceStyle == .dark ? chipType.textColor.cgColor : chipType.backGroundColor.cgColor) : customBgColor?.cgColor
             } else {
                 // Fallback on earlier versions
-                self.layer.borderColor = chipType.textColor.cgColor
+                self.layer.borderColor = (customBgColor == nil) ? chipType.textColor.cgColor : customBgColor?.cgColor
             }
         }
         
@@ -116,7 +118,7 @@ public class M2PChip: UIView {
             self.primaryImageView.image = primaryIcon
             self.contentStackView.addArrangedSubview(primaryImageView)
         case .text:
-            guard let title = title else {
+            guard let title = textContent?.text else {
                 return
             }
             self.titleLabel.text = title
@@ -126,12 +128,12 @@ public class M2PChip: UIView {
                 self.primaryImageView.image = primaryIcon
                 self.contentStackView.addArrangedSubview(primaryImageView)
             }
-            if let title = title {
+            if let title = textContent?.text {
                 self.titleLabel.text = title
                 self.contentStackView.addArrangedSubview(titleLabel)
             }
         case .textWithRightIcon:
-            if let title = title {
+            if let title = textContent?.text {
                 self.titleLabel.text = title
                 self.contentStackView.addArrangedSubview(titleLabel)
             }
@@ -146,7 +148,7 @@ public class M2PChip: UIView {
                 self.contentStackView.addArrangedSubview(primaryImageView)
             }
             
-            if let title = title {
+            if let title = textContent?.text {
                 self.titleLabel.text = title
                 self.contentStackView.addArrangedSubview(titleLabel)
             }
