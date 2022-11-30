@@ -88,7 +88,7 @@ public class M2PCheckBox: UIView {
     // MARK: Set Disable View
     private lazy var disableView: UIView = {
         let view = UIView()
-        view.backgroundColor = .formDisableFilled.withAlphaComponent(0.9)
+        view.backgroundColor = .formDisableFilled.withAlphaComponent(0.8)
         view.bounds.size = CGSize(width: self.frame.width, height: self.frame.height)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = false
