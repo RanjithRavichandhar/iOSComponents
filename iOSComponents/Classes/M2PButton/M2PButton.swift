@@ -341,7 +341,7 @@ public class M2PButton: UIButton {
      self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
                                     cornerRadius: 5,
                                     buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
-                                    isPrimary: false,
+                                    isPrimary: true,
                                     leftImg: UIImage(named:"plus.png"),
                                     rightImg: UIImage(named:"plus.png"),
                                     leftIconWidth: 20,

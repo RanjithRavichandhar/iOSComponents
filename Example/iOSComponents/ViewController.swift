@@ -140,7 +140,7 @@ class ViewController: UIViewController {
         self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
                                        cornerRadius: 5,
                                        buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
-                                       isPrimary: false,
+                                       isPrimary: true,
                                        leftImg: UIImage(named:"plus.png"),
                                        rightImg: UIImage(named:"plus.png"),
                                        leftIconWidth: 20,
@@ -157,7 +157,7 @@ class ViewController: UIViewController {
         }
         
         var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
-        config.priBgColorEnable = UIColor.OceanBlue16
+        config.priBgColorEnable = UIColor.black
         config.priTitleColorEnable = UIColor.white
         config.secBgColorEnable = .secondaryInactive
         config.secTitleColorEnable = .secondaryRedColor
