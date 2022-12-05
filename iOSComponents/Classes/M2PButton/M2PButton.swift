@@ -352,9 +352,7 @@ public class M2PButton: UIButton {
                                     leftIconTint:.blue,
                                     rightIconTint: .orange)
      self.m2pButton.onClick = { sender in
-         self.index -= 1
-         self.topTabBar.updateSelectedIndexInCollection(at:self.index)
-         self.inputFieldView?.M2PhideErrorMessage()
+         // 
      }
      
      var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
