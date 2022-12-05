@@ -57,7 +57,7 @@ public class M2PInputField: UIView {
         return stackView
     }()
     
-    public let textField: UITextField = {
+    let textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -129,6 +129,16 @@ public class M2PInputField: UIView {
     var fieldType: M2PInputFieldType = .Default_TextField
     var fieldStyle: M2PInputFieldStyle = .Form_Floating
     var isFieldTypeIconOn = false
+    var isFloatingLabelPresent = false
+    
+    public var keyBoardType: UIKeyboardType {
+        get {
+            return textField.keyboardType
+        }
+        set {
+            textField.keyboardType = newValue
+        }
+    }
 
     var textFieldColor_Active: UIColor {
         if #available(iOS 13, *) {
@@ -178,6 +188,7 @@ public class M2PInputField: UIView {
         super.init(coder: coder)
         
         setUpView()
+        self.textField.keyboardType = .alphabet
     }
     
     public override func layoutSubviews() {
@@ -207,12 +218,13 @@ public class M2PInputField: UIView {
         textField.addTarget(self, action: #selector(self.onTextFieldEditingBegin), for: .editingDidBegin)
         textField.addTarget(self, action: #selector(self.onTextFieldEditingEnd), for: .editingDidEnd)
         textField.addTarget(self, action: #selector(self.onTextFieldEditingChange) , for: .editingChanged)
+        // textField.addTarget(nil, action: #selector(self.onTextFieldValueChange), for: .valueChanged)
         
         // Tap gestures
         fieldTypeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickFieldTypeIcon)))
     }
     
-    private func setupDatePicker() {
+    /* private func setupDatePicker() {
 //        datePicker.translatesAutoresizingMaskIntoConstraints = false
 //        //datePicker.backgroundColor = .gray
 //        datePicker.setValue(1, forKeyPath: "alpha")
@@ -226,7 +238,7 @@ public class M2PInputField: UIView {
 //        }
 //        setupDoneToolbar()
 //        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
-    }
+    } */
     
     private func setupDoneToolbar() {
         let toolBar = UIToolbar(frame: CGRect(x: 0.0,
@@ -240,35 +252,43 @@ public class M2PInputField: UIView {
     }
     
     @objc func onTextFieldEditingBegin() {
+        // Adding floating title label
         if fieldStyle == .Form_Floating || fieldStyle == .BottomLine_Floating {
             addFloatingLabel()
         }
+        
+        // TextField active state changes
         setActiveInactiveState(isActiveflag: true)
         M2PhideErrorMessage()
         
+        //To show the close button
         if fieldType == .Default_TextField, let text = textField.text, !text.isEmpty {
             fieldTypeImageView.isHidden = false
         }
     }
     
     @objc func onTextFieldEditingChange() {
-        if fieldType == .Default_TextField || fieldType == .Password {
-            if let text = textField.text, !text.isEmpty {
-                fieldTypeImageView.isHidden = false
-            } else {
-                fieldTypeImageView.isHidden = true
-            }
-        } else {
-            fieldTypeImageView.isHidden = false
-        }
+        // Text field font & color
+        setTextFieldCurrentStateStyles()
+        
+        // TextField type image (hide/unhide) handling
+        updateFieldTypeImageHiddenState()
     }
     
+//    @objc func onTextFieldValueChange() {
+//        print("Changed! ")
+//    }
     
     @objc func onTextFieldEditingEnd() {
+        // Removing floating title label
         if fieldStyle == .Form_Floating || fieldStyle == .BottomLine_Floating {
             removeFloatingLabel()
         }
+        
+        // TextField inactive state changes
         setActiveInactiveState(isActiveflag: false)
+
+        // To hide close button
         if fieldType == .Default_TextField {
             fieldTypeImageView.isHidden = true
         }
@@ -306,7 +326,8 @@ public class M2PInputField: UIView {
     }
            
     private func addFloatingLabel() {
-        if textField.text == "" {
+        if textField.text == "", !isFloatingLabelPresent {
+            isFloatingLabelPresent = true
             let labelView = UIView()
             labelView.addSubview(floatingLabel)
             floatingLabel.textColor = fieldConfig.fieldColors.title
@@ -331,7 +352,8 @@ public class M2PInputField: UIView {
     }
     
     private func removeFloatingLabel() {
-        if textField.text == "" {
+        if textField.text == "", isFloatingLabelPresent {
+            isFloatingLabelPresent = false
             UIView.animate(withDuration: 0.15) {
                 self.textFieldStackView.arrangedSubviews.first?.removeFromSuperview()
             }
@@ -407,7 +429,56 @@ public class M2PInputField: UIView {
         }
     }
     
-    // MARK: Public methods
+    private func updateFieldTypeImageHiddenState() {
+        if fieldType == .Default_TextField || fieldType == .Password {
+            if let text = textField.text, !text.isEmpty {
+                fieldTypeImageView.isHidden = false
+            } else {
+                fieldTypeImageView.isHidden = true
+            }
+        } else {
+            fieldTypeImageView.isHidden = false
+        }
+    }
+    
+    private func setupFeildView(for style: M2PInputFieldStyle) {
+        let currentStateColor = isTextFieldActive ? textFieldColor_Active : textFieldColor_Inactive
+        switch style {
+        case .Form_Default, .Form_Floating:
+            contentView.layer.cornerRadius = 10
+            contentView.layer.borderWidth = 1
+            contentView.layer.borderColor = currentStateColor.cgColor
+        case .BottomLine_Default, .BottomLine_Floating:
+            bottomBorder.frame = CGRect(x: contentView.frame.minX, y: contentView.bounds.size.height - 5, width: contentView.frame.size.width, height:1)
+            bottomBorder.backgroundColor = currentStateColor.cgColor
+            contentView.layer.addSublayer(bottomBorder)
+        }
+        
+    }
+    
+    private func setTextFieldValue(with text: String) {
+        textField.text = text
+        setTextFieldCurrentStateStyles()
+        M2PdidTextFieldValueUpdated?(text)
+    }
+    
+    // MARK: Styles
+    
+    private func setTextFieldCurrentStateStyles() {
+        if let text = textField.text, !text.isEmpty {
+            textField.font = fieldConfig.fieldFonts.valueTextFont
+            textField.textColor = fieldConfig.fieldColors.valueText
+        } else {
+            textField.font = fieldConfig.fieldFonts.placeHolderFont
+            textField.textColor = fieldConfig.fieldColors.placeholder
+        }
+    }
+                   
+}
+
+// MARK: Public methods
+
+extension M2PInputField {
     
     public func M2Psetup(type: M2PInputFieldType, config: M2PInputFieldConfig, leftImage: UIImage? = nil, rightImage: UIImage? = nil) {
         
@@ -417,7 +488,7 @@ public class M2PInputField: UIView {
         
         //Input Field data - related
         textField.placeholder = fieldConfig.placeholderText
-        textField.font = fieldConfig.fieldFonts.placeHolderFont
+        setTextFieldCurrentStateStyles()
         
         //Error
         bottomInfoLabel.font = fieldConfig.fieldFonts.errorFont
@@ -449,11 +520,21 @@ public class M2PInputField: UIView {
         
     }
     
+    public func M2PsetTextFieldDelegate(with fieldDelegate: UITextFieldDelegate) {
+        self.textField.delegate = fieldDelegate
+    }
+    
     public func M2PsetTextFieldValue(with value: String) {
         if fieldStyle == .Form_Floating || fieldStyle == .BottomLine_Floating {
             addFloatingLabel()
         }
         setTextFieldValue(with: value)
+        updateFieldTypeImageHiddenState()
+    }
+    
+    public func M2PgetTextFieldValue() -> String? {
+        let text = textField.text
+        return text
     }
     
     public func M2PshowErrorWith(message: String, icon: UIImage? = nil, stateColor: UIColor? = nil) {
@@ -521,28 +602,10 @@ public class M2PInputField: UIView {
         setActiveInactiveState(isActiveflag: isActive)
     }
     
-    
-    private func setupFeildView(for style: M2PInputFieldStyle) {
-        let currentStateColor = isTextFieldActive ? textFieldColor_Active : textFieldColor_Inactive
-        switch style {
-        case .Form_Default, .Form_Floating:
-            contentView.layer.cornerRadius = 10
-            contentView.layer.borderWidth = 1
-            contentView.layer.borderColor = currentStateColor.cgColor
-        case .BottomLine_Default, .BottomLine_Floating:
-            bottomBorder.frame = CGRect(x: contentView.frame.minX, y: contentView.bounds.size.height - 5, width: contentView.frame.size.width, height:1)
-            bottomBorder.backgroundColor = currentStateColor.cgColor
-            contentView.layer.addSublayer(bottomBorder)
-        }
-        
-    }
-    
-    private func setTextFieldValue(with text: String) {
-        textField.text = text
-        M2PdidTextFieldValueUpdated?(text)
-    }
-                   
-    // MARK: Constraints
+}
+
+// MARK: Constraints
+extension M2PInputField {
     
     func setContentViewConstraints() {
 
@@ -605,15 +668,13 @@ public class M2PInputField: UIView {
     }
     
     private func setDatePickerConstraints(on superView: UIView) {
-        // datePicker.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width /).isActive = true
         datePicker.topAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         datePicker.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
-        // datePicker.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        // datePicker.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
-                   
+    
 }
 
+// MARK: <UITextFieldDelegate> methods
 extension M2PInputField: UITextFieldDelegate {
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
