@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var topTabBar: M2PTopTabBar!
     @IBOutlet weak var slider: M2PSlider?
     @IBOutlet weak var otpView: OTPFieldView?
+    @IBOutlet weak var otpView_Two: OTPFieldView?
     @IBOutlet weak var pageControl: M2PCustomPageControl!
     @IBOutlet private weak var datepickerTF:UITextField!
     
@@ -40,8 +41,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.m2pSetupOtpView()
-//        self.otpView?.initializeUI()
+        
+        self.m2pSetupOtpView()
+        self.otpView?.initializeUI()
+        
+        self.m2pSetupotpView_Two()
+        self.otpView_Two?.initializeUI()
         
         self.progressBarTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.updateProgressView), userInfo: nil, repeats: true)
         
@@ -56,13 +61,13 @@ class ViewController: UIViewController {
         self.gradientBgView.layer.cornerRadius = 10.0
         self.gradientBgView.layer.masksToBounds = true
         
-        chipView?.M2PSetUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, title: "Chip", titleFont: UIFont.customFont(name: "Arial-BoldMT", size: .x18), primaryIcon: UIImage(named: "pencil"), secondaryIcon: UIImage(named: "pencil"))
+        chipView?.M2PSetUpChip(chipType: .info, contentType: .doubleSideIcon, borderType: .solid, textContent: M2PContentTextModel(text: "Chip", textColor: nil), primaryIcon: M2PContentImageModel(image: UIImage(named: "pencil"), tintColor: nil), secondaryIcon: M2PContentImageModel(image: UIImage(named: "pencil"), tintColor: nil), customBgColor: nil)
         
         setupMenuBar()
         
-        setupSearchBar()  
+        setupSearchBar()
         
-        setupInputField()
+       // setupInputField()
         
         setupButton()
         
@@ -276,8 +281,8 @@ class ViewController: UIViewController {
     
     private func setList() {
         let primaryContent = M2PLeadingContentList(headerTextLabel: M2PContentTextModel(text: "Header", textColor: .red, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .lightGray, textFont: .systemFont(ofSize: 13)), icon: M2PContentImageModel(image: UIImage(named: "side_icon")?.withRenderingMode(.alwaysTemplate), tintColor: .primaryActive))
-        let secondaryContent = M2PTrailingContentList(contentType: .texts, headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: M2PContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  M2PContentImageModel(image: UIImage(named: "pencil")))
-        
+        let secondaryContent = M2PTrailingContentList(contentType: .texts, headerTextLabel: M2PContentTextModel(text: "Header", textColor: .primaryActive, textFont: .systemFont(ofSize: 17)), subTextLabel: M2PContentTextModel(text: "sub", textColor: .DavysGrey66, textFont: .systemFont(ofSize: 13)), actionTitleLabel: M2PContentTextModel(text: "Change", textColor: .blue, textFont: .systemFont(ofSize: 15)), icon:  M2PContentImageModel(image: UIImage(named: "pencil"), tintColor: nil))
+
         listView?.M2PSetupList(leadingContent: primaryContent, trailingContent: secondaryContent, isbottomLineView: true)
         listView?.onActionClick = { sender in
             print("\(sender.tag)")
@@ -317,7 +322,7 @@ extension ViewController {
         customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
         customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
         customAlert.alertTitle = "Verification"
-        customAlert.alertMessage = "Your Information in the audit, Please wait!"
+        customAlert.alertMessage = "Your Information in the audit"
         customAlert.statusImage = UIImage.init(named: "alert")
         customAlert.delegate = self
         customAlert.alertTag = 1
@@ -328,7 +333,7 @@ extension ViewController {
         customAlert.trailingButton.M2PButtonConfig(type: .custom, title: "Ok")
     }
     
-    // MARK: - CUSTOM ALERT
+    // MARK: - CUSTOM ALERT func enteredOTP(_ OTPView: OTPFieldView,otp: String)
     
     @IBAction func alertCustomActn(_ sender: UIButton){
         let customAlert = M2PCustomAlert(nibName: "M2PCustomAlert", bundle: M2PComponentsBundle.shared.currentBundle)
@@ -360,7 +365,7 @@ extension ViewController {
 
 // MARK: - M2PPopAlertDelegate
 extension ViewController: M2PPopAlertDelegate {
-    func learnButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
+    func secondaryButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
         print("Learn button pressed")
     }
     func okButtonPressed(_ alert: M2PPopAlert, alertTag: Int) {
@@ -385,6 +390,7 @@ extension ViewController: M2PCustomAlertDelegate {
 
 // MARK: - OTPFieldViewDelegate
 extension ViewController: OTPFieldViewDelegate {
+  
     
     // MARK: - OTP
     func m2pSetupOtpView(){
@@ -398,13 +404,33 @@ extension ViewController: OTPFieldViewDelegate {
         self.otpView?.fieldSize = 42
         self.otpView?.separatorSpace = 15
         self.otpView?.shouldAllowIntermediateEditing = false
+        self.otpView?.secureEntry = true
+        self.otpView?.OTPTag = 1
         self.otpView?.delegate = self
     }
     
-    func enteredOTP(otp: String) {
-        print("OTP:\(otp)")
+    // MARK: - OTP
+    func m2pSetupotpView_Two(){
+        self.otpView_Two?.displayType = .underlinedBottom
+        self.otpView_Two?.fieldsCount = 6
+        self.otpView_Two?.fieldBorderWidth = 1
+        self.otpView_Two?.defaultBorderColor = UIColor.borderDefault
+        self.otpView_Two?.filledBorderColor = UIColor.linksText
+        self.otpView_Two?.cursorColor = UIColor.primaryActive
+        self.otpView_Two?.filledBackgroundColor = UIColor.background
+        self.otpView_Two?.fieldSize = 42
+        self.otpView_Two?.separatorSpace = 15
+        self.otpView_Two?.shouldAllowIntermediateEditing = false
+        self.otpView_Two?.secureEntry = true
+        self.otpView_Two?.secureType = .STAR
+        self.otpView_Two?.OTPTag = 2
+        self.otpView_Two?.delegate = self
     }
-    func hasEnteredAllOTP(hasEnteredAll hasEntered: Bool) -> Bool {
+    
+    func enteredOTP(otp: String) {
+        print("OTP:\(otp))")
+    }
+    func hasEnteredAllOTP(_ otpView: OTPFieldView,hasEnteredAll hasEntered: Bool) -> Bool {
         if hasEntered {
             return true
         }else{
@@ -415,8 +441,8 @@ extension ViewController: OTPFieldViewDelegate {
         print("otp index:\(index)")
         return true
     }
-    func enteredOTP(otp otpString: String, otpView: OTPFieldView) {
-        print("OTPString: \(otpString)")
+    func enteredOTP(_ otpView: OTPFieldView,otp otpString: String) {
+        print("OTPString: \(otpView.OTPTag) :\(otpString)")
     }
     
     @objc private func loadDatePicker(){

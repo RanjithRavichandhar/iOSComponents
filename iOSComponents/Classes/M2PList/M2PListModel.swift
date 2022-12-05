@@ -48,7 +48,7 @@ public class M2PContentTextModel {
     public var textFont: UIFont?
     public var textAlignment: NSTextAlignment?
     
-    public init?(text: String?, textColor: UIColor = UIColor.black, textFont: UIFont = UIFont.systemFont(ofSize: 15), textAlignment: NSTextAlignment? = nil) {
+    public init?(text: String?, textColor: UIColor?, textFont: UIFont = UIFont.systemFont(ofSize: 15), textAlignment: NSTextAlignment? = nil) {
         self.textColor = textColor
         self.text = text
         self.textFont = textFont
@@ -59,9 +59,9 @@ public class M2PContentTextModel {
 // MARK: - ContentImageModel
 public class M2PContentImageModel {
     public var image: UIImage?
-    public var tintColor: UIColor
+    public var tintColor: UIColor?
     
-    public init(image: UIImage?, tintColor: UIColor = UIColor.black) {
+    public init(image: UIImage?, tintColor: UIColor?) {
         self.image = image
         self.tintColor = tintColor
     }

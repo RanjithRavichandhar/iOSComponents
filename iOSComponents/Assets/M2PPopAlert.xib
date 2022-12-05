@@ -44,10 +44,22 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4UD-h3-hNm">
-                    <rect key="frame" x="16" y="129.5" width="288" height="309"/>
+                    <rect key="frame" x="16" y="114.5" width="288" height="339"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZxT-eY-USa">
-                            <rect key="frame" x="0.0" y="20" width="288" height="269"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azr-mT-pya">
+                            <rect key="frame" x="258" y="6" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="QE6-Ej-R3M"/>
+                                <constraint firstAttribute="height" constant="20" id="nM8-uL-CRc"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" backgroundImage="close.png"/>
+                            <connections>
+                                <action selector="actionOnCancelButton:" destination="-1" eventType="touchUpInside" id="rdf-OG-b9g"/>
+                            </connections>
+                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZxT-eY-USa">
+                            <rect key="frame" x="0.0" y="26" width="288" height="293"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDA-j3-GQx">
                                     <rect key="frame" x="0.0" y="0.0" width="288" height="50"/>
@@ -85,10 +97,13 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUX-bO-YUA">
-                                    <rect key="frame" x="0.0" y="130" width="288" height="50"/>
+                                    <rect key="frame" x="0.0" y="130" width="288" height="98"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSu-2A-rsL">
-                                            <rect key="frame" x="20" y="0.0" width="248" height="50"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSu-2A-rsL">
+                                            <rect key="frame" x="20" y="0.0" width="248" height="98"/>
+                                            <string key="text">Your card has been issued with default settings. Change settings now as per your choice.
+
+For online usage, please turn on ‘online preferences’</string>
                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -103,7 +118,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIl-cc-knf">
-                                    <rect key="frame" x="0.0" y="195" width="288" height="74"/>
+                                    <rect key="frame" x="0.0" y="243" width="288" height="50"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YEs-wH-PNy">
                                             <rect key="frame" x="10" y="10" width="268" height="40"/>
@@ -167,7 +182,9 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="ZxT-eY-USa" firstAttribute="top" secondItem="4UD-h3-hNm" secondAttribute="top" constant="20" id="V3T-IS-ATD"/>
+                        <constraint firstItem="Azr-mT-pya" firstAttribute="top" secondItem="4UD-h3-hNm" secondAttribute="top" constant="6" id="Eab-rf-AMF"/>
+                        <constraint firstItem="ZxT-eY-USa" firstAttribute="top" secondItem="Azr-mT-pya" secondAttribute="bottom" id="IeE-CE-stw"/>
+                        <constraint firstAttribute="trailing" secondItem="Azr-mT-pya" secondAttribute="trailing" constant="10" id="Tey-eW-bhv"/>
                         <constraint firstItem="ZxT-eY-USa" firstAttribute="leading" secondItem="4UD-h3-hNm" secondAttribute="leading" id="W8o-W9-wXu"/>
                         <constraint firstAttribute="bottom" secondItem="ZxT-eY-USa" secondAttribute="bottom" constant="20" id="eSj-iN-cOH"/>
                         <constraint firstAttribute="trailing" secondItem="ZxT-eY-USa" secondAttribute="trailing" id="jpG-A4-Kaa"/>
@@ -189,6 +206,7 @@
         </view>
     </objects>
     <resources>
+        <image name="close.png" width="20" height="20"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

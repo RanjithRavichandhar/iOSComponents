@@ -47,10 +47,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cov-Fo-fDh">
-                    <rect key="frame" x="20.5" y="235.5" width="373" height="425"/>
+                    <rect key="frame" x="20.5" y="248" width="373" height="400"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="VbP-JL-Y9B">
-                            <rect key="frame" x="0.0" y="30" width="373" height="375"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="VbP-JL-Y9B">
+                            <rect key="frame" x="0.0" y="30" width="373" height="350"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTy-K4-I53">
                                     <rect key="frame" x="0.0" y="0.0" width="373" height="50"/>
@@ -109,7 +109,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEb-Xg-h5e" userLabel="tfView">
-                                    <rect key="frame" x="0.0" y="195" width="373" height="50"/>
+                                    <rect key="frame" x="0.0" y="195" width="373" height="45"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SCq-Eb-0Cu">
                                             <rect key="frame" x="20" y="5" width="333" height="40"/>
@@ -128,7 +128,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRq-lp-yOf" userLabel="submitView">
-                                    <rect key="frame" x="0.0" y="260" width="373" height="50"/>
+                                    <rect key="frame" x="0.0" y="255" width="373" height="40"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wiw-EI-ZAn" customClass="M2PButton" customModule="iOSComponents">
                                             <rect key="frame" x="20" y="0.0" width="333" height="40"/>
@@ -151,7 +151,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwH-Ns-tQc" userLabel="secView">
-                                    <rect key="frame" x="0.0" y="325" width="373" height="50"/>
+                                    <rect key="frame" x="0.0" y="310" width="373" height="40"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUU-Hr-wIz" customClass="M2PButton" customModule="iOSComponents">
                                             <rect key="frame" x="20" y="0.0" width="333" height="40"/>
