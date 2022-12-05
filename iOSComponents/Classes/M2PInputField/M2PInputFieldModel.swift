@@ -50,7 +50,7 @@ public struct M2PInputFieldConfig {
 public struct M2PInputFieldFontConfig {
     public var titleFont: UIFont = UIFont.customFont(name: "Ilisarniq-Regular", size: .x13)
     public var placeHolderFont: UIFont = UIFont.customFont(name: "Ilisarniq-Regular", size: .x17)
-    // var valueTextFont: UIFont = UIFont.customFont(name: "Ilisarniq-Regular", size: .x17)
+    public var valueTextFont: UIFont = UIFont.customFont(name: "Ilisarniq-Regular", size: .x17)
     public var errorFont: UIFont = UIFont.customFont(name: "Ilisarniq-Regular", size: .x10)
     
     public init() {

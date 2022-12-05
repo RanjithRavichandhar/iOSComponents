@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var otpView: OTPFieldView?
     @IBOutlet weak var otpView_Two: OTPFieldView?
     @IBOutlet weak var pageControl: M2PCustomPageControl!
-    @IBOutlet private weak var datepickerTF:UITextField!
+    @IBOutlet private weak var datepickerTF: UITextField!
     
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
@@ -65,9 +65,9 @@ class ViewController: UIViewController {
         
         setupMenuBar()
         
-        setupSearchBar()
+        // setupSearchBar()
         
-       // setupInputField()
+        setupInputField()
         
         setupButton()
         
@@ -183,7 +183,7 @@ class ViewController: UIViewController {
 //        let config = M2PInputFieldConfig(placeholder: "Enter name", fieldStyle: .Form_Floating, fieldFonts: fonts, fieldColors: colors)
         let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Floating)
         
-        inputField.M2Psetup(type: .Default_TextField, config: config) // , leftImage: UIImage(named: "pencil"))
+        inputField.M2Psetup(type: .Password, config: config) // , leftImage: UIImage(named: "pencil"))
         
         inputField.M2PonClickFieldTypeView = { (type, isActive) in
             if type == .Dropdown {
