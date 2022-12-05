@@ -141,10 +141,11 @@ class ViewController: UIViewController {
     
     // MARK: - CUSTOM Button
     private func setupButton(){
+    
         self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
+                                       cornerRadius: 5,
                                        buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
                                        isPrimary: true,
-                                       bgColor: .clear,
                                        leftImg: UIImage(named:"plus.png"),
                                        rightImg: UIImage(named:"plus.png"),
                                        leftIconWidth: 20,
@@ -159,7 +160,13 @@ class ViewController: UIViewController {
             self.topTabBar.updateSelectedIndexInCollection(at:self.index)
             self.inputFieldView?.M2PhideErrorMessage()
         }
-
+        
+        var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
+        config.priBgColorEnable = UIColor.black
+        config.priTitleColorEnable = UIColor.white
+        config.secBgColorEnable = .secondaryInactive
+        config.secTitleColorEnable = .secondaryRedColor
+        self.m2pButton.M2PColorSetConfig(config)
     }
     
     private func setupInputField() {
@@ -321,9 +328,9 @@ extension ViewController {
         customAlert.alertTag = 1
         customAlert.show()
         // MARK:  M2PButton should configure after present Pop (i.e) after func show() called
-        customAlert.leadingButton.M2PButtonConfig(type: .custom,title: "Learn", isPrimary: false, bgColor: .primaryActive)
-        customAlert.centerButton.M2PButtonConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
-        customAlert.trailingButton.M2PButtonConfig(type: .custom, title: "Ok", bgColor: .primaryActive)
+        customAlert.leadingButton.M2PButtonConfig(type: .custom,title: "Learn", isPrimary: false)
+        customAlert.centerButton.M2PButtonConfig(type: .custom, title: "Cancel")
+        customAlert.trailingButton.M2PButtonConfig(type: .custom, title: "Ok")
     }
     
     // MARK: - CUSTOM ALERT func enteredOTP(_ OTPView: OTPFieldView,otp: String)
@@ -347,8 +354,8 @@ extension ViewController {
         customAlert.bgImgColor = .DavysGrey100
         customAlert.show()
         // MARK: M2PButton should configure after present Pop (i.e) after called func show()
-        customAlert.submitButton.M2PButtonConfig(type: .custom,title: "Submit", isPrimary: false, bgColor: .backgroundLightVarient)
-        customAlert.secondaryButton.M2PButtonConfig(type: .custom, title: "Cancel", bgColor: .backgroundLightVarient)
+        customAlert.submitButton.M2PButtonConfig(type: .custom,title: "Submit", isPrimary: false)
+        customAlert.secondaryButton.M2PButtonConfig(type: .custom, title: "Cancel")
         // Textfield
         customAlert.didChange = { text in
             print(text)
