@@ -164,6 +164,7 @@ class ViewController: UIViewController {
         var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
         config.bgColorEnable = UIColor.black
         config.titleColorEnable = UIColor.white
+        config.borderColorEnable = UIColor.orange
         self.m2pButton.M2PColorSetConfig(config)
     }
     

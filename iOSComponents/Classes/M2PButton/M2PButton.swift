@@ -227,17 +227,17 @@ public class M2PButton: UIButton {
     private func setupButtonType() {
         if isPrimary{
             self.isEnabled = status == .ENABLE ? true : false
-            self.backgroundColor = (status == .ENABLE ? self.config.priBgColorEnable : self.config.priBgColorDisable)
-            self.setTitleColor(status == .ENABLE ? self.config.priTitleColorEnable : self.config.priTitleColorDisable , for: .normal)
+            self.backgroundColor = (status == .ENABLE ? self.config.bgColorEnable : self.config.bgColorDisable)
+            self.setTitleColor(status == .ENABLE ? self.config.titleColorEnable : self.config.titleColorDisable , for: .normal)
             self.layer.borderColor = UIColor.clear.cgColor
-            self.tintColor = (status == .ENABLE) ? self.config.priTintColorEnable : self.config.priTintColorDisable
+            self.tintColor = (status == .ENABLE) ? self.config.tintColorEnable : self.config.tintColorDisable
         }else{
             self.isEnabled = status == .ENABLE ? true : false
-            self.backgroundColor = (status == .ENABLE ? self.config.secBgColorEnable : self.config.secBgColorDisable)
-            self.setTitleColor(status == .ENABLE ? self.config.secTitleColorEnable : self.config.secTitleColorDisable , for: .normal)
+            self.backgroundColor = (status == .ENABLE ? self.config.bgColorEnable : self.config.bgColorDisable)
+            self.setTitleColor(status == .ENABLE ? self.config.titleColorEnable : self.config.titleColorDisable , for: .normal)
             self.layer.borderWidth = 1
-            self.layer.borderColor = (status == .ENABLE ? self.config.secBorderColorEnable.cgColor : self.config.secBorderColorDisable.cgColor)
-            self.tintColor = (status == .ENABLE) ? self.config.secTintColorEnable : self.config.secTintColorDisable
+            self.layer.borderColor = (status == .ENABLE ? self.config.borderColorEnable.cgColor : self.config.borderColorDisable.cgColor)
+            self.tintColor = (status == .ENABLE) ? self.config.tintColorEnable : self.config.tintColorDisable
         }
     }
     
