@@ -286,46 +286,28 @@ public class M2PButton: UIButton {
     public struct M2PColorConfig {
         
         /// Color of bg enable
-        public var priBgColorEnable = UIColor.primaryActive
+        public var bgColorEnable = UIColor.primaryActive
         
         /// Color of bg disable
-        public var priBgColorDisable = UIColor.DavysGrey66
+        public var bgColorDisable = UIColor.DavysGrey66
         
         /// Color of title enable
-        public var priTitleColorEnable = UIColor.background
+        public var titleColorEnable = UIColor.background
         
         /// Color of title disable
-        public var priTitleColorDisable = UIColor.DavysGrey100
+        public var titleColorDisable = UIColor.DavysGrey100
         
         /// Color of tint enable
-        public var priTintColorEnable = UIColor.background
+        public var tintColorEnable = UIColor.background
         
         /// Color of tint disable
-        public var priTintColorDisable = UIColor.DavysGrey100
-        
-        /// Color of bg enable
-        public var secBgColorEnable = UIColor.primaryActive
-        
-        /// Color of bg disable
-        public var secBgColorDisable = UIColor.DavysGrey66
-        
-        /// Color of title enable
-        public var secTitleColorEnable = UIColor.background
-        
-        /// Color of title disable
-        public var secTitleColorDisable = UIColor.DavysGrey100
-        
-        /// Color of tint enable
-        public var secTintColorEnable = UIColor.background
-        
-        /// Color of tint disable
-        public var secTintColorDisable = UIColor.DavysGrey100
+        public var tintColorDisable = UIColor.DavysGrey100
         
         /// Color of border enable
-        public var secBorderColorEnable = UIColor.primaryActive
+        public var borderColorEnable = UIColor.primaryActive
         
         /// Color of border disable
-        public var secBorderColorDisable = UIColor.secondaryInactive
+        public var borderColorDisable = UIColor.secondaryInactive
         
         public init() {}
         
@@ -336,30 +318,28 @@ public class M2PButton: UIButton {
 /*
  // Code implementation
  // MARK: - CUSTOM Button
- private func setupButton(){
- 
-     self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
-                                    cornerRadius: 5,
-                                    buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
-                                    isPrimary: true,
-                                    leftImg: UIImage(named:"plus.png"),
-                                    rightImg: UIImage(named:"plus.png"),
-                                    leftIconWidth: 20,
-                                    leftIconHeight: 20,
-                                    rightIconWidth: 20,
-                                    rightIconHeight: 20,
-                                    state: .ENABLE,// ENABLE / DISABLE
-                                    leftIconTint:.blue,
-                                    rightIconTint: .orange)
-     self.m2pButton.onClick = { sender in
-         // 
-     }
-     
-     var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
-     config.priBgColorEnable = UIColor.OceanBlue16
-     config.priTitleColorEnable = UIColor.white
-     config.secBgColorEnable = .secondaryInactive
-     config.secTitleColorEnable = .secondaryRedColor
-     self.m2pButton.M2PColorSetConfig(config)
- }
- */
+private func setupButton(){
+    
+    self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
+                                   cornerRadius: 5,
+                                   buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
+                                   isPrimary: true,
+                                   leftImg: UIImage(named:"plus.png"),
+                                   rightImg: UIImage(named:"plus.png"),
+                                   leftIconWidth: 20,
+                                   leftIconHeight: 20,
+                                   rightIconWidth: 20,
+                                   rightIconHeight: 20,
+                                   state: .ENABLE,// ENABLE / DISABLE
+                                   leftIconTint:.blue,
+                                   rightIconTint: .orange)
+    self.m2pButton.onClick = { sender in
+        // do
+    }
+    
+    var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
+    config.bgColorEnable = UIColor.black
+    config.titleColorEnable = UIColor.white
+    self.m2pButton.M2PColorSetConfig(config)
+}
+*/
