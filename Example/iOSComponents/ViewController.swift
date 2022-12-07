@@ -162,10 +162,9 @@ class ViewController: UIViewController {
         }
         
         var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
-        config.priBgColorEnable = UIColor.black
-        config.priTitleColorEnable = UIColor.white
-        config.secBgColorEnable = .secondaryInactive
-        config.secTitleColorEnable = .secondaryRedColor
+        config.bgColorEnable = UIColor.black
+        config.titleColorEnable = UIColor.white
+        config.borderColorEnable = UIColor.orange
         self.m2pButton.M2PColorSetConfig(config)
     }
     
