@@ -12,6 +12,7 @@ import UIKit
 public enum ButtonTypes {
     case Primary
     case Secondary
+    case None
     
     var bool: Bool {
         switch self {
@@ -29,6 +30,8 @@ public enum ButtonStyle : String {
     case LEFT_SIDE_ICON
     case RIGHT_SIDE_ICON
     case DOUBLE_SIDE_ICON
+//    case TEXT
+//    case ICON
 }
 
 public enum ButtonStatus {

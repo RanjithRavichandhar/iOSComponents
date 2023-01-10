@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var pageControl: M2PCustomPageControl!
     @IBOutlet private weak var datepickerTF: UITextField!
     
+    @IBOutlet weak var popAlertButton: M2PCustomButton!
+    
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
     
@@ -41,6 +43,29 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let colorConfig = M2PButtonColorConfigModel()
+        colorConfig.backgroundActive = .background
+        colorConfig.backgroundInActive = .background.withAlphaComponent(0.5)
+       
+        colorConfig.titleActive = .primaryActive
+        colorConfig.titleInActive = .primaryActive.withAlphaComponent(0.5)
+       
+        colorConfig.primaryIconActive = .primaryActive
+        colorConfig.primaryIconInActive = .primaryActive.withAlphaComponent(0.5)
+       
+        colorConfig.secondaryIconActive = .primaryActive
+        colorConfig.secondaryIconInActive = .primaryActive.withAlphaComponent(0.5)
+        
+        colorConfig.borderActive = .primaryActive
+        colorConfig.borderInActive = .primaryActive.withAlphaComponent(0.5)
+        
+        let config = M2PButtonConfigModel(title: "Chandru", primaryIcon: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate), secondaryIcon: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate), colorConfig: colorConfig)
+        config.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
+        
+        popAlertButton.M2PSetupButton(type: .Secondary, style: .DOUBLE_SIDE_ICON, config: config)
+//        popAlertButton.isEnabled = false
+//        popAlertButton.layer.cornerRadius = 25
         
         self.m2pSetupOtpView()
         self.otpView?.initializeUI()
@@ -312,24 +337,35 @@ extension ViewController {
     // MARK: - POP ALERT
     
     @IBAction func alertPopActn(_ sender: UIButton){
-        let customAlert = M2PPopAlert(nibName: "M2PPopAlert", bundle: M2PComponentsBundle.shared.currentBundle)
-        customAlert.enableButtonList = [.Leading,.Center,.Trailing]
-        customAlert.posistion = .Top // .Top , .Center , .Bottom
-        customAlert.alertBgColor = UIColor.background
-        customAlert.alertTitleColor = UIColor.primaryActive
-        customAlert.alertMessageColor = UIColor.focusedLine
-        customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
-        customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
-        customAlert.alertTitle = "Verification"
-        customAlert.alertMessage = "Your Information in the audit"
-        customAlert.statusImage = UIImage.init(named: "alert")
-        customAlert.delegate = self
-        customAlert.alertTag = 1
-        customAlert.show()
-        // MARK:  M2PButton should configure after present Pop (i.e) after func show() called
-        customAlert.leadingButton.M2PButtonConfig(type: .custom,title: "Learn", isPrimary: false)
-        customAlert.centerButton.M2PButtonConfig(type: .custom, title: "Cancel")
-        customAlert.trailingButton.M2PButtonConfig(type: .custom, title: "Ok")
+        print(sender.isHighlighted)
+        self.popAlertButton.M2PPrimaryIconUpdateWithState(value: UIImage(named: "pencil")?.withRenderingMode(.alwaysTemplate), isEnabled: false)
+        self.popAlertButton.M2PButtonTitleUpdateWithState(value: "Ola", isEnabled: false)
+//        self.popAlertButton.M2PBorderColorUpdate(active: .primaryActive, inActive: .systemPink)
+        
+        
+        
+//        self.popAlertButton.M2PBackgroundColorUpdate(active: .primaryActive, inActive: .systemBlue.withAlphaComponent(0.5))
+//        self.popAlertButton.M2PSecondaryStateBorderColor = .secondaryInactive
+//        sender.isEnabled = false
+        
+//        let customAlert = M2PPopAlert(nibName: "M2PPopAlert", bundle: M2PComponentsBundle.shared.currentBundle)
+//        customAlert.enableButtonList = [.Leading,.Center,.Trailing]
+//        customAlert.posistion = .Top // .Top , .Center , .Bottom
+//        customAlert.alertBgColor = UIColor.background
+//        customAlert.alertTitleColor = UIColor.primaryActive
+//        customAlert.alertMessageColor = UIColor.focusedLine
+//        customAlert.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
+//        customAlert.messageFont = UIFont.customFont(name: "Arial", size: .x18)
+//        customAlert.alertTitle = "Verification"
+//        customAlert.alertMessage = "Your Information in the audit"
+//        customAlert.statusImage = UIImage.init(named: "alert")
+//        customAlert.delegate = self
+//        customAlert.alertTag = 1
+//        customAlert.show()
+//        // MARK:  M2PButton should configure after present Pop (i.e) after func show() called
+//        customAlert.leadingButton.M2PButtonConfig(type: .custom,title: "Learn", isPrimary: false)
+//        customAlert.centerButton.M2PButtonConfig(type: .custom, title: "Cancel")
+//        customAlert.trailingButton.M2PButtonConfig(type: .custom, title: "Ok")
     }
     
     // MARK: - CUSTOM ALERT func enteredOTP(_ OTPView: OTPFieldView,otp: String)
