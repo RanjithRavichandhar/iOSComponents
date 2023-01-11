@@ -506,6 +506,7 @@ extension M2PInputField {
         self.fieldStyle = fieldConfig.fieldStyle
         
         //Input Field data - related
+        textField.isUserInteractionEnabled = true
         textField.placeholder = fieldConfig.placeholderText
         setTextFieldCurrentStateStyles()
         
