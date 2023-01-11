@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pageControl: M2PCustomPageControl!
     @IBOutlet private weak var datepickerTF: UITextField!
     
-    @IBOutlet weak var popAlertButton: M2PCustomButton!
+    @IBOutlet weak var popAlertButton: M2PButton!
     
     private var indicatorValue: Float = 0.0
     var progressBarTimer: Timer!
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
         
         setupInputField()
         
-        setupButton()
+//        setupButton()
         
         //Page Control
         pageControl.setup(for: 4, with: M2PPageControlConfig(image_inactive: UIImage(named: "pageControlIndicator")))
@@ -165,33 +165,33 @@ class ViewController: UIViewController {
     }
     
     // MARK: - CUSTOM Button
-    private func setupButton(){
-    
-        self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
-                                       cornerRadius: 5,
-                                       buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
-                                       isPrimary: true,
-                                       leftImg: UIImage(named:"plus.png"),
-                                       rightImg: UIImage(named:"plus.png"),
-                                       leftIconWidth: 20,
-                                       leftIconHeight: 20,
-                                       rightIconWidth: 20,
-                                       rightIconHeight: 20,
-                                       state: .ENABLE,// ENABLE / DISABLE
-                                       leftIconTint:.blue,
-                                       rightIconTint: .orange)
-        self.m2pButton.onClick = { sender in
-            self.index -= 1
-            self.topTabBar.updateSelectedIndexInCollection(at:self.index)
-            self.inputFieldView?.M2PhideErrorMessage()
-        }
-        
-        var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
-        config.bgColorEnable = UIColor.black
-        config.titleColorEnable = UIColor.white
-        config.borderColorEnable = UIColor.orange
-        self.m2pButton.M2PColorSetConfig(config)
-    }
+//    private func setupButton(){
+//
+//        self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
+//                                       cornerRadius: 5,
+//                                       buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
+//                                       isPrimary: true,
+//                                       leftImg: UIImage(named:"plus.png"),
+//                                       rightImg: UIImage(named:"plus.png"),
+//                                       leftIconWidth: 20,
+//                                       leftIconHeight: 20,
+//                                       rightIconWidth: 20,
+//                                       rightIconHeight: 20,
+//                                       state: .ENABLE,// ENABLE / DISABLE
+//                                       leftIconTint:.blue,
+//                                       rightIconTint: .orange)
+//        self.m2pButton.onClick = { sender in
+//            self.index -= 1
+//            self.topTabBar.updateSelectedIndexInCollection(at:self.index)
+//            self.inputFieldView?.M2PhideErrorMessage()
+//        }
+//
+//        var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
+//        config.bgColorEnable = UIColor.black
+//        config.titleColorEnable = UIColor.white
+//        config.borderColorEnable = UIColor.orange
+//        self.m2pButton.M2PColorSetConfig(config)
+//    }
     
     private func setupInputField() {
         inputFieldView = M2PInputField(frame: CGRect(x: 20, y: view.frame.midY - 120, width: view.frame.width - 40 , height: 80))
@@ -338,8 +338,9 @@ extension ViewController {
     
     @IBAction func alertPopActn(_ sender: UIButton){
         print(sender.isHighlighted)
-        self.popAlertButton.M2PPrimaryIconUpdateWithState(value: UIImage(named: "pencil")?.withRenderingMode(.alwaysTemplate), isEnabled: false)
-        self.popAlertButton.M2PButtonTitleUpdateWithState(value: "Ola", isEnabled: false)
+        sender.isEnabled = false
+//        self.popAlertButton.M2PPrimaryIconUpdateWithState(value: UIImage(named: "pencil")?.withRenderingMode(.alwaysTemplate), isEnabled: false)
+//        self.popAlertButton.M2PButtonTitleUpdateWithState(value: "Ola", isEnabled: false)
 //        self.popAlertButton.M2PBorderColorUpdate(active: .primaryActive, inActive: .systemPink)
         
         
@@ -389,8 +390,8 @@ extension ViewController {
         customAlert.bgImgColor = .DavysGrey100
         customAlert.show()
         // MARK: M2PButton should configure after present Pop (i.e) after called func show()
-        customAlert.submitButton.M2PButtonConfig(type: .custom,title: "Submit", isPrimary: false)
-        customAlert.secondaryButton.M2PButtonConfig(type: .custom, title: "Cancel")
+//        customAlert.submitButton.M2PButtonConfig(type: .custom,title: "Submit", isPrimary: false)
+//        customAlert.secondaryButton.M2PButtonConfig(type: .custom, title: "Cancel")
         // Textfield
         customAlert.didChange = { text in
             print(text)

@@ -2,347 +2,268 @@
 //  M2PButton.swift
 //  iOSComponents
 //
-//  Created by Balaji  on 06/09/22.
+//  Created by CHANDRU on 05/01/23.
 //
 
-import Foundation
-import UIKit
-
-
-public enum ButtonTypes {
-    case Primary
-    case Secondary
-    case None
-    
-    var bool: Bool {
-        switch self {
-        case .Primary:
-            return true
-        default:
-            return false
-        }
-    }
-}
-
-public enum ButtonStyle : String {
-    case NOICON
-    case ONLYICON
-    case LEFT_SIDE_ICON
-    case RIGHT_SIDE_ICON
-    case DOUBLE_SIDE_ICON
-//    case TEXT
-//    case ICON
-}
-
-public enum ButtonStatus {
-    case ENABLE
-    case DISABLE
-    
-    var bool: Bool {
-        switch self {
-        case .ENABLE:
-            return true
-        default:
-            return false
-        }
-    }
-}
-
+// MARK: - M2PButton
 public class M2PButton: UIButton {
+    private var configData: M2PButtonConfigModel?
+    private var customButtonType: ButtonTypes = .None
+    private var customButtonStyle: ButtonStyle = .NOICON
     
-    class var shared: M2PButton {
-        struct Singleton {
-            static let instance = M2PButton()
-        }
-        return Singleton.instance
-    }
+    private var iconSize: CGFloat = 20
+    private var primaryImageView = UIImageView()
+    private var secondaryImageView = UIImageView()
     
-    var config : M2PColorConfig = M2PColorConfig() {
+    // MARK: Accessible Properites
+    /* Button Enabled */
+    public override var isEnabled: Bool {
         didSet {
-            self.setupView()
+            print("isEnabled set", isEnabled)
+            if isEnabled {
+                self.primaryImageView.tintColor = configData?.colorConfig.primaryIconActive
+                self.secondaryImageView.tintColor = configData?.colorConfig.secondaryIconActive
+                self.backgroundColor = configData?.colorConfig.backgroundActive
+                self.setTitleColor(configData?.colorConfig.titleActive, for: .normal)
+                if customButtonType == .Secondary {
+                    self.layer.borderColor = configData?.colorConfig.borderActive?.cgColor
+                }
+            } else {
+                self.primaryImageView.tintColor = configData?.colorConfig.primaryIconInActive
+                self.secondaryImageView.tintColor = configData?.colorConfig.secondaryIconInActive
+                self.backgroundColor = configData?.colorConfig.backgroundInActive
+                self.setTitleColor(configData?.colorConfig.titleInActive, for: .disabled)
+                if customButtonType == .Secondary {
+                    self.layer.borderColor = configData?.colorConfig.borderInActive?.cgColor
+                }
+            }
         }
     }
-    
-    private var buttonStyle: ButtonStyle? = .NOICON {
-        didSet{
-            setupView()
+
+    /* Button TitleFont Update */
+    public var M2PSetContentTitleFont: UIFont? {
+        didSet {
+            self.configData?.titleFont = M2PSetContentTitleFont ?? .systemFont(ofSize: 14)
+            self.titleLabel?.font = M2PSetContentTitleFont
         }
     }
+
+    public var M2PButtonOnAction: ((_ sender: UIButton) -> Void)?
     
-    private var cornerRadius: CGFloat = 10{
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var bgImage: UIImage? = nil{
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var isPrimary: Bool = false {
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var leftImage: UIImage? = nil {
-        didSet{
-            setupImage()
-        }
-    }
-    
-    private var leftImageWidth: CGFloat = 20 {
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var leftImageHeight: CGFloat = 20 {
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var rightImage: UIImage? = nil {
-        didSet{
-            setupImage()
-        }
-    }
-    
-    private var rightImageWidth: CGFloat = 20 {
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var rightImageHeight: CGFloat = 20 {
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var leftIconTint: UIColor? = UIColor.lightGray {
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var rightIconTint: UIColor? = UIColor.lightGray {
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var type: ButtonTypes? = .Primary {
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var status: ButtonStatus? = .ENABLE {
-        didSet{
-            setupView()
-        }
-    }
-    
-    private var leftImageView = UIImageView()
-    private var rightImageView = UIImageView()
-    
-    public var onClick: ((_ : UIButton) -> ())?
-    
-    override init(frame: CGRect) {
+    // MARK: Life Cycle
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setupView()
     }
-    
-    override open func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        self.setupView()
-    }
-    
+}
+
+// MARK: - Methods
+extension M2PButton {
+    /* Setup View */
     private func setupView() {
-        layer.masksToBounds = false
-        self.setupButtonType()
-        self.addTarget(self, action: #selector(actn(_:)), for: [.touchUpInside])
-    }
-    
-    @objc fileprivate func actn(_ sender: UIButton) {
-        onClick?(_ :sender)
-    }
-    
-    fileprivate func setupImage() {
+        let colorConfig = M2PButtonColorConfigModel()
+        colorConfig.titleActive = .systemBlue
+        colorConfig.titleInActive = .systemBlue.withAlphaComponent(0.5)
+        colorConfig.backgroundActive = .white
+        colorConfig.backgroundInActive = .white.withAlphaComponent(0.5)
         
-        switch buttonStyle {
-        case .ONLYICON:
-            self.setBackgroundImage(bgImage, for: .normal)
-        case .LEFT_SIDE_ICON:
-            self.addLeftIcon()
-        case .RIGHT_SIDE_ICON:
-            self.addRightIcon()
-        case .DOUBLE_SIDE_ICON:
-            self.addDoubleIcon()
-        default:
-            break
+        let config = M2PButtonConfigModel(title: "M2PButton", primaryIcon: nil, secondaryIcon: nil, colorConfig: colorConfig)
+        self.M2PSetupButton(config: config)
+        self.addTarget(self, action: #selector(m2pButtonTapped(_:)), for: .touchUpInside)
+    }
+    
+    /* M2PButton OnAction */
+    @objc private func m2pButtonTapped(_ sender: UIButton) {
+        M2PButtonOnAction?(sender)
+    }
+    
+    // MARK: Setup M2PButton
+    public func M2PSetupButton(type: ButtonTypes = .None, style: ButtonStyle = ButtonStyle.NOICON, config: M2PButtonConfigModel) {
+        configData = config
+        customButtonType = type
+        customButtonStyle = style
+        iconSize = config.iconSize
+        
+        switch type {
+        case .Primary:
+            self.layer.cornerRadius = 8
+            setupButtonStyle(with: style)
+        case .Secondary:
+            self.layer.cornerRadius = 8
+            setupButtonStyle(with: style)
+            setupSecondaryTypeBorder()
+        case .None:
+            self.layer.cornerRadius = 0
+            setupButtonStyle(with: style)
         }
     }
     
-    public func M2PColorSetConfig(_ config: M2PColorConfig) {
-        self.config = config
-    }
-    
-    public func M2PButtonConfig(type: ButtonType ,
-                                title: String,
-                                cornerRadius: CGFloat? = 10,
-                                buttonStyle:ButtonStyle? = .NOICON,
-                                isPrimary:Bool? = true,
-                                leftImg:UIImage? = nil,
-                                rightImg:UIImage? = nil,
-                                leftIconWidth:CGFloat? = 10,
-                                leftIconHeight:CGFloat? = 10,
-                                rightIconWidth:CGFloat? = 10,
-                                rightIconHeight:CGFloat? = 10,
-                                state: ButtonStatus? = .ENABLE,
-                                leftIconTint: UIColor? = .lightGray,
-                                rightIconTint: UIColor? = .lightGray
-    ){
-        self.cornerRadius = cornerRadius ?? 10
-        self.isPrimary = isPrimary ?? true
-        self.buttonStyle = buttonStyle
-        self.setTitle(title, for: .normal)
-        self.leftImageWidth = leftIconWidth ?? 20
-        self.leftImageHeight = leftIconHeight ?? 20
-        self.rightImageWidth = rightIconWidth ?? 20
-        self.rightImageHeight = rightIconHeight ?? 20
-        self.status = state
-        self.leftIconTint = leftIconTint
-        self.rightIconTint = rightIconTint
-        self.leftImage = leftImg
-        self.rightImage = rightImg
-    }
-    
-    private func setupButtonType() {
-        if isPrimary{
-            self.isEnabled = status == .ENABLE ? true : false
-            self.backgroundColor = (status == .ENABLE ? self.config.bgColorEnable : self.config.bgColorDisable)
-            self.setTitleColor(status == .ENABLE ? self.config.titleColorEnable : self.config.titleColorDisable , for: .normal)
-            self.layer.borderColor = UIColor.clear.cgColor
-            self.tintColor = (status == .ENABLE) ? self.config.tintColorEnable : self.config.tintColorDisable
-        }else{
-            self.isEnabled = status == .ENABLE ? true : false
-            self.backgroundColor = (status == .ENABLE ? self.config.bgColorEnable : self.config.bgColorDisable)
-            self.setTitleColor(status == .ENABLE ? self.config.titleColorEnable : self.config.titleColorDisable , for: .normal)
-            self.layer.borderWidth = 1
-            self.layer.borderColor = (status == .ENABLE ? self.config.borderColorEnable.cgColor : self.config.borderColorDisable.cgColor)
-            self.tintColor = (status == .ENABLE) ? self.config.tintColorEnable : self.config.tintColorDisable
+    /* Setup Button with Style */
+    private func setupButtonStyle(with style: ButtonStyle) {
+        self.backgroundColor = configData?.colorConfig.backgroundActive
+        if style == .ONLYICON {
+            self.setImage(configData?.primaryIcon, for: .normal)
+            self.tintColor = configData?.colorConfig.primaryIconActive
+            self.setTitle("", for: .normal)
+        } else {
+            setupContentTitle()
+            switch style {
+            case .LEFT_SIDE_ICON:
+                addPrimaryImageIcon()
+            case .RIGHT_SIDE_ICON:
+                addSecondaryImageIcon()
+            case .DOUBLE_SIDE_ICON:
+                addDoubleIcon()
+            default:
+                print("")
+            }
         }
     }
-    
-    public override func draw(_ rect: CGRect) {
-        self.layer.cornerRadius = cornerRadius
-        self.layer.masksToBounds = true
+
+    /* Setup ButtonTitle */
+    private func setupContentTitle() {
+        self.setTitle(configData?.title, for: .normal)
+        self.setTitleColor(configData?.colorConfig.titleActive, for: .normal)
+        self.titleLabel?.font = configData?.titleFont
     }
     
     private func addDoubleIcon() {
-        self.addLeftIcon()
-        self.addRightIcon()
+        self.addPrimaryImageIcon()
+        self.addSecondaryImageIcon()
     }
-    private func addLeftIcon() {
-        if let leftImageView = leftImage {
-            self.leftImageView.image = leftImageView
-            self.leftImageView.tintColor = leftIconTint
-            self.leftImageView.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(self.leftImageView)
+    
+    /* Setup PrimaryIcon */
+    private func addPrimaryImageIcon() {
+        if let primaryImageView = self.configData?.primaryIcon {
+            self.primaryImageView.image = primaryImageView
+            self.primaryImageView.tintColor = self.configData?.colorConfig.primaryIconActive
+            self.primaryImageView.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(self.primaryImageView)
             
             NSLayoutConstraint.activate([
-                self.leftImageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -20),
-                self.leftImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-                self.leftImageView.widthAnchor.constraint(equalToConstant: leftImageWidth ),
-                self.leftImageView.heightAnchor.constraint(equalToConstant: leftImageWidth )
+                self.primaryImageView.trailingAnchor.constraint(equalTo: self.titleLabel!.leadingAnchor, constant: -10),
+                self.primaryImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
+                self.primaryImageView.widthAnchor.constraint(equalToConstant: iconSize),
+                self.primaryImageView.heightAnchor.constraint(equalToConstant: iconSize)
             ])
         }
     }
     
-    private func addRightIcon() {
-        if let rightImageView = rightImage {
-            self.rightImageView.image = rightImageView
-            self.rightImageView.tintColor = rightIconTint
-            self.rightImageView.translatesAutoresizingMaskIntoConstraints = false
-            addSubview( self.rightImageView)
+    /* Setup SecondaryIcon */
+    private func addSecondaryImageIcon() {
+        if let secondaryImageView = self.configData?.secondaryIcon  {
+            self.secondaryImageView.image = secondaryImageView
+            self.secondaryImageView.tintColor = self.configData?.colorConfig.secondaryIconActive
+            self.secondaryImageView.translatesAutoresizingMaskIntoConstraints = false
+            addSubview( self.secondaryImageView)
             
             NSLayoutConstraint.activate([
-                self.rightImageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 20),
-                self.rightImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
-                self.rightImageView.widthAnchor.constraint(equalToConstant: rightImageWidth ),
-                self.rightImageView.heightAnchor.constraint(equalToConstant: rightImageWidth )
+                self.secondaryImageView.leadingAnchor.constraint(equalTo: self.titleLabel!.trailingAnchor, constant: 10),
+                self.secondaryImageView.centerYAnchor.constraint(equalTo: self.titleLabel!.centerYAnchor, constant: 0),
+                self.secondaryImageView.widthAnchor.constraint(equalToConstant: iconSize),
+                self.secondaryImageView.heightAnchor.constraint(equalToConstant: iconSize)
             ])
         }
     }
     
-    // MARK: - Color config
-    public struct M2PColorConfig {
-        
-        /// Color of bg enable
-        public var bgColorEnable = UIColor.primaryActive
-        
-        /// Color of bg disable
-        public var bgColorDisable = UIColor.DavysGrey66
-        
-        /// Color of title enable
-        public var titleColorEnable = UIColor.background
-        
-        /// Color of title disable
-        public var titleColorDisable = UIColor.DavysGrey100
-        
-        /// Color of tint enable
-        public var tintColorEnable = UIColor.background
-        
-        /// Color of tint disable
-        public var tintColorDisable = UIColor.DavysGrey100
-        
-        /// Color of border enable
-        public var borderColorEnable = UIColor.primaryActive
-        
-        /// Color of border disable
-        public var borderColorDisable = UIColor.secondaryInactive
-        
-        public init() {}
-        
+    /* Setup SecondaryType Border */
+    private func setupSecondaryTypeBorder() {
+        self.layer.borderColor = configData?.colorConfig.borderActive?.cgColor
+        self.layer.borderWidth = 1.5
+    }
+    
+    /* Icons Update */
+    private func imageIconsUpdate(with view: UIImageView, value: UIImage?, isEnabled: Bool) {
+        guard customButtonStyle != .NOICON else {
+            return
+        }
+        self.isEnabled = isEnabled
+        if customButtonStyle == .ONLYICON {
+            let state: UIControl.State = isEnabled ? .normal : .disabled
+            self.setImage(value, for: state)
+        } else {
+            guard let value = value else {
+                view.removeFromSuperview()
+                return
+            }
+            view.image = value
+        }
     }
 }
 
-
-/*
- // Code implementation
- // MARK: - CUSTOM Button
-private func setupButton(){
-    
-    self.m2pButton.M2PButtonConfig(type: .custom, title: "IndusLogo",
-                                   cornerRadius: 5,
-                                   buttonStyle: .DOUBLE_SIDE_ICON, //  NOICON, ONLYICON, LEFT_SIDE_ICON, RIGHT_SIDE_ICON, DOUBLE_SIDE_ICON
-                                   isPrimary: true,
-                                   leftImg: UIImage(named:"plus.png"),
-                                   rightImg: UIImage(named:"plus.png"),
-                                   leftIconWidth: 20,
-                                   leftIconHeight: 20,
-                                   rightIconWidth: 20,
-                                   rightIconHeight: 20,
-                                   state: .ENABLE,// ENABLE / DISABLE
-                                   leftIconTint:.blue,
-                                   rightIconTint: .orange)
-    self.m2pButton.onClick = { sender in
-        // do
+// MARK: -  Accessible Public Methods
+extension M2PButton {
+    /* M2PButton TitleColor Update */
+    public func M2PContentTitleColorUpdate(active: UIColor, inActive: UIColor) {
+        self.configData?.colorConfig.titleActive = active
+        self.configData?.colorConfig.titleInActive = inActive
+        self.isEnabled = isEnabled
     }
     
-    var config : M2PButton.M2PColorConfig = M2PButton.M2PColorConfig()
-    config.bgColorEnable = UIColor.black
-    config.titleColorEnable = UIColor.white
-    self.m2pButton.M2PColorSetConfig(config)
+    /* M2PButton BorderColor Update */
+    public func M2PBorderColorUpdate(active: UIColor, inActive: UIColor) {
+        self.configData?.colorConfig.borderActive = active
+        self.configData?.colorConfig.borderInActive = inActive
+        self.isEnabled = isEnabled
+    }
+    
+    /* M2PButton BackgroundColor Update */
+    public func M2PBackgroundColorUpdate(active: UIColor, inActive: UIColor) {
+        self.configData?.colorConfig.backgroundActive = active
+        self.configData?.colorConfig.backgroundInActive = inActive
+        self.isEnabled = isEnabled
+    }
+    
+    /* PrimaryIcon TintColor Update */
+    public func M2PPrimaryIconTintColorUpdate(active: UIColor, inActive: UIColor) {
+        self.configData?.colorConfig.primaryIconActive = active
+        self.configData?.colorConfig.primaryIconInActive = inActive
+        self.isEnabled = isEnabled
+    }
+    
+    /* SecondaryIcon TintColor Update */
+    public func M2PSecondaryIconTintColorUpdate(active: UIColor, inActive: UIColor) {
+        self.configData?.colorConfig.secondaryIconActive = active
+        self.configData?.colorConfig.secondaryIconInActive = inActive
+        self.isEnabled = isEnabled
+    }
+    
+    /* M2PButton Title Update */
+    public func M2PButtonTitleUpdateWithState(value: String?, isEnabled: Bool = true) {
+        guard customButtonStyle != .ONLYICON else {
+            return
+        }
+        self.configData?.title = value
+        self.isEnabled = isEnabled
+        let state: UIControl.State = isEnabled ? .normal : .disabled
+        self.setTitle(value, for: state)
+    }
+    
+    /* PrimaryIcon Update */
+    public func M2PPrimaryIconUpdateWithState(value: UIImage?, isEnabled: Bool = true) {
+        self.configData?.primaryIcon = value
+        self.imageIconsUpdate(with: self.primaryImageView, value: value, isEnabled: isEnabled)
+    }
+    
+    /* SecondaryIcon Update */
+    public func M2PSecondaryIconUpdateWithState(value: UIImage?, isEnabled: Bool = true) {
+        self.configData?.secondaryIcon = value
+        self.imageIconsUpdate(with: self.secondaryImageView, value: value, isEnabled: isEnabled)
+    }
 }
-*/
+
+// MARK: - <UITraitEnvironment> delegate methods
+extension M2PButton {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *) {
+            if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
+                self.isEnabled = isEnabled
+            }
+        }
+    }
+}
