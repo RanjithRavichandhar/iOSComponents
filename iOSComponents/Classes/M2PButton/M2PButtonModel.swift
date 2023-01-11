@@ -16,11 +16,13 @@ public class M2PButtonConfigModel {
     public var colorConfig: M2PButtonColorConfigModel
     public var iconSize: CGFloat = 20
     
-    public init(title: String?, primaryIcon: UIImage?, secondaryIcon: UIImage?, colorConfig: M2PButtonColorConfigModel) {
+    public init(title: String?, primaryIcon: UIImage?, secondaryIcon: UIImage?, colorConfig: M2PButtonColorConfigModel, titleFont: UIFont = .systemFont(ofSize: 14), iconSize: CGFloat = 20) {
         self.title = title
         self.primaryIcon = primaryIcon
         self.secondaryIcon = secondaryIcon
         self.colorConfig = colorConfig
+        self.titleFont = titleFont
+        self.iconSize = iconSize
     }
 }
 
