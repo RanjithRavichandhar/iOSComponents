@@ -63,7 +63,8 @@ class ViewController: UIViewController {
         let config = M2PButtonConfigModel(title: "Chandru", primaryIcon: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate), secondaryIcon: UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate), colorConfig: colorConfig)
         config.titleFont = UIFont.customFont(name: "Arial-BoldMT", size: .x20)
         
-        popAlertButton.M2PSetupButton(type: .Secondary, style: .DOUBLE_SIDE_ICON, config: config)
+        popAlertButton.M2PSetupButton(type: .secondary, style: .primaryIcon_text, config: config)
+        
 //        popAlertButton.isEnabled = false
 //        popAlertButton.layer.cornerRadius = 25
         

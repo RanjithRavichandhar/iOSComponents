@@ -8,8 +8,8 @@
 // MARK: - M2PButton
 public class M2PButton: UIButton {
     private var configData: M2PButtonConfigModel?
-    private var customButtonType: ButtonTypes = .None
-    private var customButtonStyle: ButtonStyle = .NOICON
+    private var customButtonType: ButtonTypes = .none
+    private var customButtonStyle: ButtonStyle = .text
     
     private var iconSize: CGFloat = 20
     private var primaryImageView = UIImageView()
@@ -25,7 +25,7 @@ public class M2PButton: UIButton {
                 self.secondaryImageView.tintColor = configData?.colorConfig.secondaryIconActive
                 self.backgroundColor = configData?.colorConfig.backgroundActive
                 self.setTitleColor(configData?.colorConfig.titleActive, for: .normal)
-                if customButtonType == .Secondary {
+                if customButtonType == .secondary {
                     self.layer.borderColor = configData?.colorConfig.borderActive?.cgColor
                 }
             } else {
@@ -33,7 +33,7 @@ public class M2PButton: UIButton {
                 self.secondaryImageView.tintColor = configData?.colorConfig.secondaryIconInActive
                 self.backgroundColor = configData?.colorConfig.backgroundInActive
                 self.setTitleColor(configData?.colorConfig.titleInActive, for: .disabled)
-                if customButtonType == .Secondary {
+                if customButtonType == .secondary {
                     self.layer.borderColor = configData?.colorConfig.borderInActive?.cgColor
                 }
             }
@@ -83,21 +83,21 @@ extension M2PButton {
     }
     
     // MARK: Setup M2PButton
-    public func M2PSetupButton(type: ButtonTypes = .None, style: ButtonStyle = ButtonStyle.NOICON, config: M2PButtonConfigModel) {
+    public func M2PSetupButton(type: ButtonTypes = .none, style: ButtonStyle = ButtonStyle.text, config: M2PButtonConfigModel) {
         configData = config
         customButtonType = type
         customButtonStyle = style
         iconSize = config.iconSize
         
         switch type {
-        case .Primary:
+        case .primary:
             self.layer.cornerRadius = 8
             setupButtonStyle(with: style)
-        case .Secondary:
+        case .secondary:
             self.layer.cornerRadius = 8
             setupButtonStyle(with: style)
             setupSecondaryTypeBorder()
-        case .None:
+        case .none:
             self.layer.cornerRadius = 0
             setupButtonStyle(with: style)
         }
@@ -106,18 +106,18 @@ extension M2PButton {
     /* Setup Button with Style */
     private func setupButtonStyle(with style: ButtonStyle) {
         self.backgroundColor = configData?.colorConfig.backgroundActive
-        if style == .ONLYICON {
+        if style == .icon {
             self.setImage(configData?.primaryIcon, for: .normal)
             self.tintColor = configData?.colorConfig.primaryIconActive
             self.setTitle("", for: .normal)
         } else {
             setupContentTitle()
             switch style {
-            case .LEFT_SIDE_ICON:
+            case .primaryIcon_text:
                 addPrimaryImageIcon()
-            case .RIGHT_SIDE_ICON:
+            case .secondaryIcon_text:
                 addSecondaryImageIcon()
-            case .DOUBLE_SIDE_ICON:
+            case .icons_text:
                 addDoubleIcon()
             default:
                 print("")
@@ -179,11 +179,11 @@ extension M2PButton {
     
     /* Icons Update */
     private func imageIconsUpdate(with view: UIImageView, value: UIImage?, isEnabled: Bool) {
-        guard customButtonStyle != .NOICON else {
+        guard customButtonStyle != .text else {
             return
         }
         self.isEnabled = isEnabled
-        if customButtonStyle == .ONLYICON {
+        if customButtonStyle == .icon {
             let state: UIControl.State = isEnabled ? .normal : .disabled
             self.setImage(value, for: state)
         } else {
@@ -235,7 +235,7 @@ extension M2PButton {
     
     /* M2PButton Title Update */
     public func M2PButtonTitleUpdateWithState(value: String?, isEnabled: Bool = true) {
-        guard customButtonStyle != .ONLYICON else {
+        guard customButtonStyle != .icon else {
             return
         }
         self.configData?.title = value

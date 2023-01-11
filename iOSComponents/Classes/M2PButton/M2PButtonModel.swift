@@ -48,13 +48,13 @@ public class M2PButtonColorConfigModel {
 }
 
 public enum ButtonTypes {
-    case Primary
-    case Secondary
-    case None
+    case primary
+    case secondary
+    case none
     
     var bool: Bool {
         switch self {
-        case .Primary:
+        case .primary:
             return true
         default:
             return false
@@ -63,20 +63,20 @@ public enum ButtonTypes {
 }
 
 public enum ButtonStyle : String {
-    case NOICON
-    case ONLYICON
-    case LEFT_SIDE_ICON
-    case RIGHT_SIDE_ICON
-    case DOUBLE_SIDE_ICON
+    case text
+    case icon
+    case primaryIcon_text
+    case secondaryIcon_text
+    case icons_text
 }
 
 public enum ButtonStatus {
-    case ENABLE
-    case DISABLE
+    case enable
+    case disable
 
     var bool: Bool {
         switch self {
-        case .ENABLE:
+        case .enable:
             return true
         default:
             return false
