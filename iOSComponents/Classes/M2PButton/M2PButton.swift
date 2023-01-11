@@ -173,7 +173,7 @@ extension M2PButton {
     
     /* Setup SecondaryType Border */
     private func setupSecondaryTypeBorder() {
-        self.layer.borderColor = configData?.colorConfig.borderActive?.cgColor
+        self.layer.borderColor = (configData?.colorConfig.borderActive ?? .clear).cgColor
         self.layer.borderWidth = 1.5
     }
     
