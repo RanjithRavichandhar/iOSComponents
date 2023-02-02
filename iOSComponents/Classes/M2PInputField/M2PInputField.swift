@@ -172,6 +172,15 @@ public class M2PInputField: UIView {
         }
     }
     
+    public var textFieldAlignment: NSTextAlignment {
+        get {
+            return textField.textAlignment
+        }
+        set {
+            textField.textAlignment = newValue
+        }
+    }
+    
     public var M2PdateFormatForDatePicker = "dd/MM/yyyy"
     
     public var M2PonClickLeftView: (() -> ())?
