@@ -62,8 +62,8 @@ public struct M2PInputFieldColorConfig {
     public var title: UIColor = .DavysGrey66
     public var placeholder: UIColor = .secondaryInactive
     public var valueText: UIColor = .primaryActive
-    // var defaultBorder: UIColor?
-    // var activeBorder: UIColor?
+    public var defaultBorder: UIColor = .lightGray
+    public var activeBorder: UIColor = .primaryActive
     public var successState: UIColor = .GreenPigment100
     public var failureState: UIColor = .PrincetonOrange100
     public var disabledState: UIColor = .formDisableFilled

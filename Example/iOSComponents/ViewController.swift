@@ -206,7 +206,12 @@ class ViewController: UIViewController {
 //        var fonts = M2PInputFieldFontConfig()
 //        fonts.placeHolderFont = UIFont.customFont(name: "Arial-BoldMT", size: .x14)
 //        let config = M2PInputFieldConfig(placeholder: "Enter name", fieldStyle: .Form_Floating, fieldFonts: fonts, fieldColors: colors)
-        let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Floating)
+       
+        var colorConfig = M2PInputFieldColorConfig()
+        colorConfig.defaultBorder = .lightGray
+        colorConfig.activeBorder = .primaryActive
+        
+        let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Default, fieldColors: colorConfig)
         
         inputField.M2Psetup(type: .Default_TextField, config: config) // , leftImage: UIImage(named: "pencil"))
         

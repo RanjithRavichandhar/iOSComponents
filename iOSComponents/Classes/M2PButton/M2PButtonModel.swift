@@ -28,20 +28,20 @@ public class M2PButtonConfigModel {
 
 // MARK: M2PButtonColorConfigModel
 public class M2PButtonColorConfigModel {
-    public var backgroundActive: UIColor?
-    public var backgroundInActive: UIColor?
+    public var backgroundActive: UIColor? = .background
+    public var backgroundInActive: UIColor? = .background
    
-    public var borderActive: UIColor?
-    public var borderInActive: UIColor?
+    public var borderActive: UIColor? = .primaryActive
+    public var borderInActive: UIColor? = .primaryActive
     
-    public var titleActive: UIColor?
-    public var titleInActive: UIColor?
+    public var titleActive: UIColor? = .primaryActive
+    public var titleInActive: UIColor? = .primaryActive
     
-    public var primaryIconActive: UIColor?
-    public var primaryIconInActive: UIColor?
+    public var primaryIconActive: UIColor? = .primaryActive
+    public var primaryIconInActive: UIColor? = .primaryActive
     
-    public var secondaryIconActive: UIColor?
-    public var secondaryIconInActive: UIColor?
+    public var secondaryIconActive: UIColor? = .primaryActive
+    public var secondaryIconInActive: UIColor? = .primaryActive
     
     public init() {
     }
