@@ -291,7 +291,7 @@ public class M2PInputField: UIView {
         case .Default_TextField:
             break
         case .Password:
-            textField.isSecureTextEntry = !textField.isSecureTextEntry
+            textField.isSecureTextEntry = !isFieldTypeIconOn
             fieldTypeImageView.image = textField.isSecureTextEntry ? getImage(with: "eye.png") : getImage(with: "eye_off.png")
         case .Dropdown:
             fieldTypeImageView.image = isFieldTypeIconOn ? getImage(with: "dropdown_active.png") : getImage(with: "dropdown_inactive.png")
