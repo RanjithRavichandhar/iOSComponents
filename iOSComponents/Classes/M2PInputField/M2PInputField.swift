@@ -59,6 +59,7 @@ public class M2PInputField: UIView {
     
     let textField: UITextField = {
         let textField = UITextField()
+        textField.autocorrectionType = .no
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -132,6 +133,8 @@ public class M2PInputField: UIView {
     var isFieldTypeIconOn = false
     var isFloatingLabelPresent = false
 
+    // TODO: Need To Check
+    /*
     var textFieldColor_Active: UIColor {
         if #available(iOS 13, *) {
             if UITraitCollection.current.userInterfaceStyle == .dark {
@@ -146,7 +149,7 @@ public class M2PInputField: UIView {
             return UIColor.secondaryWhiteColor
         }
     }
-    
+
     var textFieldColor_Inactive: UIColor = {
         if #available(iOS 13, *) {
             if UITraitCollection().userInterfaceStyle == .dark {
@@ -158,12 +161,17 @@ public class M2PInputField: UIView {
             return UIColor.lightGray
         }
     }()
+    */
+
+    var textFieldColor_Active: UIColor?
+    var textFieldColor_Inactive: UIColor?
+    
     
     var datePicker = UIDatePicker()
     
     // MARK: Public variables
     
-    public var keyBoardType: UIKeyboardType {
+    public var M2PkeyBoardType: UIKeyboardType {
         get {
             return textField.keyboardType
         }
@@ -172,12 +180,21 @@ public class M2PInputField: UIView {
         }
     }
     
-    public var textFieldAlignment: NSTextAlignment {
+    public var M2PtextFieldAlignment: NSTextAlignment {
         get {
             return textField.textAlignment
         }
         set {
             textField.textAlignment = newValue
+        }
+    }
+    
+    public var M2PtextFieldAutoCorrection: UITextAutocorrectionType {
+        get {
+            return textField.autocorrectionType
+        }
+        set {
+            textField.autocorrectionType = newValue
         }
     }
     
@@ -261,10 +278,10 @@ public class M2PInputField: UIView {
         case .Form_Default, .Form_Floating:
             contentView.layer.cornerRadius = 10
             contentView.layer.borderWidth = 1
-            contentView.layer.borderColor = currentStateColor.cgColor
+            contentView.layer.borderColor = currentStateColor?.cgColor
         case .BottomLine_Default, .BottomLine_Floating:
             bottomBorder.frame = CGRect(x: contentView.frame.minX, y: contentView.bounds.size.height - 5, width: contentView.frame.size.width, height:1)
-            bottomBorder.backgroundColor = currentStateColor.cgColor
+            bottomBorder.backgroundColor = currentStateColor?.cgColor
             contentView.layer.addSublayer(bottomBorder)
         }
     }
@@ -274,7 +291,7 @@ public class M2PInputField: UIView {
         case .Default_TextField:
             break
         case .Password:
-            textField.isSecureTextEntry = !textField.isSecureTextEntry
+            textField.isSecureTextEntry = !isFieldTypeIconOn
             fieldTypeImageView.image = textField.isSecureTextEntry ? getImage(with: "eye.png") : getImage(with: "eye_off.png")
         case .Dropdown:
             fieldTypeImageView.image = isFieldTypeIconOn ? getImage(with: "dropdown_active.png") : getImage(with: "dropdown_inactive.png")
@@ -479,8 +496,8 @@ public class M2PInputField: UIView {
         self.isTextFieldActive = isActiveflag
         
         let currentStateColor = isActiveflag ? textFieldColor_Active : textFieldColor_Inactive
-        contentView.layer.borderColor = currentStateColor.cgColor
-        bottomBorder.backgroundColor = currentStateColor.cgColor
+        contentView.layer.borderColor = currentStateColor?.cgColor
+        bottomBorder.backgroundColor = currentStateColor?.cgColor
         fieldTypeImageView.tintColor = currentStateColor
     }
     
@@ -513,6 +530,9 @@ extension M2PInputField {
         self.fieldType = type
         self.fieldConfig = config
         self.fieldStyle = fieldConfig.fieldStyle
+        
+        self.textFieldColor_Active = config.fieldColors.activeBorder
+        self.textFieldColor_Inactive = config.fieldColors.defaultBorder
         
         //Input Field data - related
         textField.isUserInteractionEnabled = true

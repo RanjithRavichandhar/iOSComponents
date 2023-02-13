@@ -130,6 +130,7 @@ extension M2PDatePicker {
             date_Picker.maximumDate = maxDate
             date_Picker.minimumDate = minDate
             date_Picker.date = selectedDate ?? Date()
+            self.selectedDate = selectedDate ?? Date()
             self.datePickerView(view:topVC.view, height: height)
         }
     }
