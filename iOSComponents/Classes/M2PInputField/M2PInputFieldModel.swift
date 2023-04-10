@@ -71,3 +71,16 @@ public struct M2PInputFieldColorConfig {
     public init() {
     }
 }
+
+public struct M2PFieldTypeImageConfig {
+    public var clearImage: UIImage?
+    public var password_on: UIImage?
+    public var password_off: UIImage?
+    public var dropdown_default: UIImage?
+    public var dropdown_active: UIImage?
+    public var calendar_default: UIImage?
+    public var calendar_active: UIImage?
+    
+    public init() {
+    }
+}
