@@ -212,6 +212,8 @@ class ViewController: UIViewController {
         colorConfig.activeBorder = .primaryActive
         
         let config = M2PInputFieldConfig(placeholder: "Enter Name", fieldStyle: .Form_Default, fieldColors: colorConfig)
+        var imageConfig = M2PFieldTypeImageConfig()
+        imageConfig.calendar_default = UIImage(named: "thumbHightlight")
         
         inputField.M2Psetup(type: .Default_TextField, config: config) // , leftImage: UIImage(named: "pencil"))
         

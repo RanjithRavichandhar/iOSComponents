@@ -131,6 +131,7 @@ public class M2PInputField: UIView {
     var leftImageSize =  CGSize(width: 24, height: 24)
     
     var fieldConfig = M2PInputFieldConfig()
+    var fieldTypeImageConfig = M2PFieldTypeImageConfig()
     
     var isTextFieldActive = false
     var fieldType: M2PInputFieldType = .Default_TextField
@@ -306,11 +307,11 @@ public class M2PInputField: UIView {
             break
         case .Password:
             textField.isSecureTextEntry = !isFieldTypeIconOn
-            fieldTypeImageView.image = textField.isSecureTextEntry ? getImage(with: "eye.png") : getImage(with: "eye_off.png")
+            fieldTypeImageView.image = textField.isSecureTextEntry ? fieldTypeImageConfig.password_on ?? getImage(with: "eye.png") : fieldTypeImageConfig.password_off ?? getImage(with: "eye_off.png")
         case .Dropdown:
-            fieldTypeImageView.image = isFieldTypeIconOn ? getImage(with: "dropdown_active.png") : getImage(with: "dropdown_inactive.png")
+            fieldTypeImageView.image = isFieldTypeIconOn ? fieldTypeImageConfig.dropdown_active ?? getImage(with: "dropdown_active.png") : fieldTypeImageConfig.dropdown_default ?? getImage(with: "dropdown_inactive.png")
         case .CalendarDefault, .CalendarCustom:
-            fieldTypeImageView.image = getImage(with: "calendar.png") // Calendar icon
+            fieldTypeImageView.image = fieldTypeImageConfig.calendar_default ?? getImage(with: "calendar.png") // Calendar icon
         }
         
         fieldTypeImageView.tintColor = isTextFieldActive ? textFieldColor_Active : textFieldColor_Inactive
@@ -542,10 +543,13 @@ public class M2PInputField: UIView {
 
 extension M2PInputField {
     
-    public func M2Psetup(type: M2PInputFieldType, config: M2PInputFieldConfig, leftImage: UIImage? = nil, rightImage: UIImage? = nil) {
+    public func M2Psetup(type: M2PInputFieldType, config: M2PInputFieldConfig, fieldTypeImageConfig: M2PFieldTypeImageConfig? = nil, leftImage: UIImage? = nil, rightImage: UIImage? = nil) {
         
         self.fieldType = type
         self.fieldConfig = config
+        if let imageConfig = fieldTypeImageConfig {
+            self.fieldTypeImageConfig = imageConfig
+        }
         self.fieldStyle = fieldConfig.fieldStyle
         
         self.textFieldColor_Active = config.fieldColors.activeBorder
