@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'iOSComponents'
-  s.version          = '0.2.9'
+  s.version          = '0.2.10'
   s.summary          = 'iOSComponents is created by M2P build iOS Applications and Frameworks.'
   s.license = 'MIT'
   
