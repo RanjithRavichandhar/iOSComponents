@@ -1,6 +1,6 @@
 {
   "name": "iOSComponents",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "summary": "iOSComponents is created by M2P build iOS Applications and Frameworks.",
   "license": {
     "type": "MIT",
@@ -18,7 +18,7 @@
   "source_files": "iOSComponents/Classes/**/*",
   "source": {
     "git": "https://github.com/RanjithRavichandhar/iOSComponents.git",
-    "tag": "0.2.8"
+    "tag": "0.2.9"
   },
   "resource_bundles": {
     "Resources": [
