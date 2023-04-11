@@ -17,7 +17,7 @@
 		0B779A6806BD81457B65BDCF66DCC198 /* M2PGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64345DC87A13AA159BCA85D6B89E9750 /* M2PGradientView.swift */; };
 		0BCB61AAFFA42609074DD37BED3076F7 /* M2PDotLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64922F747C8DB2F4413B216966B5628C /* M2PDotLoader.swift */; };
 		1044C806C00587604632EC9C344EAEA2 /* M2PStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56216A2D8B90063E5726ADF96AA898E /* M2PStepper.swift */; };
-		10D3AE18E06E908CF89850DD3338984D /* iOSComponents-Resources in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2C4442D50A61AAA1C145F08F996FA /* iOSComponents-Resources */; };
+		10D3AE18E06E908CF89850DD3338984D /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4DF2C4442D50A61AAA1C145F08F996FA /* Resources.bundle */; };
 		126A8BE7802EB9779206E4DBA8D9B744 /* M2PColorSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28D620DDF9EEF5C05EEBF40AF4A826B /* M2PColorSystem.swift */; };
 		1604FC1D932C62B69CCF97399148117A /* ColorSystemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBF64A994A1627C157EA96A067CF5DA /* ColorSystemModel.swift */; };
 		1871128C2AE492E913130922BC0E4A2F /* Pods-iOSComponents_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E923B36208379AF65C26226C80B461E8 /* Pods-iOSComponents_Example-dummy.m */; };
@@ -143,10 +143,10 @@
 		420EA755F315E062A4373AA976E937D3 /* search_Image.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = search_Image.png; path = iOSComponents/Assets/search_Image.png; sourceTree = "<group>"; };
 		45A410641283D6C5F788A3262F8B3666 /* dropdown_inactive.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dropdown_inactive.png; path = iOSComponents/Assets/dropdown_inactive.png; sourceTree = "<group>"; };
 		4B7AF86B93AF5A41B5FB4994C4174467 /* M2PListModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PListModel.swift; sourceTree = "<group>"; };
-		4DF2C4442D50A61AAA1C145F08F996FA /* iOSComponents-Resources */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "iOSComponents-Resources"; path = Resources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DF2C4442D50A61AAA1C145F08F996FA /* Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E212F996403F2BED857DEDD7746A053 /* M2PDatePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PDatePicker.swift; sourceTree = "<group>"; };
 		4FECE3F8F3D13221547A8269C6701DF9 /* M2PToolTipView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PToolTipView.swift; sourceTree = "<group>"; };
-		5298ABEA277CB0E0767761CBF017B84E /* record_OFF.wav */ = {isa = PBXFileReference; includeInIndex = 1; name = record_OFF.wav; path = iOSComponents/Assets/record_OFF.wav; sourceTree = "<group>"; };
+		5298ABEA277CB0E0767761CBF017B84E /* record_OFF.wav */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = audio.wav; name = record_OFF.wav; path = iOSComponents/Assets/record_OFF.wav; sourceTree = "<group>"; };
 		60B624B7C2A6395EF762769335DC91D1 /* M2PSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PSlider.swift; sourceTree = "<group>"; };
 		61ADA63A2C0E698E0A5CD52F5D9C4749 /* eye_off.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = eye_off.png; path = iOSComponents/Assets/eye_off.png; sourceTree = "<group>"; };
 		6267AECBDCAC24506A87E3372042E857 /* M2PCustomPageControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PCustomPageControl.swift; sourceTree = "<group>"; };
@@ -170,18 +170,18 @@
 		95E4A1C2E26FB99B30C63E8BEF42C030 /* radioUnSelect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = radioUnSelect.png; path = iOSComponents/Assets/radioUnSelect.png; sourceTree = "<group>"; };
 		95EF723C7EA005077116925228F97078 /* M2PButtonModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PButtonModel.swift; sourceTree = "<group>"; };
 		976B60A512C2BFA191FEF30B97A0695C /* M2PTopNavigation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PTopNavigation.swift; sourceTree = "<group>"; };
-		97AB03F741A8B27DE7BFC9631AC0307A /* iOSComponents.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = iOSComponents.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		97AB03F741A8B27DE7BFC9631AC0307A /* iOSComponents.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = iOSComponents.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9842BEA8D5A1E06D4FC2675184D1CC0C /* checkBoxWhiteSelect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = checkBoxWhiteSelect.png; path = iOSComponents/Assets/checkBoxWhiteSelect.png; sourceTree = "<group>"; };
 		98A54C5F2B86C538EEA895B57194965D /* Pods-iOSComponents_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSComponents_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9BBF64A994A1627C157EA96A067CF5DA /* ColorSystemModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ColorSystemModel.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A226391C0F9F187D9B1E2FDCB89570EB /* iOSComponents-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "iOSComponents-dummy.m"; sourceTree = "<group>"; };
 		A28D620DDF9EEF5C05EEBF40AF4A826B /* M2PColorSystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PColorSystem.swift; sourceTree = "<group>"; };
 		A404DBCCDA5AF8B40C7BC2EBF0FE4C73 /* Pods-iOSComponents_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSComponents_Example-Info.plist"; sourceTree = "<group>"; };
 		A56216A2D8B90063E5726ADF96AA898E /* M2PStepper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PStepper.swift; sourceTree = "<group>"; };
-		A5B8A42D38B63218AC2E196C95AC973A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		A5B8A42D38B63218AC2E196C95AC973A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A6003016EB637C7F72960D72975905E8 /* M2PBottomNavigation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PBottomNavigation.swift; sourceTree = "<group>"; };
-		A9AA355262E69689730C3D1D8C19581D /* record_ON.wav */ = {isa = PBXFileReference; includeInIndex = 1; name = record_ON.wav; path = iOSComponents/Assets/record_ON.wav; sourceTree = "<group>"; };
+		A9AA355262E69689730C3D1D8C19581D /* record_ON.wav */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = audio.wav; name = record_ON.wav; path = iOSComponents/Assets/record_ON.wav; sourceTree = "<group>"; };
 		A9CD5A5812DFA88473BA76A8F47B03D4 /* Pods-iOSComponents_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSComponents_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AD9891C90B663DFEC6D62B1325A37EF3 /* iOSComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = iOSComponents.debug.xcconfig; sourceTree = "<group>"; };
 		AEC3B83E200F2898789C2DE4F98CAE8B /* Pods-iOSComponents_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iOSComponents_Example"; path = Pods_iOSComponents_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,7 +194,7 @@
 		BBA93A24C6EEAD24940065806BB6AC53 /* M2PChip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PChip.swift; sourceTree = "<group>"; };
 		BE751055A74A258DA8658CDA2FA390E2 /* back_Image.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = back_Image.png; path = iOSComponents/Assets/back_Image.png; sourceTree = "<group>"; };
 		BEC7173EC7C3E61410CE14626EDF8188 /* checkRoundWhiteSelect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = checkRoundWhiteSelect.png; path = iOSComponents/Assets/checkRoundWhiteSelect.png; sourceTree = "<group>"; };
-		BF4BF495FD1607A64D02498EEBF603ED /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		BF4BF495FD1607A64D02498EEBF603ED /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C330CB42112A0DE23C3FAC9761C0C186 /* Pods-iOSComponents_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSComponents_Tests-Info.plist"; sourceTree = "<group>"; };
 		C42A7E25277B15AF5594A7CA60EC5C17 /* m2ptooltip.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = m2ptooltip.png; path = iOSComponents/Assets/m2ptooltip.png; sourceTree = "<group>"; };
 		CE1A45E3B948398E4315A7F9B816D526 /* M2PLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PLoader.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 		E76C68B339549003EE17B3C89B3CD2C5 /* Pods-iOSComponents_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSComponents_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E923B36208379AF65C26226C80B461E8 /* Pods-iOSComponents_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iOSComponents_Example-dummy.m"; sourceTree = "<group>"; };
 		EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		ED337031B03F80FB00DCB1EB65563C0E /* M2PColors.json */ = {isa = PBXFileReference; includeInIndex = 1; name = M2PColors.json; path = iOSComponents/Assets/M2PColors.json; sourceTree = "<group>"; };
+		ED337031B03F80FB00DCB1EB65563C0E /* M2PColors.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = M2PColors.json; path = iOSComponents/Assets/M2PColors.json; sourceTree = "<group>"; };
 		EDD4FB8C6E5245CF8B82C3C790C0D387 /* M2PTopTabBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PTopTabBar.swift; sourceTree = "<group>"; };
 		F14434DD1EF77DE636E635195A10070D /* iOSComponents-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "iOSComponents-umbrella.h"; sourceTree = "<group>"; };
 		F310BA0EBF5B27CA1023E9E21A606678 /* M2PInputField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = M2PInputField.swift; sourceTree = "<group>"; };
@@ -354,7 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				1112D407162F38446EE245D30180567F /* iOSComponents */,
-				4DF2C4442D50A61AAA1C145F08F996FA /* iOSComponents-Resources */,
+				4DF2C4442D50A61AAA1C145F08F996FA /* Resources.bundle */,
 				AEC3B83E200F2898789C2DE4F98CAE8B /* Pods-iOSComponents_Example */,
 				72D5FC6DB307E80A9FF855C700FAF241 /* Pods-iOSComponents_Tests */,
 			);
@@ -770,7 +770,7 @@
 			);
 			name = "iOSComponents-Resources";
 			productName = Resources;
-			productReference = 4DF2C4442D50A61AAA1C145F08F996FA /* iOSComponents-Resources */;
+			productReference = 4DF2C4442D50A61AAA1C145F08F996FA /* Resources.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -781,6 +781,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					89B86EF92CFDD5F2C5221968513B1FBC = {
+						DevelopmentTeam = 63TZ8L2ZK4;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -850,7 +855,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10D3AE18E06E908CF89850DD3338984D /* iOSComponents-Resources in Resources */,
+				10D3AE18E06E908CF89850DD3338984D /* Resources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,6 +1036,7 @@
 			baseConfigurationReference = 38E7E498E67915AB3B3A237267393957 /* iOSComponents.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/iOSComponents";
+				DEVELOPMENT_TEAM = 63TZ8L2ZK4;
 				IBSC_MODULE = iOSComponents;
 				INFOPLIST_FILE = "Target Support Files/iOSComponents/ResourceBundle-Resources-iOSComponents-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1131,8 +1137,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1143,6 +1148,7 @@
 			baseConfigurationReference = AD9891C90B663DFEC6D62B1325A37EF3 /* iOSComponents.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/iOSComponents";
+				DEVELOPMENT_TEAM = 63TZ8L2ZK4;
 				IBSC_MODULE = iOSComponents;
 				INFOPLIST_FILE = "Target Support Files/iOSComponents/ResourceBundle-Resources-iOSComponents-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

@@ -117,6 +117,11 @@ public class M2PInputField: UIView {
     
     let bottomBorder = CALayer()
     
+    let floatingLabelView: UIView = {
+       let view = UIView()
+        return view
+    }()
+    
     let floatingLabel: UILabel = UILabel(frame: CGRect.zero) // Label
     let floatingLabelHeight: CGFloat = 20 // Default height
     
@@ -207,6 +212,11 @@ public class M2PInputField: UIView {
     public var M2PdidTextFieldEditingChange: ((String?) -> ())?
     public var M2PdidTextFieldValueUpdated: ((String) -> ())?
     
+    private var contentStackLeadingAnchor: NSLayoutConstraint?
+    private var contentStackTrailingAnchor: NSLayoutConstraint?
+    private var contentStackTopAnchor: NSLayoutConstraint?
+    private var contentStackBottomAnchor: NSLayoutConstraint?
+    
     // MARK: Initializers
     
     override public init(frame: CGRect) {
@@ -280,8 +290,12 @@ public class M2PInputField: UIView {
             contentView.layer.cornerRadius = 10
             contentView.layer.borderWidth = 1
             contentView.layer.borderColor = currentStateColor?.cgColor
+            bottomBorder.isHidden = true
         case .BottomLine_Default, .BottomLine_Floating:
+            contentView.layer.cornerRadius = 0
+            contentView.layer.borderWidth = 0
             bottomBorder.frame = CGRect(x: contentView.frame.minX, y: contentView.bounds.size.height - 5, width: contentView.frame.size.width, height:1)
+            bottomBorder.isHidden = false
             bottomBorder.backgroundColor = currentStateColor?.cgColor
             contentView.layer.addSublayer(bottomBorder)
         }
@@ -353,7 +367,9 @@ public class M2PInputField: UIView {
     @objc func onTextFieldEditingBegin() {
         // Adding floating title label
         if fieldStyle == .Form_Floating || fieldStyle == .BottomLine_Floating {
-            addFloatingLabel()
+            if (textField.text?.isEmpty ?? true) && !isFloatingLabelPresent {
+                addFloatingLabel()
+            }
         }
         
         // TextField active state changes
@@ -384,7 +400,9 @@ public class M2PInputField: UIView {
     @objc func onTextFieldEditingEnd() {
         // Removing floating title label
         if fieldStyle == .Form_Floating || fieldStyle == .BottomLine_Floating {
-            removeFloatingLabel()
+            if (textField.text?.isEmpty ?? true) && isFloatingLabelPresent {
+                removeFloatingLabel()
+            }
         }
         
         // TextField inactive state changes
@@ -413,39 +431,38 @@ public class M2PInputField: UIView {
     // MARK: Floating label handling
            
     private func addFloatingLabel() {
-        if textField.text == "", !isFloatingLabelPresent {
-            isFloatingLabelPresent = true
-            let labelView = UIView()
-            labelView.addSubview(floatingLabel)
-            floatingLabel.textColor = fieldConfig.fieldColors.title
-            floatingLabel.font = fieldConfig.fieldFonts.titleFont
-            floatingLabel.text = fieldConfig.titleText ?? fieldConfig.placeholderText
-            floatingLabel.sizeToFit()
-            floatingLabel.translatesAutoresizingMaskIntoConstraints = false
-            floatingLabel.clipsToBounds = true
-            
-            textFieldStackView.insertArrangedSubview(labelView, at: 0)
-            
-            self.floatingLabel.leadingAnchor.constraint(equalTo: textField.leadingAnchor, constant: 0).isActive = true
-            self.floatingLabel.bottomAnchor.constraint(equalTo: labelView.bottomAnchor, constant: 5).isActive = true
-            self.floatingLabel.trailingAnchor.constraint(equalTo: labelView.trailingAnchor).isActive = true
-            labelView.heightAnchor.constraint(equalToConstant: floatingLabelHeight).isActive = true
-            
-            // Remove the placeholder
-            textField.placeholder = ""
+        isFloatingLabelPresent = true
+        floatingLabel.textColor = fieldConfig.fieldColors.title
+        floatingLabel.font = fieldConfig.fieldFonts.titleFont
+        floatingLabel.text = fieldConfig.titleText ?? fieldConfig.placeholderText
+        floatingLabel.sizeToFit()
+        floatingLabel.translatesAutoresizingMaskIntoConstraints = false
+        floatingLabel.clipsToBounds = true
+        
+        if !textFieldStackView.arrangedSubviews.contains(floatingLabelView) {
+            floatingLabelView.addSubview(floatingLabel)
+            textFieldStackView.insertArrangedSubview(floatingLabelView, at: 0)
         }
         
+        self.floatingLabel.leadingAnchor.constraint(equalTo: textField.leadingAnchor, constant: 0).isActive = true
+        self.floatingLabel.bottomAnchor.constraint(equalTo: floatingLabelView.bottomAnchor, constant: 5).isActive = true
+        self.floatingLabel.trailingAnchor.constraint(equalTo: floatingLabelView.trailingAnchor).isActive = true
+        floatingLabelView.heightAnchor.constraint(equalToConstant: floatingLabelHeight).isActive = true
+        
+        // Remove the placeholder
+        textField.placeholder = ""
+        
+        self.floatingLabelView.isHidden = false
         textField.setNeedsDisplay()
     }
     
     private func removeFloatingLabel() {
-        if textField.text == "", isFloatingLabelPresent {
-            isFloatingLabelPresent = false
-            UIView.animate(withDuration: 0.15) {
-                self.textFieldStackView.arrangedSubviews.first?.removeFromSuperview()
-            }
-            textField.placeholder = fieldConfig.placeholderText
+        isFloatingLabelPresent = false
+        UIView.animate(withDuration: 0.15) {
+            self.textFieldStackView.removeArrangedSubview(self.floatingLabelView)
         }
+        textField.placeholder = fieldConfig.placeholderText
+        self.floatingLabelView.isHidden = true
     }
     
     // MARK: Actions
@@ -578,13 +595,23 @@ extension M2PInputField {
     }
     
     public func M2PsetTextFieldValue(with value: String) {
+        setTextFieldValue(with: value)
+        isFloatingLabelPresent = value.isEmpty
+        
         if fieldStyle == .Form_Floating || fieldStyle == .BottomLine_Floating {
-            addFloatingLabel()
+            if !value.isEmpty {
+                addFloatingLabel()
+            } else {
+                removeFloatingLabel()
+            }
+        } else {
+            self.floatingLabelView.isHidden = true
         }
+        
         if fieldType != .Default_TextField {
             updateFieldTypeImageHiddenState()
         }
-        setTextFieldValue(with: value)
+       
         if fieldType == .Dropdown || fieldType == .CalendarDefault || fieldType == .CalendarCustom {
             isFieldTypeIconOn = false
             setActiveInactiveState(isActiveflag: false)
@@ -684,16 +711,23 @@ extension M2PInputField {
     }
     
     func setContentStackViewConstraints() {
-        contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
-        contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
-        contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        self.contentStackLeadingAnchor = contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
+        self.contentStackTopAnchor = contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor)
+        self.contentStackTrailingAnchor = contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+        self.contentStackBottomAnchor = contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+
+        [contentStackLeadingAnchor, contentStackTopAnchor, contentStackTrailingAnchor, contentStackBottomAnchor].forEach { anchor in
+            anchor?.isActive = true
+        }
     }
     
     func updateConstraintsBasedOnType() {
         if fieldStyle == .BottomLine_Default || fieldStyle == .BottomLine_Floating {
-            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
-            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+            self.contentStackLeadingAnchor?.constant = 0
+            self.contentStackTrailingAnchor?.constant = 0
+        } else {
+            self.contentStackLeadingAnchor?.constant = 10
+            self.contentStackTrailingAnchor?.constant = -10
         }
     }
     
